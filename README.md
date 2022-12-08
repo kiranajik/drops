@@ -6,4 +6,4 @@ Various Organisations like Hospitals and charities can host campaigns and their 
 Normal users can react to those posts and register themselves for the campaign as a donor.
 Each user will see the posts/requirements in his nearby locations..
 Organisers can also post only for specific  regions.
-Rewards and referral based system
+Rewards and referral based system.
