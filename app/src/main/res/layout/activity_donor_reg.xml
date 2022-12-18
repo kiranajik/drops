@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/appbar_scrolling_view_behavior"
+    android:fillViewport="true"
+    tools:context=".donor_reg"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="99dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/org_signup_btn2"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#E26864"
+            android:text="Sign Up"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/donor_choose_btn" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="806dp"
+            android:layout_height="1252dp"
+            android:layout_marginTop="-600dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.296"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/org_bg" />
+
+        <EditText
+            android:id="@+id/edName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="176dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="@+id/edPhno"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="@+id/edPhno"
+            app:layout_constraintTop_toBottomOf="@+id/edPhno">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gender" />
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/edDob"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Date of Birth"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/edAge"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edAge"
+            app:layout_constraintTop_toBottomOf="@+id/edAge" />
+
+        <EditText
+            android:id="@+id/edPhno"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/edBloodGroup"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edBloodGroup"
+            app:layout_constraintTop_toBottomOf="@+id/edBloodGroup" />
+
+        <EditText
+            android:id="@+id/edPhno2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Aadhar No."
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup2"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+        <EditText
+            android:id="@+id/edAddress"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textPostalAddress"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/edName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edName"
+            app:layout_constraintTop_toBottomOf="@+id/edName" />
+
+        <EditText
+            android:id="@+id/edAge"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="@+id/edAddress"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edAddress"
+            app:layout_constraintTop_toBottomOf="@+id/edAddress" />
+
+        <EditText
+            android:id="@+id/edBloodGroup"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Blood Group"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/edDob"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edDob"
+            app:layout_constraintTop_toBottomOf="@+id/edDob" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
