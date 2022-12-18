@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drops">
-        <activity android:name=".donor_login"></activity>
+        <activity android:name=".org_signup"></activity>
+        <activity android:name=".org_login" />
+        <activity android:name=".donor_signup" />
+        <activity android:name=".donor_login" />
         <activity android:name=".org_auth" />
         <activity android:name=".donor_auth" />
         <activity android:name=".choose_user" />
