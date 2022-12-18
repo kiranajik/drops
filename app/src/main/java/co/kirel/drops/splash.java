@@ -21,7 +21,7 @@ public class splash extends AppCompatActivity {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                Intent i = new Intent(splash.this, MainActivity.class);
+                Intent i = new Intent(splash.this, choose_user.class);
                 startActivity(i);
                 finish();
             }
