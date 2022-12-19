@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,12 +41,13 @@ public class donor_reg extends AppCompatActivity {
         signup=findViewById(R.id.dnr_signup_btn);
 
         Intent intent = getIntent();
-        String semail = intent.getStringExtra("Email");
-        String spaswd = intent.getStringExtra("Password");
+        String semail = intent.getStringExtra("DnrEmail");
+        String spaswd = intent.getStringExtra("DnrPassword");
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 auth.createUserWithEmailAndPassword(semail,spaswd)
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
@@ -73,7 +75,7 @@ public class donor_reg extends AppCompatActivity {
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(donor_reg.this, "No", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(donor_reg.this, "FireStoreNo", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                             }
@@ -81,7 +83,8 @@ public class donor_reg extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(donor_reg.this, "No", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(donor_reg.this, "AuthNo", Toast.LENGTH_SHORT).show();
+                                Log.d("error",e.toString());
                             }
                         });
             }

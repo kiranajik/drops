@@ -36,8 +36,8 @@ public class donor_signup extends AppCompatActivity {
                     spaswd=dnrpaswd.getText().toString();
                     Toast.makeText(donor_signup.this, "Yes", Toast.LENGTH_SHORT).show();
                     Intent i=new Intent(donor_signup.this,donor_reg.class);
-                    i.putExtra("Org Email",semail);
-                    i.putExtra("Org Password",spaswd);
+                    i.putExtra("DnrEmail",semail);
+                    i.putExtra("DnrPassword",spaswd);
                     startActivity(i);
                 }else
                 {
