@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -19,6 +20,7 @@ public class donor_login extends AppCompatActivity {
     EditText email,paswd;
     Button signin;
     String semail,spaswd;
+    TextView newhere;
     private FirebaseAuth auth=FirebaseAuth.getInstance();
 
     @Override
@@ -28,7 +30,16 @@ public class donor_login extends AppCompatActivity {
 
         email=findViewById(R.id.user_email);
         paswd=findViewById(R.id.user_pwd);
+        newhere=findViewById(R.id.newhere);
         signin=findViewById(R.id.donor_signin_btn);
+
+        newhere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(donor_login.this,donor_signup.class);
+                startActivity(i);
+            }
+        });
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override

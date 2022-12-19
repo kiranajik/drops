@@ -3,10 +3,12 @@ package co.kirel.drops;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class org_login extends AppCompatActivity {
     EditText orgemail,orgpass;
     Button signin;
+    TextView newhere;
     String sorgemail,sorgpass;
     FirebaseAuth auth=FirebaseAuth.getInstance();
 
@@ -27,7 +30,16 @@ public class org_login extends AppCompatActivity {
 
         orgemail=findViewById(R.id.org_email);
         orgpass=findViewById(R.id.org_pwd);
+        newhere=findViewById(R.id.newhere);
         signin=findViewById(R.id.org_signin_btn);
+
+        newhere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(org_login.this,org_signup.class);
+                startActivity(i);
+            }
+        });
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
