@@ -42,8 +42,8 @@ public class donor_login extends AppCompatActivity {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(donor_login.this, "Successfully Logined", Toast.LENGTH_SHORT).show();
-                                Intent i=new Intent(donor_login.this,donor_home.class);
-                                startActivity(i);
+                                //Intent i=new Intent(donor_login.this,donor_home.class);
+                                //startActivity(i);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
