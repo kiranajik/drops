@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class org_signup extends AppCompatActivity {
     ImageView next;
-    EditText orgemail,orgpass;
+    EditText orgemail,orgpass,orgcpass;
+    String sorgpass,sorgcpass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +21,23 @@ public class org_signup extends AppCompatActivity {
         next=findViewById(R.id.orgsignupnext);
         orgemail=findViewById(R.id.org_emailid);
         orgpass=findViewById(R.id.org_passwd);
+        orgcpass=findViewById(R.id.org_confirm_pwd);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(org_signup.this,org_reg.class);
-                i.putExtra("OrgEmail",orgemail.getText().toString());
-                i.putExtra("OrgPassword",orgpass.getText().toString());
-                startActivity(i);
+                sorgpass=orgpass.getText().toString();
+                sorgcpass=orgcpass.getText().toString();
+                if(sorgpass.equals(sorgcpass))
+                {
+                    Intent i=new Intent(org_signup.this,org_reg.class);
+                    i.putExtra("OrgEmail",orgemail.getText().toString());
+                    i.putExtra("OrgPassword",orgpass.getText().toString());
+                    startActivity(i);
+                }else
+                {
+                    Toast.makeText(org_signup.this, "Password doesn't match", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
