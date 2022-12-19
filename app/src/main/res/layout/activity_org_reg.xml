@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/dnr_signup_btn"
+            android:id="@+id/org_signup_btn"
             android:layout_width="360dp"
             android:layout_height="60dp"
             android:layout_marginBottom="16dp"
@@ -43,7 +43,7 @@
             android:id="@+id/edName"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="176dp"
+            android:layout_marginTop="160dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="Name of Hospital/Organization"
@@ -57,7 +57,7 @@
             android:id="@+id/radioGroup2"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/edPhno"
             app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="@+id/edPhno"
@@ -70,52 +70,52 @@
                 android:text="Type" />
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/typeorg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Organization" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/typehos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hospital" />
         </RadioGroup>
 
         <EditText
-            android:id="@+id/edDob"
+            android:id="@+id/edauthpers"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="Authorised Person Name"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColorHint="#757575"
-            app:layout_constraintEnd_toEndOf="@+id/edAge"
+            app:layout_constraintEnd_toEndOf="@+id/edyear"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/edAge"
-            app:layout_constraintTop_toBottomOf="@+id/edAge" />
+            app:layout_constraintStart_toStartOf="@+id/edyear"
+            app:layout_constraintTop_toBottomOf="@+id/edyear" />
 
         <EditText
             android:id="@+id/edPhno"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="Phone Number"
             android:inputType="phone"
             android:minHeight="48dp"
             android:textColorHint="#757575"
-            app:layout_constraintEnd_toEndOf="@+id/edBloodGroup"
+            app:layout_constraintEnd_toEndOf="@+id/eddesig"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/edBloodGroup"
-            app:layout_constraintTop_toBottomOf="@+id/edBloodGroup" />
+            app:layout_constraintStart_toStartOf="@+id/eddesig"
+            app:layout_constraintTop_toBottomOf="@+id/eddesig" />
 
         <EditText
-            android:id="@+id/edPhno2"
+            android:id="@+id/ednoofvol"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -147,7 +147,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edName" />
 
         <EditText
-            android:id="@+id/edAge"
+            android:id="@+id/edyear"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -162,20 +162,20 @@
             app:layout_constraintTop_toBottomOf="@+id/edAddress" />
 
         <EditText
-            android:id="@+id/edBloodGroup"
+            android:id="@+id/eddesig"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="Your Designation"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:textColorHint="#757575"
-            app:layout_constraintEnd_toEndOf="@+id/edDob"
+            app:layout_constraintEnd_toEndOf="@+id/edauthpers"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/edDob"
-            app:layout_constraintTop_toBottomOf="@+id/edDob" />
+            app:layout_constraintStart_toStartOf="@+id/edauthpers"
+            app:layout_constraintTop_toBottomOf="@+id/edauthpers" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

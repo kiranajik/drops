@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/donor_email"
+        android:id="@+id/org_emailid"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="460dp"
@@ -62,13 +62,13 @@
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/donor_pwd"
+        app:layout_constraintEnd_toEndOf="@+id/org_passwd"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/donor_pwd"
-        app:layout_constraintTop_toBottomOf="@+id/donor_pwd" />
+        app:layout_constraintStart_toStartOf="@+id/org_passwd"
+        app:layout_constraintTop_toBottomOf="@+id/org_passwd" />
 
     <EditText
-        android:id="@+id/donor_pwd"
+        android:id="@+id/org_passwd"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
@@ -79,13 +79,13 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/donor_email"
+        app:layout_constraintEnd_toEndOf="@+id/org_emailid"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/donor_email"
-        app:layout_constraintTop_toBottomOf="@+id/donor_email" />
+        app:layout_constraintStart_toStartOf="@+id/org_emailid"
+        app:layout_constraintTop_toBottomOf="@+id/org_emailid" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/orgsignupnext"
         android:layout_width="148dp"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"

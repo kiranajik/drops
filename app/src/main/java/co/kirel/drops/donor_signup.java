@@ -29,8 +29,8 @@ public class donor_signup extends AppCompatActivity {
                 spaswd=dnrpaswd.getText().toString();
                 Toast.makeText(donor_signup.this, "Yes", Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(donor_signup.this,donor_reg.class);
-                i.putExtra("Email",semail);
-                i.putExtra("Password",spaswd);
+                i.putExtra("Org Email",semail);
+                i.putExtra("Org Password",spaswd);
                 startActivity(i);
             }
         });
