@@ -7,7 +7,7 @@
     tools:context=".org_login">
 
     <Button
-        android:id="@+id/donor_login_btn2"
+        android:id="@+id/donor_signin_btn"
         android:layout_width="164dp"
         android:layout_height="60dp"
         android:layout_marginBottom="40dp"
@@ -70,7 +70,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/user_pwd"
+        android:id="@+id/donor_pwd"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
@@ -81,13 +81,13 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/user_email"
+        app:layout_constraintEnd_toEndOf="@+id/donor_email"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/user_email"
-        app:layout_constraintTop_toBottomOf="@+id/user_email" />
+        app:layout_constraintStart_toStartOf="@+id/donor_email"
+        app:layout_constraintTop_toBottomOf="@+id/donor_email" />
 
     <EditText
-        android:id="@+id/user_email"
+        android:id="@+id/donor_email"
         android:layout_width="380dp"
         android:layout_height="50dp"
         android:layout_marginTop="408dp"
@@ -116,7 +116,7 @@
         android:ems="10"
         android:hint="Organization Code"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/user_email"
+        app:layout_constraintBottom_toTopOf="@+id/donor_email"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView5"
@@ -133,7 +133,7 @@
         android:textColor="#000000"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/donor_login_btn2"
+        app:layout_constraintEnd_toStartOf="@+id/donor_signin_btn"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 

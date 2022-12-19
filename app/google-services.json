@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "243098031423",
+    "project_id": "drops-aa034",
+    "storage_bucket": "drops-aa034.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243098031423:android:a6c07700a0edf7edfa2f8a",
+        "android_client_info": {
+          "package_name": "co.kirel.drops"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243098031423-sp79lh6eelpt3t1jite6tbc9emvsp31t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdyI77B6E7wVg5Rzgio_WxMZPTQHlZRqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243098031423-sp79lh6eelpt3t1jite6tbc9emvsp31t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/org_signup_btn2"
+            android:id="@+id/dnr_signup_btn"
             android:layout_width="360dp"
             android:layout_height="60dp"
             android:layout_marginBottom="16dp"
@@ -34,7 +34,7 @@
             android:layout_height="1252dp"
             android:layout_marginTop="-600dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.296"
+            app:layout_constraintHorizontal_bias="0.293"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/org_bg" />
