@@ -39,6 +39,7 @@ public class donor_signup extends AppCompatActivity {
                     i.putExtra("DnrEmail",semail);
                     i.putExtra("DnrPassword",spaswd);
                     startActivity(i);
+                    finish();
                 }else
                 {
                     Toast.makeText(donor_signup.this, "Password doesn't match", Toast.LENGTH_SHORT).show();
