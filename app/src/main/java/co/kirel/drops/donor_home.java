@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import co.kirel.drops.databinding.ActivityDonorHomeBinding;
@@ -12,6 +13,7 @@ import co.kirel.drops.databinding.ActivityMainBinding;
 
 public class donor_home extends AppCompatActivity {
     ActivityDonorHomeBinding binding;
+    String semail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,9 @@ public class donor_home extends AppCompatActivity {
         binding=ActivityDonorHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
+
+        Intent intent = getIntent();
+        semail = intent.getStringExtra("Email");
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -51,5 +56,9 @@ public class donor_home extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
 
+    }
+
+    public String getMyData() {
+        return semail;
     }
 }

@@ -55,6 +55,7 @@ public class donor_login extends AppCompatActivity {
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(donor_login.this, "Successfully Logined", Toast.LENGTH_SHORT).show();
                                 Intent i=new Intent(donor_login.this,donor_home.class);
+                                i.putExtra("Email",semail);
                                 startActivity(i);
                                 finish();
                             }
