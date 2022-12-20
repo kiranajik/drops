@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="prim">#E26864</color>
+    <color name="nd2_prim">#172255</color>
 
 </resources>

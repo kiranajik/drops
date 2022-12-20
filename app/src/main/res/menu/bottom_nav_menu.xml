@@ -21,7 +21,7 @@
         android:title="Profile"/>
     <item
         android:id="@+id/reward"
-        android:icon="@drawable/ic_trophy"
+        android:icon="@drawable/ic_round_offline_bolt_24"
         android:title="Reward"/>
 
 </menu>
