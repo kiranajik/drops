@@ -73,13 +73,15 @@
                 android:id="@+id/typeorg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Organization" />
+                android:text="Organization"
+                android:onClick="onClickedOrg"/>
 
             <RadioButton
                 android:id="@+id/typehos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hospital" />
+                android:text="Hospital"
+                android:onClick="onClickedHospital"/>
         </RadioGroup>
 
         <EditText
@@ -176,6 +178,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/edauthpers"
             app:layout_constraintTop_toBottomOf="@+id/edauthpers" />
+
+        <TextView
+            android:id="@+id/org_code_gen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/ednoofvol"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/ednoofvol"
+            app:layout_constraintTop_toBottomOf="@+id/ednoofvol" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

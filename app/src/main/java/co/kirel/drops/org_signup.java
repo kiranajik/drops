@@ -28,6 +28,7 @@ public class org_signup extends AppCompatActivity {
             public void onClick(View view) {
                 sorgpass=orgpass.getText().toString();
                 sorgcpass=orgcpass.getText().toString();
+                Toast.makeText(org_signup.this, sorgcpass, Toast.LENGTH_SHORT).show();
                 if(sorgpass.equals(sorgcpass))
                 {
                     Intent i=new Intent(org_signup.this,org_reg.class);
