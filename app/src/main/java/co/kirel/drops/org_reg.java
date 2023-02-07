@@ -93,6 +93,7 @@ public class org_reg extends AppCompatActivity {
                                     data.put("Phone Number",phno.getText().toString());
                                     data.put("Number of Volunteers",noofVol.getText().toString());
                                     data.put("Organization Code","O"+org_code);
+                                    data.put("Verified","no");
                                     data.put("Role","ORG");
 
 
@@ -124,6 +125,7 @@ public class org_reg extends AppCompatActivity {
                                     data.put("Phone Number",phno.getText().toString());
                                     data.put("Number of Volunteers",noofVol.getText().toString());
                                     data.put("Hospital Code","H"+org_code);
+                                    data.put("Verified","no");
                                     data.put("Role","HOSP");
 
 

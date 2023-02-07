@@ -27,7 +27,7 @@ public class org_login extends AppCompatActivity {
     EditText orgemail,orgpass,orgcode;
     Button signin;
     TextView newhere;
-    String sorgemail,sorgpass,sorgcode,rsorgcode;
+    String sorgemail,sorgpass,sorgcode,rsorgcode,Verified;
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
@@ -71,6 +71,7 @@ public class org_login extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     rsorgcode = document.getString("Organization Code");
+                                    Verified= document.getString("Verified");
 //                                    Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d("error", "No such document");
@@ -91,6 +92,7 @@ public class org_login extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     rsorgcode = document.getString("Hospital Code");
+                                    Verified= document.getString("Verified");
 //                                    Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d("error", "No such document");
@@ -119,11 +121,22 @@ public class org_login extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                         @Override
                                         public void onSuccess(AuthResult authResult) {
-                                            Toast.makeText(org_login.this, "SignIn Succesfull", Toast.LENGTH_SHORT).show();
-                                            Intent i=new Intent(org_login.this,hospital_home.class);
-                                            i.putExtra("Email",sorgemail);
-                                            startActivity(i);
-                                            finish();
+
+                                            Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                public void run() {
+                                                    // Actions to do after 5 seconds
+                                                    if(Verified.equals("yes")) {
+                                                        Toast.makeText(org_login.this, "SignIn Succesfull", Toast.LENGTH_SHORT).show();
+                                                        Intent i=new Intent(org_login.this,hospital_home.class);
+                                                        i.putExtra("Email",sorgemail);
+                                                        startActivity(i);
+                                                        finish();
+                                                    }else{
+                                                        Toast.makeText(org_login.this, "You account is not verified", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            }, 2000);
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
