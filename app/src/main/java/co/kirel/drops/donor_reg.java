@@ -61,6 +61,7 @@ public class donor_reg extends AppCompatActivity {
                                 data.put("Blood Group",bloodgrp.getText().toString());
                                 data.put("Phone Number",phno.getText().toString());
                                 data.put("Aadhaar Number",adharno.getText().toString());
+                                data.put("Verified","no");
                                 data.put("Role","DONOR");
 
                                 firestore.collection("Donor").document(semail).set(data)

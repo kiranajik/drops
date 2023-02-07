@@ -57,7 +57,9 @@ public class org_login extends AppCompatActivity {
                 sorgemail = orgemail.getText().toString();
                 sorgpass = orgpass.getText().toString();
                 sorgcode = orgcode.getText().toString();
-                String codefrst= sorgcode.substring(0,1);;
+                String codefrst= sorgcode.substring(0,1);
+
+//                Toast.makeText(org_login.this, codefrst, Toast.LENGTH_SHORT).show();
 
                 if (codefrst.equals("O"))
                 {
@@ -69,7 +71,7 @@ public class org_login extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     rsorgcode = document.getString("Organization Code");
-                                    //Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d("error", "No such document");
                                 }
@@ -89,7 +91,7 @@ public class org_login extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     rsorgcode = document.getString("Hospital Code");
-                                    //Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
                                 } else {
                                     Log.d("error", "No such document");
                                 }
@@ -105,7 +107,7 @@ public class org_login extends AppCompatActivity {
                 }
 
 
-//                Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
+                Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -118,6 +120,10 @@ public class org_login extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(AuthResult authResult) {
                                             Toast.makeText(org_login.this, "SignIn Succesfull", Toast.LENGTH_SHORT).show();
+                                            Intent i=new Intent(org_login.this,hospital_home.class);
+                                            i.putExtra("Email",sorgemail);
+                                            startActivity(i);
+                                            finish();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {

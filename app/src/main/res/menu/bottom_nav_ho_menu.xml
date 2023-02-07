@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/hohome"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/honotification"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        android:title="Notification"/>
+
+    <item
+        android:id="@+id/hoplaceholder"
+        android:title=""/>
+
+    <item
+        android:id="@+id/hodonations"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="Donations"/>
+    <item
+        android:id="@+id/hoprofile"
+        android:icon="@drawable/ic_baseline_local_hospital_24"
+        android:title="Profile"/>
+
+
 </menu>

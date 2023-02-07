@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="prim">#E26864</color>
     <color name="nd2_prim">#172255</color>
+    <color name="ho_bg">#4B69D7</color>
 
 </resources>
