@@ -83,13 +83,13 @@ public class donor_login extends AppCompatActivity {
                                     public void run() {
                                         // Actions to do after 5 seconds
                                         if(Verified.equals("yes")) {
-                                            Toast.makeText(donor_login.this, "Successfully Logined", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(donor_login.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
                                             Intent i = new Intent(donor_login.this, donor_home.class);
                                             i.putExtra("Email", semail);
                                             startActivity(i);
                                             finish();
                                         }else{
-                                            Toast.makeText(donor_login.this, "Donar not verified", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(donor_login.this, "Donor not verified", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }, 2000);
