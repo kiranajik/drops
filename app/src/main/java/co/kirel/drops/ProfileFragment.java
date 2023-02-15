@@ -1,5 +1,6 @@
 package co.kirel.drops;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 
@@ -28,18 +29,28 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         super.onCreate(savedInstanceState);
+        replaceFragment(new DonationsFragment());
         donation = view.findViewById(R.id.donationbtn);
         request = view.findViewById(R.id.requestbtn);
         donation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 replaceFragment(new DonationsFragment());
+                donation.setBackgroundColor(Color.RED);
+                donation.setTextColor(Color.BLACK);
+                request.setBackgroundColor(Color.GRAY);
+                request.setTextColor(Color.WHITE);
             }
+
         });
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 replaceFragment(new RequestsFragment());
+                request.setBackgroundColor(Color.RED);
+                request.setTextColor(Color.BLACK);
+                donation.setBackgroundColor(Color.GRAY);
+                donation.setTextColor(Color.WHITE);
             }
         });
         return view;
