@@ -1,5 +1,6 @@
 package co.kirel.drops;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,13 +13,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -31,6 +39,8 @@ public class HomeFragment extends Fragment {
     private String[] reqsNames;
     private String[] reqsgp;
     private RecyclerView recyclerView;
+    FirebaseFirestore db;
+    MyAdapter myAdapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -61,13 +71,14 @@ public class HomeFragment extends Fragment {
         String myEmail = activity.getMyData();
         firestore=FirebaseFirestore.getInstance();
         uname=view.findViewById(R.id.uname);
+        db=FirebaseFirestore.getInstance();
 
         dataInitialize();
 
         recyclerView= view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        MyAdapter myAdapter = new MyAdapter(getContext(),reqsArraylist);
+        myAdapter = new MyAdapter(getContext(),reqsArraylist);
         recyclerView.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
 
@@ -91,32 +102,59 @@ public class HomeFragment extends Fragment {
     }
 
     private void dataInitialize() {
-        reqsArraylist = new ArrayList<>();
+        reqsArraylist = new ArrayList<>(); //DON'T DELETE
 
-        reqsNames= new String[]{
+        //Try Code
 
-                getString(R.string.head1),
-                getString(R.string.head2),
-                getString(R.string.head3),
-                getString(R.string.head4),
-                getString(R.string.head5),
-                getString(R.string.head6),
-        };
+        db.collection("Requirements").orderBy("End Time", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
-        reqsgp= new String[]{
-                getString(R.string.bg1),
-                getString(R.string.bg2),
-                getString(R.string.bg3),
-                getString(R.string.bg4),
-                getString(R.string.bg5),
-                getString(R.string.bg6),
-        };
+                        if (error!= null)
+                        {
+                            Log.e("Firestore error",error.getMessage());
+                            return;
+                        }
 
-        for (int i=0; i< reqsNames.length; i++)
-        {
-            Requirements requirements= new Requirements(reqsNames[i],reqsgp[i]);
-            reqsArraylist.add(requirements);
-        }
+                        for (DocumentChange dc : value.getDocumentChanges())
+                        {
+                            if (dc.getType() == DocumentChange.Type.ADDED)
+                            {
+                                reqsArraylist.add(dc.getDocument().toObject(Requirements.class));
+                            }
+                            myAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
+
+        // TRY CODE
+
+//        reqsNames= new String[]{
+//
+//                getString(R.string.head1),
+//                getString(R.string.head2),
+//                getString(R.string.head3),
+//                getString(R.string.head4),
+//                getString(R.string.head5),
+//                getString(R.string.head6),
+//        };
+//
+//        reqsgp= new String[]{
+//                getString(R.string.bg1),
+//                getString(R.string.bg2),
+//                getString(R.string.bg3),
+//                getString(R.string.bg4),
+//                getString(R.string.bg5),
+//                getString(R.string.bg6),
+//        };
+//
+//        for (int i=0; i< reqsNames.length; i++)
+//        {
+//            Requirements requirements= new Requirements(reqsNames[i],reqsgp[i]);
+//            reqsArraylist.add(requirements);
+//        }
 
     }
 }

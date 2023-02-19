@@ -33,8 +33,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Requirements requirements= requirementsArrayList.get(position);
-        holder.tvhn.setText(requirements.hname);
-        holder.tvbg.setText(requirements.bg);
+        holder.tvhn.setText(requirements.Purpose);
+        holder.tvbg.setText(requirements.BloodGroup);
 
     }
 
