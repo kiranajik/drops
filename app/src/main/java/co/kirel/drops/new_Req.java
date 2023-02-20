@@ -51,12 +51,18 @@ public class new_Req extends AppCompatActivity {
         reqid=findViewById(R.id.ReqID);
         submit=findViewById(R.id.new_req_submit_btn);
 
+        Intent intent = getIntent();
+        String honame = intent.getStringExtra("honame");
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.blood_groups, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         ReqId="R"+dReqId;;
+
+        //SHOULD Verify this VALIDATION
+
 //        do {
 //            ReqId="RRU2JE2";
 //            DocumentReference docRef = firestore.collection("Requirements").document(ReqId);
@@ -94,6 +100,7 @@ public class new_Req extends AppCompatActivity {
                 data.put("End Time",endtime.getText().toString());
                 data.put("Purpose",purpose.getText().toString());
                 data.put("Description",description.getText().toString());
+                data.put("honame",honame);
 
                 firestore.collection("Requirements").document(ReqId).set(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
