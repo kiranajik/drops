@@ -6,4 +6,19 @@
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="head1">Medical Trust</string>
+    <string name="head2">Lissie</string>
+    <string name="head3">Kolenchery Medical hospital</string>
+    <string name="head4">Aster Medicity</string>
+    <string name="head5">Medical Trust</string>
+    <string name="head6">AP Varkey</string>
+
+    <string name="bg1">A+</string>
+    <string name="bg2">AB-</string>
+    <string name="bg3">O+</string>
+    <string name="bg4">O-</string>
+    <string name="bg5">B-</string>
+    <string name="bg6">A-</string>
+
 </resources>
