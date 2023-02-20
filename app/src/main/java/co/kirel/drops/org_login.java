@@ -27,7 +27,7 @@ public class org_login extends AppCompatActivity {
     EditText orgemail,orgpass,orgcode;
     Button signin;
     TextView newhere;
-    String sorgemail,sorgpass,sorgcode,rsorgcode,Verified;
+    String sorgemail,sorgpass,sorgcode,rsorgcode,Verified,honame;
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
@@ -71,6 +71,7 @@ public class org_login extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     rsorgcode = document.getString("Organization Code");
+                                    honame=document.getString("Organization Name");
                                     Verified= document.getString("Verified");
 //                                    Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
                                 } else {
@@ -92,6 +93,7 @@ public class org_login extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     rsorgcode = document.getString("Hospital Code");
+                                    honame=document.getString("Hospital Name");
                                     Verified= document.getString("Verified");
 //                                    Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
                                 } else {
@@ -109,11 +111,12 @@ public class org_login extends AppCompatActivity {
                 }
 
 
-                Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
+
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
+                        Toast.makeText(org_login.this, rsorgcode, Toast.LENGTH_SHORT).show();
                         // Actions to do after 5 seconds
                         if (rsorgcode.equals(sorgcode))
                         {
@@ -122,27 +125,25 @@ public class org_login extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(AuthResult authResult) {
 
-                                            Handler handler = new Handler();
-                                            handler.postDelayed(new Runnable() {
-                                                public void run() {
                                                     // Actions to do after 5 seconds
                                                     if(Verified.equals("yes")) {
                                                         Toast.makeText(org_login.this, "SignIn Succesfull", Toast.LENGTH_SHORT).show();
                                                         Intent i=new Intent(org_login.this,hospital_home.class);
                                                         i.putExtra("Email",sorgemail);
+                                                        i.putExtra("honame",honame);
                                                         startActivity(i);
                                                         finish();
                                                     }else{
                                                         Toast.makeText(org_login.this, "You account is not verified", Toast.LENGTH_SHORT).show();
                                                     }
-                                                }
-                                            }, 2000);
+
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Toast.makeText(org_login.this, "SignIn Unsuccesfull", Toast.LENGTH_SHORT).show();
+                                            Log.e("error", String.valueOf(e));
                                         }
                                     });
                         }else
@@ -150,7 +151,7 @@ public class org_login extends AppCompatActivity {
                             Toast.makeText(org_login.this, "Organization Code Mismatch", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }, 2000);
+                }, 3000);
             }
         });
     }

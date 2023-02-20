@@ -2,19 +2,21 @@ package co.kirel.drops;
 
 public class Requirements {
 
-    String Purpose,BloodGroup;
+    String honame,BloodGroup;
 
-    public Requirements(String purpose, String bloodGroup) {
-        Purpose = purpose;
+    public Requirements(){}
+
+    public Requirements(String honame, String bloodGroup) {
+        this.honame = honame;
         BloodGroup = bloodGroup;
     }
 
-    public String getPurpose() {
-        return Purpose;
+    public String getHoname() {
+        return honame;
     }
 
-    public void setPurpose(String purpose) {
-        Purpose = purpose;
+    public void setHoname(String honame) {
+        this.honame = honame;
     }
 
     public String getBloodGroup() {

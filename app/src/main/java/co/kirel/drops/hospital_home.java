@@ -16,7 +16,7 @@ import co.kirel.drops.databinding.ActivityHospitalHomeBinding;
 public class hospital_home extends AppCompatActivity {
 
     ActivityHospitalHomeBinding binding;
-    String semail;
+    String semail,honame;
     ImageView newReq;
 
     @Override
@@ -29,11 +29,13 @@ public class hospital_home extends AppCompatActivity {
 
         Intent intent = getIntent();
         semail = intent.getStringExtra("Email");
+        honame = intent.getStringExtra("honame");
 
         newReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(hospital_home.this,new_Req.class);
+                i.putExtra("honame",honame);
                 startActivity(i);
             }
         });
