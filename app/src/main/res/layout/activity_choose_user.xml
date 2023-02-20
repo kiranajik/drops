@@ -45,7 +45,7 @@
         app:srcCompat="@drawable/choose_us_vector" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/redrewtext"
         android:layout_width="185dp"
         android:layout_height="84dp"
         android:text="Who Are You?"

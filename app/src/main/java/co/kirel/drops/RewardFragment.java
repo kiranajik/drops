@@ -2,57 +2,57 @@ package co.kirel.drops;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RewardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+
 public class RewardFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    String Name;
+
+    TextView uname;
+
+    private ArrayList<Requirements> reqsArraylist;
+    private String[] reqsNames;
+    private String[] reqsgp;
+    private RecyclerView recyclerView;
+    FirebaseFirestore db;
+    FirebaseFirestore firestore;
+    RewardAdapter RAdapter;
 
     public RewardFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RewardFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static RewardFragment newInstance(String param1, String param2) {
         RewardFragment fragment = new RewardFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -60,5 +60,73 @@ public class RewardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_reward, container, false);
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        donor_home activity = (donor_home) getActivity();
+        String myEmail = activity.getMyData();
+        firestore = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        dataInitialize();
+
+        recyclerView = view.findViewById(R.id.recyclerView2);
+        int numColumns = 2; // Set the number of columns in the grid
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numColumns);
+        recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+        RAdapter = new RewardAdapter(getContext(), reqsArraylist);
+        recyclerView.setAdapter(RAdapter);
+        RAdapter.notifyDataSetChanged();
+
+        DocumentReference docRef = firestore.collection("Donor").document(myEmail);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        uname.setText(Name);
+                        Name = document.getString("Name");
+                    } else {
+                        Log.d("error", "No such document");
+                    }
+                } else {
+                    Log.d("error", "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    private void dataInitialize() {
+        reqsArraylist = new ArrayList<>(); //DON'T DELETE
+
+        //Try Code
+
+        db.collection("Requirements").orderBy("End Time", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                        if (error != null) {
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if (dc.getType() == DocumentChange.Type.ADDED) {
+                                reqsArraylist.add(dc.getDocument().toObject(Requirements.class));
+                            }
+                            RAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
+
     }
 }
