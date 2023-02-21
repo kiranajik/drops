@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Drops">
         <activity
+            android:name=".DonationDetails"
+            android:exported="false" />
+        <activity
             android:name=".new_Req"
             android:exported="false" />
         <activity android:name=".hospital_home" />

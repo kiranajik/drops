@@ -1,12 +1,14 @@
 package co.kirel.drops;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -36,6 +38,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.tvhn.setText(requirements.honame);
         holder.tvbg.setText(requirements.BloodGroup);
 
+        holder.reqcardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(view.getContext(),DonationDetails.class);
+                view.getContext().startActivity(i);
+            }
+        });
+
     }
 
     @Override
@@ -46,11 +56,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static  class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvhn,tvbg;
+        CardView reqcardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvhn=itemView.findViewById(R.id.tvhosname);
             tvbg=itemView.findViewById(R.id.tvbloodgrp);
+            reqcardView=itemView.findViewById(R.id.donationcardview);
         }
     }
 }
