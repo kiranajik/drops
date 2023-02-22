@@ -86,7 +86,7 @@ public class RewardFragment extends Fragment {
         firestore = FirebaseFirestore.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        dataInitialize();
+        dataInitialize(myEmail);
 
         recyclerView = view.findViewById(R.id.recyclerView2);
         coincount = view.findViewById(R.id.coincount);
@@ -119,12 +119,12 @@ public class RewardFragment extends Fragment {
         });
     }
 
-    private void dataInitialize() {
+    private void dataInitialize(String myEmail) {
         rewsArraylist = new ArrayList<>(); //DON'T DELETE
 
         //Try Code
 
-        db.collection("Rewards")
+        db.collection("Rewards").whereEqualTo("Redeemer",myEmail)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

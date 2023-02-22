@@ -79,7 +79,7 @@ public class allRewards extends AppCompatActivity {
 
         //Try Code
 
-        db.collection("Rewards")
+        db.collection("Rewards").whereEqualTo("Redeemer","")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
