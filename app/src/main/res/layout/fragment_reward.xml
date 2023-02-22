@@ -59,10 +59,11 @@
         android:layout_width="70dp"
         android:layout_height="26dp"
         android:text="TextView"
+        android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/redrewbtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,6 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LifeCoins"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintHorizontal_bias="0.494"

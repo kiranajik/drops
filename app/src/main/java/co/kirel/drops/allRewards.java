@@ -1,20 +1,13 @@
 package co.kirel.drops;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,18 +19,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class RewardFragment extends Fragment {
-
-
-    String Name;
-    Button redrewbtn;
-
-    TextView coincount;
+public class allRewards extends AppCompatActivity {
+    String Name,myEmail;
 
     private ArrayList<Rewards> rewsArraylist;
     private String[] rewscompany;
@@ -47,55 +34,23 @@ public class RewardFragment extends Fragment {
     FirebaseFirestore firestore;
     RewardAdapter RAdapter;
 
-    public RewardFragment() {
-        // Required empty public constructor
-    }
-    public static RewardFragment newInstance(String param1, String param2) {
-        RewardFragment fragment = new RewardFragment();
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reward, container, false);
-    }
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        redrewbtn = view.findViewById(R.id.redrewbtn);
-        donor_home activity = (donor_home) getActivity();
-        String myEmail = activity.getMyData();
-        redrewbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity().getApplication(),allRewards.class);
-                i.putExtra("email",myEmail);
-                startActivity(i);
-            }
-        });
-
+        setContentView(R.layout.activity_all_rewards);
+        myEmail=getIntent().getStringExtra("email");
         firestore = FirebaseFirestore.getInstance();
         db = FirebaseFirestore.getInstance();
 
         dataInitialize();
 
-        recyclerView = view.findViewById(R.id.recyclerView2);
-        coincount = view.findViewById(R.id.coincount);
+        recyclerView = findViewById(R.id.recyclerView3);
         int numColumns = 2; // Set the number of columns in the grid
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numColumns);
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), numColumns);
         recyclerView.setLayoutManager(layoutManager);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        RAdapter = new RewardAdapter(getContext(), rewsArraylist);
+        RAdapter = new RewardAdapter(getApplicationContext(), rewsArraylist);
         recyclerView.setAdapter(RAdapter);
         RAdapter.notifyDataSetChanged();
 
@@ -108,7 +63,7 @@ public class RewardFragment extends Fragment {
                     if (document.exists()) {
 
                         Name = document.getString("Name");
-                        coincount.setText(Name);
+
                     } else {
                         Log.d("error", "No such document");
                     }
@@ -143,6 +98,5 @@ public class RewardFragment extends Fragment {
 
                     }
                 });
-
     }
 }
