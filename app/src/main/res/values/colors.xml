@@ -10,6 +10,9 @@
     <color name="prim">#E26864</color>
     <color name="nd2_prim">#172255</color>
     <color name="ho_bg">#4B69D7</color>
+    <color name="grey">#777575</color>
+    <color name="red">#F4364C</color>
     <color name="donationcardbg">#DEE6F4</color>
+
 
 </resources>

@@ -1,6 +1,5 @@
 package co.kirel.drops;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,8 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -75,7 +72,7 @@ public class HomeFragment extends Fragment {
 
         dataInitialize();
 
-        recyclerView= view.findViewById(R.id.recyclerView);
+        recyclerView= view.findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         myAdapter = new MyAdapter(getContext(),reqsArraylist);
