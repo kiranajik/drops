@@ -15,6 +15,7 @@
         <activity
             android:name=".allRewards"
             android:exported="false" />
+        <activity android:name=".DonationDetails"/>
         <activity
             android:name=".new_Req"
             android:exported="false" />
