@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<Requirements> requirementsArrayList;
+    ArrayList<Rewards> rewardsArrayList;
 
-    public RewardAdapter(Context context, ArrayList<Requirements> requirementsArrayList) {
+    public RewardAdapter(Context context, ArrayList<Rewards> rewardsArrayList) {
         this.context=context;
-        this.requirementsArrayList= requirementsArrayList;
+        this.rewardsArrayList= rewardsArrayList;
     }
 
     @NonNull
@@ -32,15 +32,15 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Requirements requirements= requirementsArrayList.get(position);
-        holder.tvhn.setText(requirements.honame);
-        holder.tvbg.setText(requirements.BloodGroup);
+        Rewards rewards = rewardsArrayList.get(position);
+        holder.tvhn.setText(rewards.company);
+        holder.tvbg.setText(rewards.gift);
 
     }
 
     @Override
     public int getItemCount() {
-        return requirementsArrayList.size();
+        return rewardsArrayList.size();
     }
 
     public static  class MyViewHolder extends RecyclerView.ViewHolder{

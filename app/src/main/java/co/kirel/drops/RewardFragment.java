@@ -32,11 +32,11 @@ public class RewardFragment extends Fragment {
 
     String Name;
 
-    TextView uname;
+    TextView coincount;
 
-    private ArrayList<Requirements> reqsArraylist;
-    private String[] reqsNames;
-    private String[] reqsgp;
+    private ArrayList<Rewards> rewsArraylist;
+    private String[] rewscompany;
+    private String[] rewsgift;
     private RecyclerView recyclerView;
     FirebaseFirestore db;
     FirebaseFirestore firestore;
@@ -75,12 +75,13 @@ public class RewardFragment extends Fragment {
         dataInitialize();
 
         recyclerView = view.findViewById(R.id.recyclerView2);
+        coincount = view.findViewById(R.id.coincount);
         int numColumns = 2; // Set the number of columns in the grid
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numColumns);
         recyclerView.setLayoutManager(layoutManager);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        RAdapter = new RewardAdapter(getContext(), reqsArraylist);
+        RAdapter = new RewardAdapter(getContext(), rewsArraylist);
         recyclerView.setAdapter(RAdapter);
         RAdapter.notifyDataSetChanged();
 
@@ -91,8 +92,9 @@ public class RewardFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        uname.setText(Name);
+
                         Name = document.getString("Name");
+                        coincount.setText(Name);
                     } else {
                         Log.d("error", "No such document");
                     }
@@ -104,11 +106,11 @@ public class RewardFragment extends Fragment {
     }
 
     private void dataInitialize() {
-        reqsArraylist = new ArrayList<>(); //DON'T DELETE
+        rewsArraylist = new ArrayList<>(); //DON'T DELETE
 
         //Try Code
 
-        db.collection("Requirements").orderBy("End Time", Query.Direction.ASCENDING)
+        db.collection("Rewards")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -120,7 +122,7 @@ public class RewardFragment extends Fragment {
 
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             if (dc.getType() == DocumentChange.Type.ADDED) {
-                                reqsArraylist.add(dc.getDocument().toObject(Requirements.class));
+                                rewsArraylist.add(dc.getDocument().toObject(Rewards.class));
                             }
                             RAdapter.notifyDataSetChanged();
                         }
