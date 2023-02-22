@@ -6,25 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".org_login">
 
-    <ImageView
-        android:id="@+id/coinimg"
-        android:layout_width="101dp"
-        android:layout_height="105dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/facebook" />
-
     <Button
         android:id="@+id/redrewbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="28dp"
         android:text="Redeem Rewards"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coinimg" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
@@ -35,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/redrewbtn"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.857"
         tools:listitem="@layout/listitem" />
 
     <TextView
@@ -48,21 +39,43 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/redrewbtn" />
+        app:layout_constraintTop_toBottomOf="@+id/redrewbtn"
+        app:layout_constraintVertical_bias="0.416" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="147dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/coin" />
 
     <TextView
         android:id="@+id/coincount"
-        android:layout_width="81dp"
-        android:layout_height="35dp"
+        android:layout_width="70dp"
+        android:layout_height="26dp"
         android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/coinimg"
-        app:layout_constraintEnd_toEndOf="@+id/coinimg"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/coinimg"
-        app:layout_constraintTop_toTopOf="@+id/coinimg"
-        app:layout_constraintVertical_bias="0.542" />
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/redrewbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LifeCoins"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="@+id/imageView11"
+        app:layout_constraintVertical_bias="0.647" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
