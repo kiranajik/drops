@@ -37,18 +37,58 @@
         app:layout_constraintVertical_bias="0.14" />
 
     <EditText
-        android:id="@+id/EndTime"
+        android:id="@+id/endDate"
         android:layout_width="213dp"
         android:layout_height="58dp"
         android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="End Time"
-        android:inputType="time"
+        android:hint="End Date"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/NoBottles"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/NoBottles"
         app:layout_constraintTop_toBottomOf="@+id/NoBottles" />
+
+    <EditText
+        android:id="@+id/endTime"
+        android:layout_width="213dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="End Time"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/endDate"
+        app:layout_constraintStart_toStartOf="@+id/endDate"
+        app:layout_constraintTop_toBottomOf="@+id/endDate" />
+
+    <EditText
+        android:id="@+id/reqPurspose"
+        android:layout_width="213dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Requirement Purpose"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/endTime"
+        app:layout_constraintStart_toStartOf="@+id/endTime"
+        app:layout_constraintTop_toBottomOf="@+id/endTime" />
+
+    <EditText
+        android:id="@+id/ReqDesc"
+        android:layout_width="213dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Requirement Description"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/reqPurspose"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/reqPurspose"
+        app:layout_constraintTop_toBottomOf="@+id/reqPurspose" />
 
     <TextView
         android:id="@+id/ReqID"
@@ -61,34 +101,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/ReqDesc"
         app:layout_constraintTop_toBottomOf="@+id/ReqDesc" />
-
-    <EditText
-        android:id="@+id/reqPurspose"
-        android:layout_width="213dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Requirement Purpose"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/EndTime"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/EndTime"
-        app:layout_constraintTop_toBottomOf="@+id/EndTime" />
-
-    <EditText
-        android:id="@+id/ReqDesc"
-        android:layout_width="213dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Requirement Description"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/reqPurspose"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/reqPurspose"
-        app:layout_constraintTop_toBottomOf="@+id/reqPurspose" />
 
     <EditText
         android:id="@+id/NoBottles"

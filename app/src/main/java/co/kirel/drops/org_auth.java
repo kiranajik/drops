@@ -18,7 +18,7 @@ public class org_auth extends AppCompatActivity {
 
 
         org_login = findViewById(R.id.org_login_btn);
-        org_signup = findViewById((R.id.org_signup_btn));
+        org_signup = findViewById((R.id.bconfirm));
 
         org_login.setOnClickListener(new View.OnClickListener() {
             @Override
