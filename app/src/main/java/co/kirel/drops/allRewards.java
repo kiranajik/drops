@@ -3,12 +3,18 @@ package co.kirel.drops;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,7 +56,7 @@ public class allRewards extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        RAdapter = new RewardAdapter(getApplicationContext(), rewsArraylist);
+        RAdapter = new RewardAdapter(getApplicationContext(), rewsArraylist,myEmail);
         recyclerView.setAdapter(RAdapter);
         RAdapter.notifyDataSetChanged();
 
@@ -72,6 +78,7 @@ public class allRewards extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void dataInitialize() {
@@ -98,5 +105,14 @@ public class allRewards extends AppCompatActivity {
 
                     }
                 });
+    }
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

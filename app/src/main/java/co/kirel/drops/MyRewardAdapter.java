@@ -13,17 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHolder> {
+public class MyRewardAdapter extends RecyclerView.Adapter<MyRewardAdapter.MyViewHolder> {
 
     Context context;
 
     ArrayList<Rewards> rewardsArrayList;
-    String email;
 
-    public RewardAdapter(Context context, ArrayList<Rewards> rewardsArrayList,String email) {
+    public MyRewardAdapter(Context context, ArrayList<Rewards> rewardsArrayList) {
         this.context=context;
         this.rewardsArrayList= rewardsArrayList;
-        this.email = email;
     }
 
     @NonNull
@@ -41,14 +39,14 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
         Rewards rewards = rewardsArrayList.get(position);
         holder.tvhn.setText(rewards.company);
         holder.tvbg.setText(rewards.gift);
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context,rewardData.class);
+                Intent i = new Intent(context,myRewardData.class);
                 i.putExtra("company",rewards.company);
                 i.putExtra("gift",rewards.gift);
-                i.putExtra("email",email);
-                i.putExtra("cost",rewards.cost);
+                i.putExtra("code",rewards.code);
                 context.startActivity(i);
 
             }

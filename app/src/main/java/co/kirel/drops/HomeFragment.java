@@ -63,7 +63,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         donor_home activity = (donor_home) getActivity();
         String myEmail = activity.getMyData();
         firestore=FirebaseFirestore.getInstance();

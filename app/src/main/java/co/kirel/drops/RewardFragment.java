@@ -1,5 +1,6 @@
 package co.kirel.drops;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -40,12 +41,11 @@ public class RewardFragment extends Fragment {
     TextView coincount;
 
     private ArrayList<Rewards> rewsArraylist;
-    private String[] rewscompany;
-    private String[] rewsgift;
+
     private RecyclerView recyclerView;
     FirebaseFirestore db;
     FirebaseFirestore firestore;
-    RewardAdapter RAdapter;
+    MyRewardAdapter RAdapter;
 
     public RewardFragment() {
         // Required empty public constructor
@@ -79,6 +79,7 @@ public class RewardFragment extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent(getActivity().getApplication(),allRewards.class);
                 i.putExtra("email",myEmail);
+                startActivityForResult(i, 'R');
                 startActivity(i);
             }
         });
@@ -95,7 +96,7 @@ public class RewardFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        RAdapter = new RewardAdapter(getContext(), rewsArraylist);
+        RAdapter = new MyRewardAdapter(getContext(), rewsArraylist);
         recyclerView.setAdapter(RAdapter);
         RAdapter.notifyDataSetChanged();
 
@@ -107,8 +108,8 @@ public class RewardFragment extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
 
-                        Name = document.getString("Name");
-                        coincount.setText(Name);
+                        String myCoins = document.getLong("LifeCoins").toString();
+                        coincount.setText(myCoins);
                     } else {
                         Log.d("error", "No such document");
                     }
@@ -117,6 +118,8 @@ public class RewardFragment extends Fragment {
                 }
             }
         });
+
+
     }
 
     private void dataInitialize(String myEmail) {

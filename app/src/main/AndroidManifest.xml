@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Drops">
         <activity
+            android:name=".myRewardData"
+            android:exported="false" />
+        <activity
             android:name=".rewardData"
             android:exported="false" />
         <activity

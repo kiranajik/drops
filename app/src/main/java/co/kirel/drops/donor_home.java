@@ -20,10 +20,16 @@ public class donor_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityDonorHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
+
 
         Intent intent = getIntent();
         semail = intent.getStringExtra("Email");
+        String source = intent.getStringExtra("source");
+        if(source != null && source.equals("reward")){
+            replaceFragment(new RewardFragment());
+        }else{
+            replaceFragment(new HomeFragment());
+        }
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
