@@ -108,11 +108,10 @@ public class allRewards extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
-        } else {
-            super.onBackPressed();
-        }
+        Intent i= new Intent(allRewards.this,donor_home.class);
+        i.putExtra("Email",myEmail);
+        i.putExtra("source","reward");
+        startActivity(i);
+        finish();
     }
 }
