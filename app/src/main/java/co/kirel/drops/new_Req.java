@@ -3,33 +3,32 @@ package co.kirel.drops;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.SecureRandom;
-import java.security.acl.Group;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class new_Req extends AppCompatActivity {
     Spinner spinner;
-    EditText bottleno,endtime,purpose,description;
+    EditText bottleno,endtime,enddate,purpose,description;
     TextView reqid;
     Button submit;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
@@ -45,7 +44,8 @@ public class new_Req extends AppCompatActivity {
         setContentView(R.layout.activity_new_req);
         spinner = (Spinner) findViewById(R.id.BGroupDD);
         bottleno=findViewById(R.id.NoBottles);
-        endtime=findViewById(R.id.EndTime);
+        enddate=findViewById(R.id.endDate);
+        endtime=findViewById(R.id.endTime);
         purpose=findViewById(R.id.reqPurspose);
         description=findViewById(R.id.ReqDesc);
         reqid=findViewById(R.id.ReqID);
@@ -59,7 +59,47 @@ public class new_Req extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        ReqId="R"+dReqId;;
+        ReqId="R"+dReqId;
+
+        //DATE PICKER
+
+        enddate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(new_Req.this,new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                enddate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            }
+                        }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+        endtime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(new_Req.this, new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                endtime.setText(hourOfDay + ":" + minute);
+                            }
+                        }, hour, minute, false);
+                timePickerDialog.show();
+            }
+        });
 
         //SHOULD Verify this VALIDATION
 
@@ -94,9 +134,10 @@ public class new_Req extends AppCompatActivity {
                 bloodGroup=spinner.getSelectedItem().toString();
 
                 Map<String,Object> data= new HashMap<>();
-                data.put("Requirement Id",ReqId);
+                data.put("RequirementId",ReqId);
                 data.put("BloodGroup",bloodGroup);
                 data.put("NoofBottles",bottleno.getText().toString());
+                data.put("End Date",enddate.getText().toString());
                 data.put("End Time",endtime.getText().toString());
                 data.put("Purpose",purpose.getText().toString());
                 data.put("Description",description.getText().toString());

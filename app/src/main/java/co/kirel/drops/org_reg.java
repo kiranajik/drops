@@ -46,7 +46,7 @@ public class org_reg extends AppCompatActivity {
         authdesig=findViewById(R.id.eddesig);
         phno=findViewById(R.id.edPhno);
         noofVol=findViewById(R.id.ednoofvol);
-        orgsignup=findViewById(R.id.org_signup_btn);
+        orgsignup=findViewById(R.id.bconfirm);
         typeh=findViewById(R.id.typehos);
         typeo=findViewById(R.id.typeorg);
         org_code_gen = findViewById(R.id.org_code_gen);
