@@ -21,10 +21,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<Requirements> requirementsArrayList;
+    String email;
 
-    public MyAdapter(Context context, ArrayList<Requirements> requirementsArrayList) {
+    public MyAdapter(Context context, ArrayList<Requirements> requirementsArrayList,String email) {
         this.context=context;
         this.requirementsArrayList= requirementsArrayList;
+        this.email = email;
     }
 
     @NonNull
@@ -48,6 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Intent i= new Intent(view.getContext(),DonationDetails.class);
                 String uid = requirements.getRequirementId();
                 i.putExtra("ReqId",uid);
+                i.putExtra("email",email);
                 view.getContext().startActivity(i);
             }
         });

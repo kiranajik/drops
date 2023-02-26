@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Drops">
         <activity
+            android:name=".referFriend"
+            android:exported="false" />
+        <activity
             android:name=".myRewardData"
             android:exported="false" />
-        <activity android:name=".DonationDetails"/>
+        <activity android:name=".DonationDetails" />
         <activity
             android:name=".rewardData"
             android:exported="false" />

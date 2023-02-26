@@ -27,7 +27,7 @@ public class donor_home extends AppCompatActivity {
         String source = intent.getStringExtra("source");
         if(source != null && source.equals("reward")){
             replaceFragment(new RewardFragment());
-        }else{
+        } else{
             replaceFragment(new HomeFragment());
         }
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class DonationDetails extends AppCompatActivity {
 
     TextView horgname;
-    Button bDate,bTime,bconfirm;
-    String ReqId,sdate,stime,honame;
+    Button bDate,bTime,bconfirm,brefer;
+    String ReqId,sdate,stime,honame,email;
     FirebaseFirestore firestore;
 
     @Override
@@ -32,9 +33,11 @@ public class DonationDetails extends AppCompatActivity {
         bTime=findViewById(R.id.btime);
         horgname=findViewById(R.id.horgname);
         bconfirm=findViewById(R.id.bconfirm);
+        brefer=findViewById(R.id.brefer);
 
         Intent i=getIntent();
         ReqId=i.getStringExtra("ReqId");
+        email=i.getStringExtra("email");
         Toast.makeText(this, "Req Id"+ReqId, Toast.LENGTH_SHORT).show();
 
         firestore= FirebaseFirestore.getInstance();
@@ -57,6 +60,15 @@ public class DonationDetails extends AppCompatActivity {
                 } else {
                     Log.d("error", "get failed with ", task.getException());
                 }
+            }
+        });
+        brefer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DonationDetails.this,referFriend.class);
+                i.putExtra("ReqId",ReqId);
+                i.putExtra("email",email);
+                startActivity(i);
             }
         });
     }
