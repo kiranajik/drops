@@ -89,7 +89,7 @@ public class donor_login extends AppCompatActivity {
                                             startActivity(i);
                                             finish();
                                         }else{
-                                            Toast.makeText(donor_login.this, "Donor not verified", Toast.LENGTH_SHORT).show();
+                                           // Toast.makeText(donor_login.this, "Donor not verified", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }, 2000);

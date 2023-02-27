@@ -90,10 +90,10 @@ public class RequestsFragment extends Fragment {
     }
     private void dataInitialize() {
         reqsArraylist = new ArrayList<>(); //DON'T DELETE
-        String key = "Referred."+myEmail;
+
         //Try Code
 
-        firestore.collection("Requirements").whereEqualTo("honame","Lakshmi Hospital")
+        firestore.collection("Requirements").whereArrayContains("Referred",myEmail)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

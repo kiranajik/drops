@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import co.kirel.drops.databinding.ActivityDonorHomeBinding;
-import co.kirel.drops.databinding.ActivityMainBinding;
 
 public class donor_home extends AppCompatActivity {
     ActivityDonorHomeBinding binding;

@@ -67,7 +67,7 @@ public class referAdapter extends RecyclerView.Adapter<referAdapter.MyViewHolder
             public void onClick(View view) {
                 firestore = FirebaseFirestore.getInstance();
                 Map<String, Object> data = new HashMap<>();
-                data.put(rEmail,email);
+                data.put(email,rEmail);
                 firestore.collection("Requirements").document(ReqId).update("Referred",data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
