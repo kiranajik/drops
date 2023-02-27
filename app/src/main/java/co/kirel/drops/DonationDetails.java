@@ -21,7 +21,7 @@ public class DonationDetails extends AppCompatActivity {
 
     TextView horgname;
     Button bDate,bTime,bconfirm,brefer;
-    String ReqId,sdate,stime,honame,email;
+    String ReqId,sdate,stime,honame,email,referrer;
     FirebaseFirestore firestore;
 
     @Override
@@ -38,7 +38,8 @@ public class DonationDetails extends AppCompatActivity {
         Intent i=getIntent();
         ReqId=i.getStringExtra("ReqId");
         email=i.getStringExtra("email");
-        Toast.makeText(this, "Req Id"+ReqId, Toast.LENGTH_SHORT).show();
+        referrer=i.getStringExtra("referrer");
+        Toast.makeText(this, "Req Id "+ReqId, Toast.LENGTH_SHORT).show();
 
         firestore= FirebaseFirestore.getInstance();
         DocumentReference docRef = firestore.collection("Requirements").document(ReqId);

@@ -55,6 +55,7 @@ public class referredAdapter extends RecyclerView.Adapter<referredAdapter.MyView
                 Intent i= new Intent(view.getContext(),DonationDetails.class);
                 String uid = requirements.getRequirementId();
                 i.putExtra("ReqId",uid);
+                i.putExtra("referrer",keys);
                 i.putExtra("email",email);
                 view.getContext().startActivity(i);
             }
