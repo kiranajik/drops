@@ -39,8 +39,9 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Rewards rewards = rewardsArrayList.get(position);
-        holder.tvhn.setText(rewards.company);
+        holder.tvhn.setText(String.valueOf(rewards.cost));
         holder.tvbg.setText(rewards.gift);
+        holder.tvco.setText(rewards.company);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +64,13 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
 
     public static  class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvhn,tvbg;
+        TextView tvhn,tvbg,tvco;
         CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvhn=itemView.findViewById(R.id.textView12);
+            tvhn=itemView.findViewById(R.id.coins);
+            tvco=itemView.findViewById(R.id.company_name);
             tvbg=itemView.findViewById(R.id.textView14);
             cardView = itemView.findViewById(R.id.cardView);
         }
