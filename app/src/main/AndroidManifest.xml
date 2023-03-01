@@ -3,6 +3,8 @@
     package="co.kirel.drops">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +23,9 @@
             android:name=".myRewardData"
             android:exported="false" />
         <activity android:name=".DonationDetails" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAlny7_ZYhVVP_uRRjEaOpVW3JG0KMTw7Y"/>
         <activity
             android:name=".rewardData"
             android:exported="false" />
