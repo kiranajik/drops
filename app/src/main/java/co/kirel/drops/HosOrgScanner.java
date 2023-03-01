@@ -37,12 +37,12 @@ import java.util.Map;
 
 public class HosOrgScanner extends Fragment {
     Button scan;
-    String ReqId;
+    String ReqId,QRid,DntnId;
     String sgethoname;
     String sbotlno,sgotbtlno;
     String shoName;
-    String myEmail,DntnId;
-    FirebaseFirestore firestore;
+    String myEmail;
+    FirebaseFirestore firestore,db;
 
     public HosOrgScanner() {
         // Required empty public constructor
@@ -69,6 +69,7 @@ public class HosOrgScanner extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         scan=view.findViewById(R.id.bscan);
         firestore= FirebaseFirestore.getInstance();
+        db=FirebaseFirestore.getInstance();
         hospital_home activity = (hospital_home) getActivity();
         myEmail = activity.getMyData();
 
@@ -109,8 +110,12 @@ public class HosOrgScanner extends Fragment {
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(),result -> {
         Toast.makeText(getActivity(),result.getContents(),Toast.LENGTH_SHORT).show();
-        ReqId=result.getContents();
+        QRid=result.getContents();
+        ReqId=QRid.substring(0,7);
+        DntnId=QRid.substring(7,14);
+        Toast.makeText(getActivity(),DntnId,Toast.LENGTH_SHORT).show();
         //ReqId="RO7H5M7";
+
 
 
         //Firebase
@@ -160,12 +165,12 @@ public class HosOrgScanner extends Fragment {
                                     Map<String,Object> data= new HashMap<>();
                                     data.put("btlsgot",balanceBtl);
                                     firestore.collection("Requirements").document(ReqId).update(data);
-                                    Toast.makeText(getActivity(), balanceBtl, Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getActivity(), balanceBtl, Toast.LENGTH_SHORT).show();
                                     //Toast.makeText(getActivity(), DntnId, Toast.LENGTH_SHORT).show();
 
-                                    Map<String,Object> dndata= new HashMap<>();
-                                    data.put("DonationStatus","Yes");
-                                    firestore.collection("Donations").document(ReqId).update(dndata);
+                                    Map<String,Object> dntndata= new HashMap<>();
+                                    dntndata.put("DonationStatus","Yes");
+                                    db.collection("Donations").document(DntnId).update(dntndata);
 
                                     Intent i =new Intent(getContext(),DonationSuccess.class);
                                     startActivity(i);

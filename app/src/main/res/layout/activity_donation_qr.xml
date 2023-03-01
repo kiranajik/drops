@@ -103,4 +103,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/bdone"
+        android:layout_width="325dp"
+        android:layout_height="59dp"
+        android:backgroundTint="@color/nd2_prim"
+        android:text="Done"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bscan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
