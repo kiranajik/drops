@@ -8,8 +8,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="358dp"
-        android:layout_height="452dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:backgroundTint="@color/nd2_prim"
         app:cardCornerRadius="45dp"
         app:layout_constraintBottom_toTopOf="@+id/redbtn"
@@ -18,21 +18,22 @@
         app:layout_constraintTop_toBottomOf="@+id/CoCo">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="437dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ccard">
 
             <TextView
                 android:id="@+id/RewCode"
-                android:layout_width="319dp"
+                android:layout_width="329dp"
                 android:layout_height="61dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginBottom="32dp"
                 android:text="Unlock Reward"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/GiGi"
@@ -44,17 +45,18 @@
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/RewCode"
-                app:layout_constraintVertical_bias="0.533" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.812" />
 
             <ImageView
                 android:id="@+id/imageView15"
-                android:layout_width="194dp"
-                android:layout_height="155dp"
-                android:layout_marginTop="24dp"
+                android:layout_width="156dp"
+                android:layout_height="123dp"
+                android:layout_marginTop="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/google" />

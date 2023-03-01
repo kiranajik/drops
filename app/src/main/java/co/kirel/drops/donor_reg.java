@@ -58,8 +58,8 @@ public class donor_reg extends AppCompatActivity {
                                 data.put("Address",addr.getText().toString());
                                 data.put("Age",age.getText().toString());
                                 data.put("DOB",dob.getText().toString());
-                                data.put("Blood Group",bloodgrp.getText().toString());
-                                data.put("Phone Number",phno.getText().toString());
+                                data.put("bloodgroup",bloodgrp.getText().toString());
+                                data.put("phonenumber",phno.getText().toString());
                                 data.put("Aadhaar Number",adharno.getText().toString());
                                 data.put("Verified","no");
                                 data.put("Role","DONOR");
