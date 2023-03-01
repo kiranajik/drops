@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +21,7 @@ public class DonationDetails extends AppCompatActivity {
 
     TextView horgname;
     Button bDate,bTime,bconfirm;
-    String ReqId,sdate,stime,honame;
+    String ReqId,sdate,stime,honame,BldGrp;
     FirebaseFirestore firestore;
 
     @Override
@@ -35,6 +36,7 @@ public class DonationDetails extends AppCompatActivity {
 
         Intent i=getIntent();
         ReqId=i.getStringExtra("ReqId");
+        BldGrp=i.getStringExtra("BldGrp");
         Toast.makeText(this, "Req Id"+ReqId, Toast.LENGTH_SHORT).show();
 
         firestore= FirebaseFirestore.getInstance();
@@ -57,6 +59,18 @@ public class DonationDetails extends AppCompatActivity {
                 } else {
                     Log.d("error", "get failed with ", task.getException());
                 }
+            }
+        });
+
+        bconfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(DonationDetails.this,DonationQr.class);
+                i.putExtra("ReqId",ReqId);
+                i.putExtra("honame",honame);
+                i.putExtra("BldGrp",BldGrp);
+                startActivity(i);
+                finish();
             }
         });
     }

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import co.kirel.drops.databinding.ActivityDonorHomeBinding;
@@ -24,6 +25,12 @@ public class donor_home extends AppCompatActivity {
 
         Intent intent = getIntent();
         semail = intent.getStringExtra("Email");
+
+        SharedPreferences sharedPref = getSharedPreferences("myKey", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("donoremail", semail);
+        editor.apply();
+
         String source = intent.getStringExtra("source");
         if(source != null && source.equals("reward")){
             replaceFragment(new RewardFragment());

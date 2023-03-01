@@ -47,16 +47,16 @@ public class hospital_home extends AppCompatActivity {
                 case R.id.hohome:
                     replaceFragment(new HosOrgHomeFragment());
                     break;
-                case R.id.honotification:
-                    replaceFragment(new HosOrgNotificationFragment());
-                    break;
-                case R.id.hoplaceholder:
-                    break;
                 case R.id.hodonations:
                     replaceFragment(new HosOrgListFragment());
                     break;
+                case R.id.hoplaceholder:
+                    break;
                 case R.id.hoprofile:
                     replaceFragment(new HosOrgProfileFragment());
+                    break;
+                case R.id.hoscanner:
+                    replaceFragment(new HosOrgScanner());
                     break;
             }
 

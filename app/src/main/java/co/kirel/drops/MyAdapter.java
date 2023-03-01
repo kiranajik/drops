@@ -47,7 +47,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             public void onClick(View view) {
                 Intent i= new Intent(view.getContext(),DonationDetails.class);
                 String uid = requirements.getRequirementId();
+                String bldgrp= requirements.getBloodGroup();
                 i.putExtra("ReqId",uid);
+                i.putExtra("BldGrp",bldgrp);
                 view.getContext().startActivity(i);
             }
         });
