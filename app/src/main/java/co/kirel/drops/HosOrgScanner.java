@@ -103,6 +103,7 @@ public class HosOrgScanner extends Fragment {
         options.setBeepEnabled(true);
         options.setOrientationLocked(true);
         options.setCaptureActivity(ScannerActivity.class);
+        options.setBarcodeImageEnabled(true);
         barLauncher.launch(options);
     }
 

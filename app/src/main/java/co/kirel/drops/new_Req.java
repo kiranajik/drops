@@ -72,7 +72,9 @@ public class new_Req extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(new_Req.this,new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog =
+                        new DatePickerDialog(new_Req.this,
+                                new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {

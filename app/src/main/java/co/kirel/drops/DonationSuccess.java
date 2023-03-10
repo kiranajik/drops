@@ -19,8 +19,8 @@ public class DonationSuccess extends AppCompatActivity {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                Intent i = new Intent(DonationSuccess.this, hospital_home.class);
-                startActivity(i);
+//                Intent i = new Intent(DonationSuccess.this, hospital_home.class);
+//                startActivity(i);
                 finish();
             }
         }, 4000);
