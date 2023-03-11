@@ -33,11 +33,12 @@ public class HomeFragment extends Fragment {
     String Name;
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
-    private String[] reqsNames;
-    private String[] reqsgp;
     private RecyclerView recyclerView;
     FirebaseFirestore db;
     MyAdapter myAdapter;
+
+    private String[] reqsNames;
+    private String[] reqsgp;
 
     public HomeFragment() {
         // Required empty public constructor

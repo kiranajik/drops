@@ -143,6 +143,7 @@ public class new_Req extends AppCompatActivity {
                 data.put("End Time",endtime.getText().toString());
                 data.put("Purpose",purpose.getText().toString());
                 data.put("Description",description.getText().toString());
+                data.put("btlsgot","0");
                 data.put("honame",honame);
 
                 firestore.collection("Requirements").document(ReqId).set(data)

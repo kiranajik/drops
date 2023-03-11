@@ -143,14 +143,19 @@ public class DonationQr extends AppCompatActivity {
                     }
                 });
 
-                if (dntnSts.equals("Yes")) {
-                    Intent intent = new Intent(DonationQr.this, DonationSuccess.class);
-                    startActivity(intent);
-                    finish();
-                }else{
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.show();
-                }
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        if (dntnSts.equals("Yes")) {
+                            Intent intent = new Intent(DonationQr.this, DonationSuccess.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            dialog.show();
+                        }
+                    }
+                }, 1000);
             }
         });
 

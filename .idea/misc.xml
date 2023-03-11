@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_icon_park_trophy.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_trophy.xml" value="0.1" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/progress_bg.xml" value="0.2555" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/spinner_bg.xml" value="0.1455" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/transparent_background.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_all_rewards.xml" value="0.20521590423257802" />
@@ -46,6 +47,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_reward.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/item.xml" value="0.20436083796494228" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/listitem.xml" value="0.4" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/reqlistitemho.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/reward_card.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/menu/bottom_nav_ho_menu.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16981132075471697" />
