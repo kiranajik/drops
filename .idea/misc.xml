@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/dialog_bg.xml" value="0.1045" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/field_bg.xml" value="0.2555" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1495" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_bloodtype_24.xml" value="0.2555" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_calendar_14.xml" value="0.2555" />
@@ -28,7 +29,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_hospital_home.xml" value="0.152" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_main.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_my_reward_data.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_new_req.xml" value="0.4" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_new_req.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_org_login.xml" value="0.264" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_org_reg.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_org_signup.xml" value="0.264" />
@@ -37,6 +38,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/bottle_dialog.xml" value="0.264" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/bottle_no_get.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/dntn_dialog.xml" value="0.2" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_donations.xml" value="0.10029251984956122" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_home.xml" value="0.264" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_list.xml" value="0.20521590423257802" />
