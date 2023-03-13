@@ -32,12 +32,21 @@ public class donor_home extends AppCompatActivity {
         editor.apply();
 
         String source = intent.getStringExtra("source");
+        String frame = "Donations";
         if(source != null && source.equals("reward")){
             replaceFragment(new RewardFragment());
-        }else{
+        } else if (source != null && source.equals("profile")) {
+            if(intent.getStringExtra("frame").equals("Donations")){
+                replaceFragment(new ProfileFragment(frame));
+            }else{
+                frame = "Requests";
+                replaceFragment(new ProfileFragment(frame));
+            }
+        } else{
             replaceFragment(new HomeFragment());
         }
 
+        String finalFrame = frame;
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){
@@ -51,7 +60,7 @@ public class donor_home extends AppCompatActivity {
                 case R.id.placeholder:
                     break;
                 case R.id.profile:
-                    replaceFragment(new ProfileFragment());
+                    replaceFragment(new ProfileFragment(finalFrame));
                     break;
                 case R.id.reward:
                     replaceFragment(new RewardFragment());

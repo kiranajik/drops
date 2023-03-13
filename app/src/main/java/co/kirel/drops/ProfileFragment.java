@@ -25,16 +25,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProfileFragment extends Fragment {
     Button donation, request;
     View view;
-    String pname;
+    String pname,myEmail ;
     FirebaseFirestore firestore;
     TextView unamep;
+    static String frame;
 
-    public ProfileFragment() {
+    public ProfileFragment(String frame) {
         // Required empty public constructor
     }
 
     public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment profileFragment = new ProfileFragment();
+        ProfileFragment profileFragment = new ProfileFragment(frame);
         return profileFragment;
     }
 
@@ -49,12 +50,16 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         super.onCreate(savedInstanceState);
-        replaceFragment(new DonationsFragment());
-
-        firestore=FirebaseFirestore.getInstance();
 
         donor_home activity = (donor_home) getActivity();
-        String myEmail = activity.getMyData();
+        myEmail = activity.getMyData();
+        if(frame.equals("Donations")){
+            replaceFragment(new DonationsFragment());
+        }else{
+            replaceFragment(new RequestsFragment());
+        }
+
+        firestore=FirebaseFirestore.getInstance();
 
         donation = view.findViewById(R.id.donationbtn);
         request = view.findViewById(R.id.requestbtn);
@@ -105,6 +110,9 @@ public class ProfileFragment extends Fragment {
     private void replaceFragment(Fragment fragment){
 
         FragmentManager fragmentManager= getFragmentManager();
+        Bundle bundle = new Bundle();
+        bundle.putString("email", myEmail);
+        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,fragment);
         fragmentTransaction.commit();

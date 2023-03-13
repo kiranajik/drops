@@ -105,6 +105,8 @@ public class DonationQr extends AppCompatActivity {
         dntndata.put("BloodGroup",bldGrp);
         dntndata.put("DonorId",dnremail);
         dntndata.put("DonationStatus","No");
+        dntndata.put("btlsgot","");
+        dntndata.put("notified","No");
 
         firestore.collection("Donations").document(DntnId).set(dntndata)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
