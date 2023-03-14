@@ -33,11 +33,12 @@ public class HomeFragment extends Fragment {
     String Name;
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
-    private String[] reqsNames;
-    private String[] reqsgp;
     private RecyclerView recyclerView;
     FirebaseFirestore db;
     MyAdapter myAdapter;
+
+    private String[] reqsNames;
+    private String[] reqsgp;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -124,33 +125,6 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
-
-        // TRY CODE
-
-//        reqsNames= new String[]{
-//
-//                getString(R.string.head1),
-//                getString(R.string.head2),
-//                getString(R.string.head3),
-//                getString(R.string.head4),
-//                getString(R.string.head5),
-//                getString(R.string.head6),
-//        };
-//
-//        reqsgp= new String[]{
-//                getString(R.string.bg1),
-//                getString(R.string.bg2),
-//                getString(R.string.bg3),
-//                getString(R.string.bg4),
-//                getString(R.string.bg5),
-//                getString(R.string.bg6),
-//        };
-//
-//        for (int i=0; i< reqsNames.length; i++)
-//        {
-//            Requirements requirements= new Requirements(reqsNames[i],reqsgp[i]);
-//            reqsArraylist.add(requirements);
-//        }
 
     }
 }

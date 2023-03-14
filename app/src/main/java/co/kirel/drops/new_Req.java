@@ -28,8 +28,8 @@ import java.util.Map;
 
 public class new_Req extends AppCompatActivity {
     Spinner spinner;
-    EditText bottleno,endtime,enddate,purpose,description;
-    TextView reqid;
+    EditText bottleno,purpose,description;
+    TextView reqid,tvendtime,enddate;
     Button submit;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
@@ -45,7 +45,7 @@ public class new_Req extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.BGroupDD);
         bottleno=findViewById(R.id.NoBottles);
         enddate=findViewById(R.id.endDate);
-        endtime=findViewById(R.id.endTime);
+        tvendtime=findViewById(R.id.endTime);
         purpose=findViewById(R.id.reqPurspose);
         description=findViewById(R.id.ReqDesc);
         reqid=findViewById(R.id.ReqID);
@@ -72,7 +72,9 @@ public class new_Req extends AppCompatActivity {
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(new_Req.this,new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog =
+                        new DatePickerDialog(new_Req.this,
+                                new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
@@ -83,7 +85,7 @@ public class new_Req extends AppCompatActivity {
             }
         });
 
-        endtime.setOnClickListener(new View.OnClickListener() {
+        tvendtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
@@ -94,7 +96,7 @@ public class new_Req extends AppCompatActivity {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(new_Req.this, new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                endtime.setText(hourOfDay + ":" + minute);
+                                tvendtime.setText(hourOfDay + ":" + minute);
                             }
                         }, hour, minute, false);
                 timePickerDialog.show();
@@ -138,9 +140,10 @@ public class new_Req extends AppCompatActivity {
                 data.put("BloodGroup",bloodGroup);
                 data.put("NoofBottles",bottleno.getText().toString());
                 data.put("End Date",enddate.getText().toString());
-                data.put("End Time",endtime.getText().toString());
+                data.put("End Time",tvendtime.getText().toString());
                 data.put("Purpose",purpose.getText().toString());
                 data.put("Description",description.getText().toString());
+                data.put("btlsgot","0");
                 data.put("honame",honame);
 
                 firestore.collection("Requirements").document(ReqId).set(data)

@@ -6,6 +6,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -36,7 +38,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HosOrgScanner extends Fragment {
-    Button scan;
+    Button scan,dcancel,dconfirm;
+    EditText botno;
     String ReqId,QRid,DntnId;
     String sgethoname;
     String sbotlno,sgotbtlno;
@@ -103,6 +106,7 @@ public class HosOrgScanner extends Fragment {
         options.setBeepEnabled(true);
         options.setOrientationLocked(true);
         options.setCaptureActivity(ScannerActivity.class);
+        options.setBarcodeImageEnabled(true);
         barLauncher.launch(options);
     }
 
@@ -149,39 +153,78 @@ public class HosOrgScanner extends Fragment {
             public void run() {
                 if (/*sgethoname.equals(shoName)*/true) {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    View alertCustomDialog = LayoutInflater.from(getContext()).inflate(R.layout.bottle_dialog, null);
 
-                    builder.setTitle("Enter the No of Bottles");
-                    final EditText botlno = new EditText(getContext());
-                    botlno.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    builder.setView(botlno);
-                            builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int id) {
-                                    sbotlno=botlno.getText().toString();
-                                    int balance=Integer.parseInt(sgotbtlno) + Integer.parseInt(sbotlno);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());//TRY
 
-                                    String balanceBtl = String.valueOf(balance);
-                                    Map<String,Object> data= new HashMap<>();
-                                    data.put("btlsgot",balanceBtl);
-                                    firestore.collection("Requirements").document(ReqId).update(data);
-                                    //Toast.makeText(getActivity(), balanceBtl, Toast.LENGTH_SHORT).show();
-                                    //Toast.makeText(getActivity(), DntnId, Toast.LENGTH_SHORT).show();
+                    builder.setView(alertCustomDialog);
 
-                                    Map<String,Object> dntndata= new HashMap<>();
-                                    dntndata.put("DonationStatus","Yes");
-                                    db.collection("Donations").document(DntnId).update(dntndata);
+                    dconfirm=alertCustomDialog.findViewById(R.id.confirm_dntn_dialg_btn);
+                    dcancel=alertCustomDialog.findViewById(R.id.cancel_dntn_dialg_btn);
+                    botno=alertCustomDialog.findViewById(R.id.noofbtls);
+                    final AlertDialog dialog = builder.create();
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                                    Intent i =new Intent(getContext(),DonationSuccess.class);
-                                    startActivity(i);
-                                }
-                            });
-                    builder.setNegativeButton("Cancel", null);
-                    builder.show();
+                    dcancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.cancel();
+                            Toast.makeText(getContext(),"Donation not Done",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    dconfirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            sbotlno=botno.getText().toString();
+                            int balance=Integer.parseInt(sgotbtlno) + Integer.parseInt(sbotlno);
+                            String balanceBtl = String.valueOf(balance);
+                            Map<String,Object> data= new HashMap<>();
+                            data.put("btlsgot",balanceBtl);
+                            firestore.collection("Requirements").document(ReqId).update(data);
+
+                            Map<String,Object> dntndata= new HashMap<>();
+                            dntndata.put("DonationStatus","Yes");
+                            dntndata.put("btlsdonated",sbotlno);
+                            db.collection("Donations").document(DntnId).update(dntndata);
+
+                            Intent i =new Intent(getContext(),DonationSuccess.class);
+                            startActivity(i);
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
+
+//                    builder.setTitle("Enter the No of Bottles");
+//                    final EditText botlno = new EditText(getContext());
+//                    botlno.setInputType(InputType.TYPE_CLASS_NUMBER);
+//                    builder.setView(botlno);
+//                            builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    sbotlno=botlno.getText().toString();
+//                                    int balance=Integer.parseInt(sgotbtlno) + Integer.parseInt(sbotlno);
+//
+//                                    String balanceBtl = String.valueOf(balance);
+//                                    Map<String,Object> data= new HashMap<>();
+//                                    data.put("btlsgot",balanceBtl);
+//                                    firestore.collection("Requirements").document(ReqId).update(data);
+//
+//                                    Map<String,Object> dntndata= new HashMap<>();
+//                                    dntndata.put("DonationStatus","Yes");
+//                                    db.collection("Donations").document(DntnId).update(dntndata);
+//
+//                                    Intent i =new Intent(getContext(),DonationSuccess.class);
+//                                    startActivity(i);
+//                                }
+//                            });
+//                    builder.setNegativeButton("Cancel", null);
+//                    builder.show();
                 } else {
                     Toast.makeText(getActivity(), "Invalid QR", Toast.LENGTH_SHORT).show();
                 }
             }
         }, 500);
+
     });
 }
