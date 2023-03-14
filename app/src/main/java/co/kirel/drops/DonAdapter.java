@@ -34,7 +34,7 @@ public class DonAdapter extends RecyclerView.Adapter<DonAdapter.MyViewHolder> {
 
         Donations donations= donationsArrayList.get(position);
         holder.hotvrqid.setText(donations.RequirementID);
-        holder.hotvsts.setText(donations.btlsgot+" Bottles");
+        holder.hotvsts.setText(donations.btlsdonated+" Bottles");
 
     }
 

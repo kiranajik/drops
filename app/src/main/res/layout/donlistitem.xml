@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/horeqcardview"
     android:layout_width="330dp"
-    android:layout_height="140dp"
+    android:layout_height="100dp"
     android:layout_gravity="center_horizontal"
     android:layout_margin="16dp"
     app:cardBackgroundColor="@color/donationcardbg"
@@ -51,8 +51,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
-            android:layout_width="83dp"
-            android:layout_height="81dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:background="@color/grey"
             android:backgroundTint="@color/nd2_prim"
             android:elevation="20dp"

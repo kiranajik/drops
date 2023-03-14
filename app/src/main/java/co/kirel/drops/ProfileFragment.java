@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
     String pname,myEmail ;
     FirebaseFirestore firestore;
     TextView unamep;
-    static String frame;
+    static String frame="Donations";
 
     public ProfileFragment(String frame) {
         // Required empty public constructor
@@ -92,8 +92,8 @@ public class ProfileFragment extends Fragment {
                 request.setBackgroundColor(Color.parseColor("#4B69D7"));
                 request.setTextColor(Color.WHITE);
             }
-
         });
+
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
