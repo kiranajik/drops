@@ -33,8 +33,13 @@ public class DonAdapter extends RecyclerView.Adapter<DonAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull DonAdapter.MyViewHolder holder, int position) {
 
         Donations donations= donationsArrayList.get(position);
-        holder.hotvrqid.setText(donations.RequirementID);
-        holder.hotvsts.setText(donations.btlsdonated+" Bottles");
+        holder.hotvrqid.setText(donations.RequirementId);
+        if(donations.btlsdonated.equals("1")){
+            holder.hotvsts.setText(donations.btlsdonated+" Bottle");
+        }else{
+            holder.hotvsts.setText(donations.btlsdonated+" Bottles");
+        }
+
 
     }
 
@@ -45,7 +50,7 @@ public class DonAdapter extends RecyclerView.Adapter<DonAdapter.MyViewHolder> {
 
     public static  class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView hotvrqid,hotvsts,hotvbg;
+        TextView hotvrqid,hotvsts;
         CardView horeqcardView;
 
 

@@ -36,17 +36,11 @@ public class donor_home extends AppCompatActivity {
         if(source != null && source.equals("reward")){
             replaceFragment(new RewardFragment());
         } else if (source != null && source.equals("profile")) {
-            if(intent.getStringExtra("frame").equals("Donations")){
-                replaceFragment(new ProfileFragment(frame));
-            }else{
-                frame = "Requests";
-                replaceFragment(new ProfileFragment(frame));
-            }
+                replaceFragment(new ProfileFragment());
+
         } else{
             replaceFragment(new HomeFragment());
         }
-
-        String finalFrame = frame;
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){
@@ -60,7 +54,7 @@ public class donor_home extends AppCompatActivity {
                 case R.id.placeholder:
                     break;
                 case R.id.profile:
-                    replaceFragment(new ProfileFragment(finalFrame));
+                    replaceFragment(new ProfileFragment());
                     break;
                 case R.id.reward:
                     replaceFragment(new RewardFragment());

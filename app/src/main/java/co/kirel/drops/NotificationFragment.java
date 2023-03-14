@@ -74,7 +74,6 @@ public class NotificationFragment extends Fragment {
             public void run() {
                 firestore.collection("Donations")
                         .whereEqualTo("DonorId",myEmail)
-                        .whereEqualTo("DonationStatus","Yes")
                         .whereEqualTo("notified","No")
                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override

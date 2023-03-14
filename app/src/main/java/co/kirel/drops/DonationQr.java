@@ -107,6 +107,7 @@ public class DonationQr extends AppCompatActivity {
         dntndata.put("DonationStatus","No");
         dntndata.put("btlsdonated","0");
         dntndata.put("notified","No");
+        dntndata.put("honame",qrshoname);
 
         firestore.collection("Donations").document(DntnId).set(dntndata)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

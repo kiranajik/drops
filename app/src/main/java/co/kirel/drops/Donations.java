@@ -1,32 +1,32 @@
 package co.kirel.drops;
 
 public class Donations {
-    String btlsdonated,RequirementID,DonationId;
+    String btlsdonated,RequirementId,DonationId,DonationStatus;
 
     public Donations() {}
 
-    public Donations(String btlsdonated, String requirementID, String donationId) {
+    public Donations(String btlsdonated, String requirementId, String donationId, String donationStatus) {
         this.btlsdonated = btlsdonated;
-        RequirementID = requirementID;
+        RequirementId = requirementId;
         DonationId = donationId;
+        DonationStatus = donationStatus;
     }
 
-    public String getRequirementID() {
-        return RequirementID;
+    public String getRequirementId() {
+        return RequirementId;
     }
 
-    public void setRequirementID(String requirementID) {
-        RequirementID = requirementID;
+    public void setRequirementId(String requirementId) {
+        RequirementId = requirementId;
     }
 
-    public String getBtlsgot() {
+    public String getBtlsdonated() {
         return btlsdonated;
     }
 
-    public void setBtlsgot(String btlsdonated) {
+    public void setBtlsdonated(String btlsdonated) {
         this.btlsdonated = btlsdonated;
     }
-
 
     public String getDonationId() {
         return DonationId;
@@ -34,5 +34,13 @@ public class Donations {
 
     public void setDonationId(String donationId) {
         DonationId = donationId;
+    }
+
+    public String getDonationStatus() {
+        return DonationStatus;
+    }
+
+    public void setDonationStatus(String donationStatus) {
+        DonationStatus = donationStatus;
     }
 }

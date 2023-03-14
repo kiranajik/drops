@@ -37,7 +37,6 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
     @NonNull
     @Override
     public notifAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View v =LayoutInflater.from(context).inflate(R.layout.notifitem,parent,false);
         return new notifAdapter.MyViewHolder(v);
     }
@@ -46,35 +45,74 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull notifAdapter.MyViewHolder holder, int position) {
 
         Donations donations= donationsArrayList.get(position);
-        holder.hotvrqid.setText("New Donation Completed!");
-        holder.notifimg.setImageResource(R.drawable.vecy);
-        holder.rdid.setText(donations.DonationId);
-        holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Map<String,Object> dntndata= new HashMap<>();
-                dntndata.put("notified","Yes");
-                firestore.collection("Donations").document(donations.DonationId).set(dntndata)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(context, "Notified", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(context, "Not notified", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                Intent i = new Intent(context,donor_home.class);
-                i.putExtra("source","profile");
-                i.putExtra("email",email);
-                i.putExtra("frame","Donations");
-                context.startActivity(i);
+        if(donations.DonationStatus.equals("Yes")){
+            holder.hotvrqid.setText("Donation Completed!");
+            holder.notifimg.setImageResource(R.drawable.vecy);
+            holder.rdid.setText(donations.DonationId);
+            holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Map<String,Object> dntndata= new HashMap<>();
+                    dntndata.put("notified","Yes");
+                    firestore.collection("Donations").document(donations.DonationId).update(dntndata)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(context, "Notified", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, "Not notified", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    Intent i = new Intent(context,donor_home.class);
+                    i.putExtra("source","profile");
+                    i.putExtra("Email",email);
+                    context.startActivity(i);
 
-            }
-        });
+                }
+            });
+        }else if(donations.DonationStatus.equals("No")) {
+            holder.hotvrqid.setText("Pending Donation!");
+            holder.notifimg.setImageResource(R.drawable.drop_btnn);
+            holder.rdid.setText(donations.DonationId);
+            holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(context, DonationQr.class);
+                    context.startActivity(i);
+
+                }
+            });
+        }else if(donations.DonationStatus.equals("Cancelled")) {
+            holder.hotvrqid.setText("Donation Cancelled!");
+            holder.notifimg.setImageResource(R.drawable.cartoon);
+            holder.rdid.setText(donations.DonationId);
+            holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    firestore.collection("Donations").document(donations.DonationId).delete()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(context, "Notified", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(context, "Not notified", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    Intent i = new Intent(context, donor_home.class);
+                    i.putExtra("Email", email);
+                    context.startActivity(i);
+
+                }
+            });
+        }
     }
 
     @Override

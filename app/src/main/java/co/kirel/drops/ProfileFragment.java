@@ -25,17 +25,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProfileFragment extends Fragment {
     Button donation, request;
     View view;
-    String pname,myEmail ;
+    String pname;
+    String myEmail;
+    static String email="" ;
     FirebaseFirestore firestore;
     TextView unamep;
     static String frame="Donations";
 
-    public ProfileFragment(String frame) {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
     public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment profileFragment = new ProfileFragment(frame);
+        ProfileFragment profileFragment = new ProfileFragment();
         return profileFragment;
     }
 
@@ -50,14 +52,10 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         super.onCreate(savedInstanceState);
-
         donor_home activity = (donor_home) getActivity();
         myEmail = activity.getMyData();
-        if(frame.equals("Donations")){
-            replaceFragment(new DonationsFragment());
-        }else{
-            replaceFragment(new RequestsFragment());
-        }
+        replaceFragment(new DonationsFragment());
+
 
         firestore=FirebaseFirestore.getInstance();
 
