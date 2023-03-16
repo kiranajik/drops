@@ -30,7 +30,6 @@ public class ProfileFragment extends Fragment {
     static String email="" ;
     FirebaseFirestore firestore;
     TextView unamep;
-    static String frame="Donations";
 
     public ProfileFragment() {
         // Required empty public constructor
