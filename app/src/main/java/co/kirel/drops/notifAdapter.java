@@ -2,6 +2,7 @@ package co.kirel.drops;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,9 +48,16 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
         Donations donations= donationsArrayList.get(position);
         if(donations.DonationStatus.equals("Yes")){
             holder.hotvrqid.setText("Donation Completed!");
-            holder.notifimg.setImageResource(R.drawable.vecy);
+            holder.hotvrqid.setTextColor(Color.parseColor("#06A755"));
+            holder.notidesc.setText("Donation completed Succesfully. Once a blood donor, always a lifesaver.");
             holder.rdid.setText(donations.DonationId);
-            holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
+            holder.rdid.setTextColor(Color.parseColor("#06A755"));
+            holder.notidesc.setTextColor(Color.parseColor("#06A755"));
+            holder.noticardView.setCardBackgroundColor(Color.parseColor("#B5EACC"));
+            holder.circle.setCardBackgroundColor(Color.parseColor("#06A755"));
+            holder.notifimg.setImageResource(R.drawable.ic_baseline_done_24);
+
+            holder.noticardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Map<String,Object> dntndata= new HashMap<>();
@@ -76,9 +84,16 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
             });
         }else if(donations.DonationStatus.equals("No")) {
             holder.hotvrqid.setText("Pending Donation!");
-            holder.notifimg.setImageResource(R.drawable.drop_btnn);
+            holder.hotvrqid.setTextColor(Color.parseColor("#FBA010"));
+            holder.notidesc.setText("The donation is pending. Complete the donation fastly.");
             holder.rdid.setText(donations.DonationId);
-            holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
+            holder.rdid.setTextColor(Color.parseColor("#FBA010"));
+            holder.notidesc.setTextColor(Color.parseColor("#FBA010"));
+            holder.noticardView.setCardBackgroundColor(Color.parseColor("#FEE5C7"));
+            holder.circle.setCardBackgroundColor(Color.parseColor("#FBA010"));
+            holder.notifimg.setImageResource(R.drawable.ic_baseline_warning_white_24);
+
+            holder.noticardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(context, DonationQr.class);
@@ -88,9 +103,16 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
             });
         }else if(donations.DonationStatus.equals("Cancelled")) {
             holder.hotvrqid.setText("Donation Cancelled!");
-            holder.notifimg.setImageResource(R.drawable.cartoon);
+            holder.hotvrqid.setTextColor(Color.parseColor("#EB3F24"));
+            holder.notidesc.setText("Donation process Cancelled. Donate blood to save others.");
             holder.rdid.setText(donations.DonationId);
-            holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
+            holder.rdid.setTextColor(Color.parseColor("#EB3F24"));
+            holder.notidesc.setTextColor(Color.parseColor("#EB3F24"));
+            holder.noticardView.setCardBackgroundColor(Color.parseColor("#FFE3E0"));
+            holder.circle.setCardBackgroundColor(Color.parseColor("#EB3F24"));
+            holder.notifimg.setImageResource(R.drawable.ic_baseline_close_white_24);
+
+            holder.noticardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     firestore.collection("Donations").document(donations.DonationId).delete()
@@ -122,9 +144,9 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
 
     public static  class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView hotvrqid,rdid;
+        TextView hotvrqid,rdid,notidesc;
         ImageView notifimg;
-        CardView horeqcardView;
+        CardView noticardView,circle;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -132,7 +154,9 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
             hotvrqid=itemView.findViewById(R.id.hotvReqId);
             notifimg=itemView.findViewById(R.id.notifimg);
             rdid=itemView.findViewById(R.id.rdid);
-            horeqcardView=itemView.findViewById(R.id.horeqcardview);
+            notidesc=itemView.findViewById(R.id.notidesc);
+            circle=itemView.findViewById(R.id.ncardView3);
+            noticardView=itemView.findViewById(R.id.noticardview);
 
         }
     }

@@ -2,13 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/horeqcardview"
+    android:id="@+id/noticardview"
     android:layout_width="330dp"
-    android:layout_height="100dp"
+    android:layout_height="70dp"
     android:layout_gravity="center_horizontal"
-    android:layout_margin="16dp"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="@color/donationcardbg"
-    app:cardCornerRadius="18dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,58 +17,73 @@
 
         <TextView
             android:id="@+id/hotvReqId"
-            android:layout_width="182dp"
-            android:layout_height="25dp"
-            android:hint="Message"
+            android:layout_width="184dp"
+            android:layout_height="16dp"
+            android:hint="Pending"
             android:textAlignment="textStart"
             android:textColor="@color/ho_bg"
             android:textColorHint="@color/ho_bg"
-            android:textSize="16sp"
+            android:textSize="13sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintStart_toEndOf="@+id/ncardView3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.356" />
+
+        <TextView
+            android:id="@+id/notidesc"
+            android:layout_width="219dp"
+            android:layout_height="13dp"
+            android:hint="The donation is pending. Complete the donation fastly."
+            android:textAlignment="textStart"
+            android:textColor="@color/ho_bg"
+            android:textColorHint="@color/ho_bg"
+            android:textSize="8sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.589"
-            app:layout_constraintStart_toEndOf="@+id/cardView3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.213" />
+            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintStart_toEndOf="@+id/ncardView3"
+            app:layout_constraintTop_toBottomOf="@+id/hotvReqId"
+            app:layout_constraintVertical_bias="0.15" />
 
         <TextView
             android:id="@+id/rdid"
-            android:layout_width="182dp"
-            android:layout_height="25dp"
-            android:hint="ID"
-            android:textAlignment="textStart"
+            android:layout_width="46dp"
+            android:layout_height="13dp"
+            android:hint="#DON123QW"
+            android:textAlignment="textEnd"
             android:textColor="@color/ho_bg"
             android:textColorHint="@color/ho_bg"
-            android:textSize="16sp"
+            android:textSize="8sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.564"
-            app:layout_constraintStart_toEndOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.407"
+            app:layout_constraintStart_toEndOf="@+id/hotvReqId"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.786" />
+            app:layout_constraintVertical_bias="0.14" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
-            android:layout_width="83dp"
-            android:layout_height="81dp"
-            android:background="@color/grey"
-            android:backgroundTint="@color/nd2_prim"
+            android:id="@+id/ncardView3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:elevation="20dp"
             app:cardCornerRadius="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.105"
+            app:layout_constraintHorizontal_bias="0.057"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.491">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/notifimg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/vecy" />
+                android:layout_gravity="center"/>
+
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
