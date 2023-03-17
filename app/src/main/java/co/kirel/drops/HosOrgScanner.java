@@ -1,11 +1,7 @@
 package co.kirel.drops;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,8 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.text.Editable;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -161,7 +155,7 @@ public class HosOrgScanner extends Fragment {
 
                     dconfirm=alertCustomDialog.findViewById(R.id.confirm_dntn_dialg_btn);
                     dcancel=alertCustomDialog.findViewById(R.id.cancel_dntn_dialg_btn);
-                    botno=alertCustomDialog.findViewById(R.id.noofbtls);
+                    botno=alertCustomDialog.findViewById(R.id.newdesc);
                     final AlertDialog dialog = builder.create();
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 

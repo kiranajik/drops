@@ -9,7 +9,7 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dialog_bg"
+        android:background="@drawable/dialog_bg2"
         android:layout_marginTop="28dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
@@ -22,49 +22,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Enter the Number of Bottles"
+            android:text="Edit Description"
             android:textColor="@color/black"
-            android:layout_marginLeft="7dp"
-            android:textSize="24sp"
+            android:layout_marginLeft="4dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/newdesc"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="2dp"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/confirm_dntn_dialg_btn"
+            android:id="@+id/save_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:text="confirm"
+            android:text="Save"
             android:backgroundTint="@color/nd2_prim"/>
-        <Button
-            android:id="@+id/cancel_dntn_dialg_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:shadowRadius="20"
-            android:text="Cancel"
-            android:backgroundTint="@color/red"/>
 
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/close_dlg"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/dialog_bg"
         android:elevation="10dp"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_baseline_bloodtype_24"/>
+        android:src="@drawable/ic_baseline_close_24"
+        app:tint="@color/red" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

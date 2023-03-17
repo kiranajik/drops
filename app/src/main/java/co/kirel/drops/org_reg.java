@@ -95,6 +95,7 @@ public class org_reg extends AppCompatActivity {
                                     data.put("Organization Code","O"+org_code);
                                     data.put("Verified","no");
                                     data.put("Role","ORG");
+                                    data.put("description","Add Hospital description");
 
 
                                     firestore.collection(selected).document(sorgemail).set(data)
