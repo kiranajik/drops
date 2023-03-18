@@ -34,15 +34,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import com.travijuu.numberpicker.library.NumberPicker;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class HosOrgScanner extends Fragment {
     Button scan,dcancel,dconfirm;
-    EditText botno;
+    NumberPicker numberPicker;
     String ReqId,QRid,DntnId;
     String sgethoname;
-    String sbotlno,sgotbtlno;
+    String sbotlno;
+    String sgotbtlno,sreqbltno;
     String shoName;
     String myEmail;
     FirebaseFirestore firestore,db;
@@ -120,8 +123,6 @@ public class HosOrgScanner extends Fragment {
         Toast.makeText(getActivity(),DntnId,Toast.LENGTH_SHORT).show();
         //ReqId="RO7H5M7";
 
-
-
         //Firebase
         DocumentReference docRefnc = firestore.collection("Requirements").document(ReqId);
         docRefnc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -132,6 +133,7 @@ public class HosOrgScanner extends Fragment {
                     if (document.exists()) {
                         sgethoname = document.getString("honame");
                         sgotbtlno= document.getString("btlsgot");
+                        sreqbltno= document.getString("NoofBottles");
                     } else {
                         Log.d("error", "No such document");
                     }
@@ -140,6 +142,7 @@ public class HosOrgScanner extends Fragment {
                 }
             }
         });
+
 
 //        SharedPreferences sharedPreferences = getContext().getSharedPreferences("myNewKey", MODE_PRIVATE);
 //        DntnId = sharedPreferences.getString("DntnId","");
@@ -154,14 +157,17 @@ public class HosOrgScanner extends Fragment {
                 if (/*sgethoname.equals(shoName)*/true) {
 
                     View alertCustomDialog = LayoutInflater.from(getContext()).inflate(R.layout.bottle_dialog, null);
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());//TRY
-
                     builder.setView(alertCustomDialog);
 
                     dconfirm=alertCustomDialog.findViewById(R.id.confirm_dntn_dialg_btn);
                     dcancel=alertCustomDialog.findViewById(R.id.cancel_dntn_dialg_btn);
-                    botno=alertCustomDialog.findViewById(R.id.noofbtls);
+                    numberPicker = (NumberPicker) alertCustomDialog.findViewById(R.id.number_picker);
+
+                    int balancebtl=Integer.parseInt(sreqbltno) - Integer.parseInt(sgotbtlno);
+                    Toast.makeText(getContext(),sreqbltno+" "+sgotbtlno,Toast.LENGTH_SHORT).show();
+                    numberPicker.setMax(balancebtl);
+
                     final AlertDialog dialog = builder.create();
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -176,11 +182,16 @@ public class HosOrgScanner extends Fragment {
                     dconfirm.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            sbotlno=botno.getText().toString();
+                            int botlno=numberPicker.getValue();
+                            sbotlno=String.valueOf(botlno);
                             int balance=Integer.parseInt(sgotbtlno) + Integer.parseInt(sbotlno);
                             String balanceBtl = String.valueOf(balance);
                             Map<String,Object> data= new HashMap<>();
                             data.put("btlsgot",balanceBtl);
+                            if (balanceBtl.equals(sreqbltno))
+                            {
+                                data.put("status","Yes");
+                            }
                             firestore.collection("Requirements").document(ReqId).update(data);
 
                             Map<String,Object> dntndata= new HashMap<>();
@@ -224,7 +235,7 @@ public class HosOrgScanner extends Fragment {
                     Toast.makeText(getActivity(), "Invalid QR", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 500);
+        }, 1000);
 
     });
 }

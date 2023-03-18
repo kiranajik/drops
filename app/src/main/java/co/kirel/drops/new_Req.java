@@ -145,6 +145,7 @@ public class new_Req extends AppCompatActivity {
                 data.put("Description",description.getText().toString());
                 data.put("btlsgot","0");
                 data.put("honame",honame);
+                data.put("status","No");
 
                 firestore.collection("Requirements").document(ReqId).set(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

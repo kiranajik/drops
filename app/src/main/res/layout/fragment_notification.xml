@@ -10,9 +10,10 @@
         android:id="@+id/textView6"
         android:layout_width="201dp"
         android:layout_height="46dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="48dp"
         android:text="Notifications"
         android:textAlignment="center"
+        android:textColor="@color/nd2_prim"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +27,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.235" />
+        app:layout_constraintVertical_bias="0.269" />
 </androidx.constraintlayout.widget.ConstraintLayout>
