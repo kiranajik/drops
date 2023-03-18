@@ -21,8 +21,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notifrecview"
-        android:layout_width="371dp"
-        android:layout_height="577dp"
+        android:layout_width="369dp"
+        android:layout_height="613dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

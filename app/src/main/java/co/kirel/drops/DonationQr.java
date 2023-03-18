@@ -44,14 +44,13 @@ import java.util.Map;
 public class DonationQr extends AppCompatActivity {
 
     TextView qrhoname;
-    ImageView qrimg;
-    Button cancelqr,done,ok_dlg_btn;
+    ImageView qrimg,close_dlg_img;
+    Button cancelqr,done,ok_dlg_btn,cancel_dlg_btn;
     String ReqId,qrshoname,bldGrp,dnremail,qrid,dntnSts;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
     static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static SecureRandom rnd = new SecureRandom();
-    String dDntnId = randomString(6);
-    String DntnId="D"+dDntnId;
+    String DntnId;
     String check="no";
 
 
@@ -65,22 +64,80 @@ public class DonationQr extends AppCompatActivity {
         cancelqr=findViewById(R.id.bscan);
         done=findViewById(R.id.bdone);
 
+        //ALERT DIALOG CODE
         View alertCustomDialog = LayoutInflater.from(DonationQr.this).inflate(R.layout.dntn_dialog, null);
         androidx.appcompat.app.AlertDialog.Builder alertDialog = new AlertDialog.Builder(DonationQr.this);
         alertDialog.setView(alertCustomDialog);
-
         ok_dlg_btn=alertCustomDialog.findViewById(R.id.ok_dntn_dialg_btn);
         final AlertDialog dialog = alertDialog.create();
+        //ALERT DIALOG CODE
+
+        //ALERT CANCEL DIALOG CODE
+        View alertCustomDialog1 = LayoutInflater.from(DonationQr.this).inflate(R.layout.cancel_dlg, null);
+        androidx.appcompat.app.AlertDialog.Builder alertDialog1 = new AlertDialog.Builder(DonationQr.this);
+        alertDialog1.setView(alertCustomDialog1);
+        cancel_dlg_btn=alertCustomDialog1.findViewById(R.id.cancel_dntn_dlg_btn);
+        close_dlg_img=alertCustomDialog1.findViewById(R.id.close_cancel_dlg);
+        final AlertDialog dialog1 = alertDialog1.create();
+        //ALERT CANCEL DIALOG CODE
 
         Intent i=getIntent();
-        ReqId = i.getStringExtra("ReqId");
-        qrshoname = i.getStringExtra("honame");
-        bldGrp=i.getStringExtra("BldGrp");
+        check = i.getStringExtra("check");
+        if (check.equals("home"))
+        {
+            //COMING FROM HOME
+            //Intent i=getIntent();
+            ReqId = i.getStringExtra("ReqId");
+            qrshoname = i.getStringExtra("honame");
+            bldGrp=i.getStringExtra("BldGrp");
+            //COMING FROM HOME
+            //MAKING DONATION ID
 
+            String dDntnId = randomString(6);
+            DntnId="D"+dDntnId;
+            //MAKING DONATION ID
+
+            //MAKING NEW DONATION
+            SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+            dnremail = sharedPreferences.getString("donoremail","");
+
+            Map<String,Object> dntndata= new HashMap<>();
+            dntndata.put("DonationId",DntnId);
+            dntndata.put("RequirementId",ReqId);
+            dntndata.put("BloodGroup",bldGrp);
+            dntndata.put("DonorId",dnremail);
+            dntndata.put("DonationStatus","No");
+            dntndata.put("btlsdonated","0");
+            dntndata.put("notified","No");
+            dntndata.put("honame",qrshoname);
+
+            firestore.collection("Donations").document(DntnId).set(dntndata)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(DonationQr.this, "Donation Added Succesfully", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(DonationQr.this, "Donation Not Added", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            //MAKING NEW DONATION
+        }else if (check.equals("notification"))
+        {
+            ReqId = i.getStringExtra("reqId");
+            DntnId = i.getStringExtra("donationId");
+            qrshoname = i.getStringExtra("honame");
+        }
+
+        //MAKING QRID
         qrid=ReqId+DntnId;
+        //SETTING HONAME
         qrhoname.setText(qrshoname);
 
-        //QT Maker
+        //QR Maker
         MultiFormatWriter writer = new MultiFormatWriter();
         try {
             BitMatrix matrix= writer.encode(qrid, BarcodeFormat.QR_CODE,500,500);
@@ -95,33 +152,7 @@ public class DonationQr extends AppCompatActivity {
         } catch (WriterException e) {
             e.printStackTrace();
         }
-
-        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
-        dnremail = sharedPreferences.getString("donoremail","");
-
-        Map<String,Object> dntndata= new HashMap<>();
-        dntndata.put("DonationId",DntnId);
-        dntndata.put("RequirementId",ReqId);
-        dntndata.put("BloodGroup",bldGrp);
-        dntndata.put("DonorId",dnremail);
-        dntndata.put("DonationStatus","No");
-        dntndata.put("btlsdonated","0");
-        dntndata.put("notified","No");
-        dntndata.put("honame",qrshoname);
-
-        firestore.collection("Donations").document(DntnId).set(dntndata)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(DonationQr.this, "Donation Added Succesfully", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(DonationQr.this, "Donation Not Added", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        //QR MAKER
 
         Toast.makeText(this, DntnId, Toast.LENGTH_SHORT).show();
 
@@ -165,7 +196,25 @@ public class DonationQr extends AppCompatActivity {
         cancelqr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog1.show();            }
+        });
+
+        cancel_dlg_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog1.cancel();
+                Map<String,Object> dntndata= new HashMap<>();
+                dntndata.put("DonationStatus","Cancelled");
+                firestore.collection("Donations").document(DntnId).update(dntndata);
                 finish();
+            }
+        });
+
+        close_dlg_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog1.cancel();
             }
         });
 

@@ -97,6 +97,10 @@ public class notifAdapter extends RecyclerView.Adapter<notifAdapter.MyViewHolder
                 @Override
                 public void onClick(View view) {
                     Intent i = new Intent(context, DonationQr.class);
+                    i.putExtra("check","notification");
+                    i.putExtra("donationId",donations.DonationId);
+                    i.putExtra("reqId",donations.RequirementId);
+                    i.putExtra("honame",donations.honame);
                     context.startActivity(i);
 
                 }

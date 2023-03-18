@@ -108,6 +108,7 @@ public class DonationDetails extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(DonationDetails.this,DonationQr.class);
+                i.putExtra("check","home");
                 i.putExtra("ReqId",ReqId);
                 i.putExtra("honame",honame);
                 i.putExtra("BldGrp",BldGrp);
