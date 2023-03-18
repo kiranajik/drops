@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -102,11 +103,12 @@ public class HosOrgHomeFragment extends Fragment {
         reqsArraylist = new ArrayList<>(); //DON'T DELETE
 
         //Try Code
-        Handler handler = new Handler();
+        Handler handler = new Handler();;
         handler.postDelayed(new Runnable() {
             public void run() {
                 firestore.collection("Requirements")
                         .whereEqualTo("honame",hoName)
+
                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override
                             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
