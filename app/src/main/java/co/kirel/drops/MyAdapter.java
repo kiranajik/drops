@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
@@ -41,6 +42,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Requirements requirements= requirementsArrayList.get(position);
         holder.tvhn.setText(requirements.honame);
         holder.tvbg.setText(requirements.BloodGroup);
+        holder.cpi.setIndeterminate(false);
+        int percentage=Integer.parseInt(requirements.btlsgot)*100/Integer.parseInt(requirements.NoofBottles);
+        holder.cpi.setProgressCompat(percentage, true);
+        holder.reqsts.setText(requirements.btlsgot+"/"+requirements.NoofBottles);
 
         holder.reqcardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,14 +68,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static  class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvhn,tvbg;
+        TextView tvhn,tvbg,reqsts;
         CardView reqcardView;
+        CircularProgressIndicator cpi;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvhn=itemView.findViewById(R.id.tvhosname);
             tvbg=itemView.findViewById(R.id.tvbloodgrp);
             reqcardView=itemView.findViewById(R.id.donationcardview);
+            cpi=itemView.findViewById(R.id.cpi);
+            reqsts=itemView.findViewById(R.id.reqstatus);
         }
     }
 }

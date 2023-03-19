@@ -9,11 +9,16 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1495" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_bloodtype_24.xml" value="0.2555" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_calendar_14.xml" value="0.2555" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_close_white_24.xml" value="0.2065" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_cloud_done_24.xml" value="0.155" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_done_24.xml" value="0.2065" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1165" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1495" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_local_hospital_24.xml" value="0.1495" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2095" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.208" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_view_list_24.xml" value="0.1255" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.155" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_icon_park_trophy.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_trophy.xml" value="0.1" />
@@ -39,8 +44,9 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_org_signup.xml" value="0.264" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_reward_data.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/activity_splash.xml" value="0.20729166666666668" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/bottle_dialog.xml" value="0.264" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/bottle_no_get.xml" value="0.1" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/bottle_dialog.xml" value="0.4" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/bottle_no_get.xml" value="0.2" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/cancel_dlg.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/description_dialog.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/dntn_dialog.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/donlistitem.xml" value="0.264" />
@@ -51,12 +57,13 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_notification.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_profile.xml" value="0.264" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_scanner.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_notification.xml" value="0.16" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_notification.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_reward.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/item.xml" value="0.20436083796494228" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/listitem.xml" value="0.4" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/notifitem.xml" value="0.264" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/listitem.xml" value="0.536" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/notifitem.xml" value="0.2" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/number_picker_custom_layout.xml" value="0.6" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/reqlistitemho.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/reward_card.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/menu/bottom_nav_ho_menu.xml" value="0.20521590423257802" />
