@@ -42,19 +42,15 @@ public class ReqAdapter extends RecyclerView.Adapter<ReqAdapter.MyViewHolder> {
         holder.progressBar.setProgress(Integer.parseInt(requirements.getBtlsgot()));
         holder.progressBar.setMax(Integer.parseInt(requirements.getNoofBottles()));
 
-//      NOT NEEDED CODE
 
-//        holder.reqcardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i= new Intent(view.getContext(),DonationDetails.class);
-//                String uid = requirements.getRequirementId();
-//                String bldgrp= requirements.getBloodGroup();
-//                i.putExtra("ReqId",uid);
-//                i.putExtra("BldGrp",bldgrp);
-//                view.getContext().startActivity(i);
-//            }
-//        });
+        holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(view.getContext(),allDonationsToReq.class);
+                i.putExtra("ReqId",requirements.RequirementId);
+                view.getContext().startActivity(i);
+            }
+        });
 
     }
 

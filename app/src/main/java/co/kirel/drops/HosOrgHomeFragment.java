@@ -108,7 +108,7 @@ public class HosOrgHomeFragment extends Fragment {
             public void run() {
                 firestore.collection("Requirements")
                         .whereEqualTo("honame",hoName)
-
+                        .whereEqualTo("status","No")
                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override
                             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
