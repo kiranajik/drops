@@ -76,4 +76,6 @@ public class hospital_home extends AppCompatActivity {
     public String getMyData() {
         return semail;
     }
+
+    public String getHoname() { return honame; }
 }

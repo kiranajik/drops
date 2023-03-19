@@ -12,5 +12,6 @@
     <color name="ho_bg">#4B69D7</color>
     <color name="grey">#777575</color>
     <color name="red">#F4364C</color>
+    <color name="green">#0F993E</color>
     <color name="donationcardbg">#DEE6F4</color>
 </resources>

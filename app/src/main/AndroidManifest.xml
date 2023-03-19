@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Drops">
+        <activity
+            android:name=".allDonationsToReq"
+            android:exported="false" />
         <activity
             android:name=".DonationSuccess"
             android:exported="false" />
@@ -23,9 +26,11 @@
             android:name=".myRewardData"
             android:exported="false" />
         <activity android:name=".DonationDetails" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAlny7_ZYhVVP_uRRjEaOpVW3JG0KMTw7Y"/>
+            android:value="AIzaSyAlny7_ZYhVVP_uRRjEaOpVW3JG0KMTw7Y" />
+
         <activity
             android:name=".rewardData"
             android:exported="false" />

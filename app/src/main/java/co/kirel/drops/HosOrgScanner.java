@@ -1,11 +1,7 @@
 package co.kirel.drops;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,8 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.text.Editable;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,18 +28,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
-import com.travijuu.numberpicker.library.NumberPicker;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class HosOrgScanner extends Fragment {
     Button scan,dcancel,dconfirm;
-    NumberPicker numberPicker;
+    EditText botno;
     String ReqId,QRid,DntnId;
     String sgethoname;
-    String sbotlno;
-    String sgotbtlno,sreqbltno;
+    String sbotlno,sgotbtlno;
     String shoName;
     String myEmail;
     FirebaseFirestore firestore,db;
@@ -123,6 +114,8 @@ public class HosOrgScanner extends Fragment {
         Toast.makeText(getActivity(),DntnId,Toast.LENGTH_SHORT).show();
         //ReqId="RO7H5M7";
 
+
+
         //Firebase
         DocumentReference docRefnc = firestore.collection("Requirements").document(ReqId);
         docRefnc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -133,7 +126,6 @@ public class HosOrgScanner extends Fragment {
                     if (document.exists()) {
                         sgethoname = document.getString("honame");
                         sgotbtlno= document.getString("btlsgot");
-                        sreqbltno= document.getString("NoofBottles");
                     } else {
                         Log.d("error", "No such document");
                     }
@@ -142,7 +134,6 @@ public class HosOrgScanner extends Fragment {
                 }
             }
         });
-
 
 //        SharedPreferences sharedPreferences = getContext().getSharedPreferences("myNewKey", MODE_PRIVATE);
 //        DntnId = sharedPreferences.getString("DntnId","");
@@ -157,17 +148,14 @@ public class HosOrgScanner extends Fragment {
                 if (/*sgethoname.equals(shoName)*/true) {
 
                     View alertCustomDialog = LayoutInflater.from(getContext()).inflate(R.layout.bottle_dialog, null);
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());//TRY
+
                     builder.setView(alertCustomDialog);
 
                     dconfirm=alertCustomDialog.findViewById(R.id.confirm_dntn_dialg_btn);
                     dcancel=alertCustomDialog.findViewById(R.id.cancel_dntn_dialg_btn);
-                    numberPicker = (NumberPicker) alertCustomDialog.findViewById(R.id.number_picker);
-
-                    int balancebtl=Integer.parseInt(sreqbltno) - Integer.parseInt(sgotbtlno);
-                    Toast.makeText(getContext(),sreqbltno+" "+sgotbtlno,Toast.LENGTH_SHORT).show();
-                    numberPicker.setMax(balancebtl);
-
+                    botno=alertCustomDialog.findViewById(R.id.newdesc);
                     final AlertDialog dialog = builder.create();
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -182,21 +170,15 @@ public class HosOrgScanner extends Fragment {
                     dconfirm.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            int botlno=numberPicker.getValue();
-                            sbotlno=String.valueOf(botlno);
+                            sbotlno=botno.getText().toString();
                             int balance=Integer.parseInt(sgotbtlno) + Integer.parseInt(sbotlno);
                             String balanceBtl = String.valueOf(balance);
                             Map<String,Object> data= new HashMap<>();
                             data.put("btlsgot",balanceBtl);
-                            if (balanceBtl.equals(sreqbltno))
-                            {
-                                data.put("status","Yes");
-                            }
                             firestore.collection("Requirements").document(ReqId).update(data);
 
                             Map<String,Object> dntndata= new HashMap<>();
                             dntndata.put("DonationStatus","Yes");
-                            dntndata.put("btlsdonated",sbotlno);
                             db.collection("Donations").document(DntnId).update(dntndata);
 
                             Intent i =new Intent(getContext(),DonationSuccess.class);
@@ -235,7 +217,7 @@ public class HosOrgScanner extends Fragment {
                     Toast.makeText(getActivity(), "Invalid QR", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 1000);
+        }, 500);
 
     });
 }

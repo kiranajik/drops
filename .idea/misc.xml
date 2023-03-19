@@ -17,6 +17,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_local_hospital_24.xml" value="0.1495" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2095" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.208" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_view_list_24.xml" value="0.1255" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.155" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_icon_park_trophy.xml" value="0.1" />
@@ -60,7 +61,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_reward.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/item.xml" value="0.20436083796494228" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/listitem.xml" value="0.4" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/listitem.xml" value="0.536" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/notifitem.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/number_picker_custom_layout.xml" value="0.6" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/reqlistitemho.xml" value="0.2" />
