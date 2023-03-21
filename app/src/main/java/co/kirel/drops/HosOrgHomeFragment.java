@@ -37,7 +37,7 @@ public class HosOrgHomeFragment extends Fragment {
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
     private RecyclerView horecyclerView;
-    ReqAdapter reqAdapter;
+    homeReqAdapter hreqAdapter;
 
     public HosOrgHomeFragment() {
         // Required empty public constructor
@@ -93,9 +93,9 @@ public class HosOrgHomeFragment extends Fragment {
         horecyclerView=view.findViewById(R.id.horecyclerView);
         horecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         horecyclerView.setHasFixedSize(true);
-        reqAdapter = new ReqAdapter(getContext(),reqsArraylist);
-        horecyclerView.setAdapter(reqAdapter);
-        reqAdapter.notifyDataSetChanged();
+        hreqAdapter = new homeReqAdapter(getContext(),reqsArraylist);
+        horecyclerView.setAdapter(hreqAdapter);
+        hreqAdapter.notifyDataSetChanged();
 
     }
 
@@ -126,7 +126,7 @@ public class HosOrgHomeFragment extends Fragment {
                                     {
                                         reqsArraylist.add(dc.getDocument().toObject(Requirements.class));
                                     }
-                                    reqAdapter.notifyDataSetChanged();
+                                    hreqAdapter.notifyDataSetChanged();
                                 }
                             }
                         });

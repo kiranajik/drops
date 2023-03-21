@@ -26,40 +26,40 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class new_Req extends AppCompatActivity {
-    Spinner spinner;
-    EditText bottleno,purpose,description;
+public class editRequirement extends AppCompatActivity {
+    EditText bottleno;
     TextView reqid,tvendtime,enddate;
-    Button submit;
+    Button submit,cancel;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
-    String ReqId,bloodGroup,check="yes";
-    static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    static SecureRandom rnd = new SecureRandom();
-    String dReqId = randomString(6);
+    String ReqId,bottles,date,time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_req);
-        spinner = (Spinner) findViewById(R.id.BGroupDD);
+        setContentView(R.layout.activity_edit_requirement);
+
         bottleno=findViewById(R.id.NoBottles);
         enddate=findViewById(R.id.endDate);
         tvendtime=findViewById(R.id.endTime);
-        purpose=findViewById(R.id.reqPurspose);
-        description=findViewById(R.id.ReqDesc);
         reqid=findViewById(R.id.ReqID);
         submit=findViewById(R.id.new_req_submit_btn);
+        cancel=findViewById(R.id.new_req_delete_btn);
 
         Intent intent = getIntent();
-        String honame = intent.getStringExtra("honame");
+        ReqId = intent.getStringExtra("ReqId");
+        bottles = intent.getStringExtra("bottles");
+        date = intent.getStringExtra("date");
+        time = intent.getStringExtra("time");
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.blood_groups, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
 
-        ReqId="R"+dReqId;
+        reqid.setText(ReqId);
+        bottleno.setText(bottles);
+        enddate.setText(date);
+        tvendtime.setText(time);
+
+
 
         //DATE PICKER
 
@@ -73,14 +73,14 @@ public class new_Req extends AppCompatActivity {
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog =
-                        new DatePickerDialog(new_Req.this,
+                        new DatePickerDialog(editRequirement.this,
                                 new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                enddate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                            }
-                        }, year, month, day);
+                                    @Override
+                                    public void onDateSet(DatePicker view, int year,
+                                                          int monthOfYear, int dayOfMonth) {
+                                        enddate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                    }
+                                }, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -93,12 +93,12 @@ public class new_Req extends AppCompatActivity {
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(new_Req.this, new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                tvendtime.setText(hourOfDay + ":" + minute);
-                            }
-                        }, hour, minute, false);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(editRequirement.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        tvendtime.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, false);
                 timePickerDialog.show();
             }
         });
@@ -127,48 +127,51 @@ public class new_Req extends AppCompatActivity {
 //            });
 //        }while (check.equals("yes"));
 
-        reqid.setText(ReqId);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                bloodGroup=spinner.getSelectedItem().toString();
-
                 Map<String,Object> data= new HashMap<>();
-                data.put("RequirementId",ReqId);
-                data.put("BloodGroup",bloodGroup);
                 data.put("NoofBottles",bottleno.getText().toString());
                 data.put("EndDate",enddate.getText().toString());
                 data.put("EndTime",tvendtime.getText().toString());
-                data.put("Purpose",purpose.getText().toString());
-                data.put("Description",description.getText().toString());
-                data.put("btlsgot","0");
-                data.put("honame",honame);
-                data.put("status","No");
-
-                firestore.collection("Requirements").document(ReqId).set(data)
+                firestore.collection("Requirements").document(ReqId).update(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(new_Req.this, "Requirement Added Succesfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(editRequirement.this, "Requirement Updated Successfully", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(new_Req.this, "Requirement Not Added", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(editRequirement.this, "Requirement Not Updated", Toast.LENGTH_SHORT).show();
                             }
                         });
+                finish();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firestore.collection("Requirements").document(ReqId).delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(editRequirement.this, "Requirement Deleted Successfully", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(editRequirement.this, "Requirement Not Deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                finish();
             }
         });
 
-    }
-    String randomString(int len){
-        StringBuilder sb = new StringBuilder(len);
-        for(int i = 0; i < len; i++)
-            sb.append(AB.charAt(rnd.nextInt(AB.length())));
-        return sb.toString();
     }
 }
