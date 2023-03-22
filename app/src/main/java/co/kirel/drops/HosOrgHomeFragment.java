@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class HosOrgHomeFragment extends Fragment {
 
     TextView honame;
-    String hoName;
+    String hoName,code;
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
     private RecyclerView horecyclerView;
@@ -65,28 +65,13 @@ public class HosOrgHomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         hospital_home activity = (hospital_home) getActivity();
-        String myEmail = activity.getMyData();
+        code = activity.getCode();
+        hoName = activity.getHoname();
 
         firestore= FirebaseFirestore.getInstance();
         honame=view.findViewById(R.id.honame);
 
-        DocumentReference docRef = firestore.collection("Organization").document(myEmail);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        hoName= document.getString("Organization Name");
-                        honame.setText(hoName);
-                    } else {
-                        Log.d("error", "No such document");
-                    }
-                } else {
-                    Log.d("error", "get failed with ", task.getException());
-                }
-            }
-        });
+        honame.setText(hoName);
 
         dataInitialize();
 
@@ -107,7 +92,7 @@ public class HosOrgHomeFragment extends Fragment {
         handler.postDelayed(new Runnable() {
             public void run() {
                 firestore.collection("Requirements")
-                        .whereEqualTo("honame",hoName)
+                        .whereEqualTo("Hospital Code",code)
                         .whereEqualTo("status","No")
                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override

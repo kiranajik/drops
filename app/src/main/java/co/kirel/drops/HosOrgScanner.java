@@ -34,11 +34,8 @@ import java.util.Map;
 public class HosOrgScanner extends Fragment {
     Button scan,dcancel,dconfirm;
     EditText botno;
-    String ReqId,QRid,DntnId;
-    String sgethoname;
-    String sbotlno,sgotbtlno;
-    String shoName;
-    String myEmail;
+    String ReqId,QRid,DntnId,shoName;
+    String sgethoname,sbotlno,sgotbtlno;
     FirebaseFirestore firestore,db;
 
     public HosOrgScanner() {
@@ -68,26 +65,7 @@ public class HosOrgScanner extends Fragment {
         firestore= FirebaseFirestore.getInstance();
         db=FirebaseFirestore.getInstance();
         hospital_home activity = (hospital_home) getActivity();
-        myEmail = activity.getMyData();
-
-        //Firebase Get honame
-        DocumentReference docRef = firestore.collection("Organization").document(myEmail);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        shoName= document.getString("Organization Name");
-                    } else {
-                        Log.d("error", "No such document");
-                    }
-                } else {
-                    Log.d("error", "get failed with ", task.getException());
-                }
-            }
-        });
-
+        shoName = activity.getHoname();
         scan.setOnClickListener(v->
         {
             scanCode();

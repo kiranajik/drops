@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class HosOrgProfileFragment extends Fragment {
+public class HosOrgProfileFragment extends Fragment implements OnMapReadyCallback {
 
     TextView honame,honamee,tvcompldreq,tvpndgreq,tvpplsdntd,hodesc,tvdescription;
     String hoName,docCount,hoemail;
@@ -98,6 +98,7 @@ public class HosOrgProfileFragment extends Fragment {
         tvdescription=view.findViewById(R.id.dscrptn);
 
         mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
         honame.setText(hoName);
         honamee.setText(hoName);
@@ -242,19 +243,6 @@ public class HosOrgProfileFragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions((Activity) getContext(),
-//                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                    LOCATION_PERMISSION_REQUEST_CODE);
-//            return;
-//        } else {
-//            loc = true;
-//        }
-//        googleMap.setMyLocationEnabled(loc);
-//    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -292,4 +280,8 @@ public class HosOrgProfileFragment extends Fragment {
         mapView.onLowMemory();
     }
 
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+
+    }
 }

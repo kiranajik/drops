@@ -53,6 +53,7 @@ public class new_Req extends AppCompatActivity {
 
         Intent intent = getIntent();
         String honame = intent.getStringExtra("honame");
+        String code = intent.getStringExtra("code");
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.blood_groups, android.R.layout.simple_spinner_item);
@@ -146,6 +147,7 @@ public class new_Req extends AppCompatActivity {
                 data.put("btlsgot","0");
                 data.put("honame",honame);
                 data.put("status","No");
+                data.put("Hospital Code",code);
 
                 firestore.collection("Requirements").document(ReqId).set(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

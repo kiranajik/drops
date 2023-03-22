@@ -33,8 +33,6 @@ public class allRewards extends AppCompatActivity {
     String Name,myEmail;
 
     private ArrayList<Rewards> rewsArraylist;
-    private String[] rewscompany;
-    private String[] rewsgift;
     private RecyclerView recyclerView;
     FirebaseFirestore db;
     FirebaseFirestore firestore;

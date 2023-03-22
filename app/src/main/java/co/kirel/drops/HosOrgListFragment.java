@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class HosOrgListFragment extends Fragment {
 
-    String hoName;
+    String code;
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
     private RecyclerView allreqrecview;
@@ -57,7 +57,7 @@ public class HosOrgListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         hospital_home activity = (hospital_home) getActivity();
-        hoName = activity.getHoname();
+        code = activity.getCode();
 
         firestore= FirebaseFirestore.getInstance();
 
@@ -82,7 +82,7 @@ public class HosOrgListFragment extends Fragment {
         handler.postDelayed(new Runnable() {
             public void run() {
                 firestore.collection("Requirements")
-                        .whereEqualTo("honame",hoName)
+                        .whereEqualTo("Hospital Code",code)
                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override
                             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
