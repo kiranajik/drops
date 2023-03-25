@@ -131,6 +131,7 @@ public class org_login extends AppCompatActivity {
                                                         Intent i=new Intent(org_login.this,hospital_home.class);
                                                         i.putExtra("Email",sorgemail);
                                                         i.putExtra("honame",honame);
+                                                        i.putExtra("hoCode",sorgcode);
                                                         startActivity(i);
                                                         finish();
                                                     }else{

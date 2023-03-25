@@ -3,13 +3,21 @@ package co.kirel.drops;
 import static android.content.ContentValues.TAG;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,7 +39,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.AggregateQuery;
 import com.google.firebase.firestore.AggregateQuerySnapshot;
 import com.google.firebase.firestore.AggregateSource;
@@ -39,7 +50,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +70,15 @@ public class HosOrgProfileFragment extends Fragment {
     EditText ed_desc;
     String new_desc;
     Button savedes;
+
+    //image icon
+    String hoCode;
+    ImageView hologo;
+    FloatingActionButton editlogo;
+    ActivityResultLauncher<String> mTakePhoto;
+    StorageReference storageReference;
+    Uri imageUri;
+
     private MapView mapView;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     Boolean loc = false;
@@ -86,6 +111,7 @@ public class HosOrgProfileFragment extends Fragment {
         hospital_home activity = (hospital_home) getActivity();
         hoName = activity.getHoname();
         hoemail = activity.getMyData();
+        hoCode = activity.getHoCode();
 
         firestore= FirebaseFirestore.getInstance();
         honame=view.findViewById(R.id.profilehoname);
@@ -96,6 +122,58 @@ public class HosOrgProfileFragment extends Fragment {
         editdesc=view.findViewById(R.id.editDesc);
         hodesc=view.findViewById(R.id.dscrptn);
         tvdescription=view.findViewById(R.id.dscrptn);
+
+        hologo=view.findViewById(R.id.hoicon);
+        editlogo=view.findViewById(R.id.edithoicon);
+
+        //Setting Logo
+        storageReference = FirebaseStorage.getInstance().getReference("hoImages/"+hoCode);
+
+        try {
+            File localfile = File.createTempFile("tempfile",".jpg");
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                            Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                            hologo.setImageBitmap(bitmap);
+
+                            Toast.makeText(getContext(),"Image Loaded",Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("error",e.toString());
+                            Toast.makeText(getContext(),"Image not Loaded",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mTakePhoto = registerForActivityResult(new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri result) {
+                        hologo.setImageURI(result);
+                        //imageUri=result;
+                        storageReference = FirebaseStorage.getInstance().getReference("hoImages/"+hoCode);
+                        storageReference.putFile(result)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                        Toast.makeText(getContext(),"Image Uploaded",Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getContext(),"Image not Uploaded",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                });
 
         mapView.onCreate(savedInstanceState);
 
@@ -130,11 +208,20 @@ public class HosOrgProfileFragment extends Fragment {
             }
         });
 
+        //EDIT Description
         editdesc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+            }
+        });
+
+        //EDIT Logo
+        editlogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTakePhoto.launch("image/*");
             }
         });
 
@@ -196,8 +283,6 @@ public class HosOrgProfileFragment extends Fragment {
                     Log.d(TAG, "Count: " + snapshot.getCount());
                     docCount= String.valueOf(snapshot.getCount());
                     tvcompldreq.setText(docCount);
-                    Toast.makeText(getContext(), docCount, Toast.LENGTH_SHORT).show();
-
                 } else {
                     Log.d(TAG, "Count failed: ", task.getException());
                 }
@@ -214,8 +299,6 @@ public class HosOrgProfileFragment extends Fragment {
                     Log.d(TAG, "Count: " + snapshot.getCount());
                     docCount= String.valueOf(snapshot.getCount());
                     tvpndgreq.setText(docCount);
-                    Toast.makeText(getContext(), docCount, Toast.LENGTH_SHORT).show();
-
                 } else {
                     Log.d(TAG, "Count failed: ", task.getException());
                 }
@@ -231,8 +314,6 @@ public class HosOrgProfileFragment extends Fragment {
                     Log.d(TAG, "Count: " + snapshot.getCount());
                     docCount= String.valueOf(snapshot.getCount());
                     tvcompldreq.setText(docCount);
-                    Toast.makeText(getContext(), docCount, Toast.LENGTH_SHORT).show();
-
                 } else {
                     Log.d(TAG, "Count failed: ", task.getException());
                 }
