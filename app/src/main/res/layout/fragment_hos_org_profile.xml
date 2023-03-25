@@ -13,26 +13,53 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/imagelyt"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:background="@color/ho_bg"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:elevation="20dp"
-                app:cardCornerRadius="100dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="50dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_baseline_person_24"
-                    app:tint="@color/grey" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profilehocardimg"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="20dp"
+                    app:cardCornerRadius="100dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/hoicon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_baseline_person_24" />
+
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/edithoicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    app:backgroundTint="@color/nd2_prim"
+                    app:fabSize="mini"
+                    app:layout_constraintBottom_toBottomOf="@+id/profilehocardimg"
+                    app:layout_constraintEnd_toEndOf="@+id/profilehocardimg"
+                    app:tint="#FFFFFF" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/profilehoname"
@@ -169,7 +196,7 @@
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFFFFF">
+                    android:background="#F8F8F8">
 
                     <TextView
                         android:id="@+id/honamee"
@@ -178,7 +205,7 @@
                         android:text="Hospital Name"
                         android:textColor="@color/nd2_prim"
                         android:textSize="22sp"
-                        android:textStyle="bold"  />
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/editDesc"
