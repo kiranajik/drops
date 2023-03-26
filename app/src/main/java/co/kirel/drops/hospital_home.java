@@ -85,13 +85,6 @@ public class hospital_home extends AppCompatActivity {
             }
         });
 
-        scanQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scanCode();
-            }
-        });
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){
@@ -125,9 +118,7 @@ public class hospital_home extends AppCompatActivity {
 
     }
 
-    public String getMyData() {
-        return semail;
-    }
+    public String getMyData() { return semail; }
 
     public String getHoname() { return honame; }
 
@@ -177,9 +168,7 @@ public class hospital_home extends AppCompatActivity {
                 if (/*sgethoname.equals(shoName)*/true) {
 
                     View alertCustomDialog = LayoutInflater.from(hospital_home.this).inflate(R.layout.bottle_dialog, null);
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(hospital_home.this);//TRY
-
                     builder.setView(alertCustomDialog);
 
                     dconfirm=alertCustomDialog.findViewById(R.id.confirm_dntn_dialg_btn);

@@ -38,7 +38,12 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.security.SecureRandom;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class DonationQr extends AppCompatActivity {
@@ -50,7 +55,7 @@ public class DonationQr extends AppCompatActivity {
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
     static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static SecureRandom rnd = new SecureRandom();
-    String DntnId;
+    String DntnId,dnrEml;
     String check="no";
 
 
@@ -63,6 +68,9 @@ public class DonationQr extends AppCompatActivity {
         qrimg=findViewById(R.id.qrcode);
         cancelqr=findViewById(R.id.bscan);
         done=findViewById(R.id.bdone);
+
+        donor_home activity = new donor_home();
+        dnrEml = activity.getMyData();
 
         //ALERT DIALOG CODE
         View alertCustomDialog = LayoutInflater.from(DonationQr.this).inflate(R.layout.dntn_dialog, null);
@@ -181,6 +189,10 @@ public class DonationQr extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         if (dntnSts.equals("Yes")) {
+                            String nxtDntnDate = getNxtDntnDate();
+                            Map<String,Object> data= new HashMap<>();
+                            data.put("nxtDntnDate",nxtDntnDate);
+                            firestore.collection("Donor").document(dnrEml).update(data);
                             Intent intent = new Intent(DonationQr.this, DonationSuccess.class);
                             startActivity(intent);
                             finish();
@@ -227,6 +239,29 @@ public class DonationQr extends AppCompatActivity {
         });
 
     }
+
+    private String getNxtDntnDate() {
+        //GETTING CURRENT DATE
+        Date cd = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + cd);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(cd);
+        //ADDING 84 DAYS(12 Weeks)
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(formattedDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.add(Calendar.DATE, 84);  // number of days to add, can also use Calendar.DAY_OF_MONTH in place of Calendar.DATE
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+        String outputdate = sdf1.format(c.getTime());
+        Toast.makeText(DonationQr.this, "Date: "+outputdate, Toast.LENGTH_SHORT).show();
+        //NEXT DONATION DATE DONE
+        return outputdate;
+    }
+
     String randomString(int len){
         StringBuilder sb = new StringBuilder(len);
         for(int i = 0; i < len; i++)

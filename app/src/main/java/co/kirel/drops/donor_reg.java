@@ -17,12 +17,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class donor_reg extends AppCompatActivity {
     EditText name,addr,age,dob,bloodgrp,phno,adharno;
     Button signup;
+    String ystrdayDate;
     private FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
@@ -44,6 +48,11 @@ public class donor_reg extends AppCompatActivity {
         String semail = intent.getStringExtra("DnrEmail");
         String spaswd = intent.getStringExtra("DnrPassword");
 
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        ystrdayDate= dateFormat.format(cal.getTime());
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +71,7 @@ public class donor_reg extends AppCompatActivity {
                                 data.put("phonenumber",phno.getText().toString());
                                 data.put("Aadhaar Number",adharno.getText().toString());
                                 data.put("Verified","no");
+                                data.put("nxtDntnDate",ystrdayDate);
                                 data.put("Role","DONOR");
 
                                 firestore.collection("Donor").document(semail).set(data)

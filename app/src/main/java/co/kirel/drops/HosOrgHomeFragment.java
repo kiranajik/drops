@@ -28,7 +28,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HosOrgHomeFragment extends Fragment {
 
@@ -65,13 +70,32 @@ public class HosOrgHomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         hospital_home activity = (hospital_home) getActivity();
-        code = activity.getCode();
+        code = activity.getHoCode();
         hoName = activity.getHoname();
 
         firestore= FirebaseFirestore.getInstance();
         honame=view.findViewById(R.id.honame);
 
         honame.setText(hoName);
+
+//        //GETTING CURRENT DATE
+//        Date cd = Calendar.getInstance().getTime();
+//        System.out.println("Current time => " + cd);
+//        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+//        String formattedDate = df.format(cd);
+//        //ADDING 84 DAYS(12 Weeks)
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//        Calendar c = Calendar.getInstance();
+//        try {
+//            c.setTime(sdf.parse(formattedDate));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        c.add(Calendar.DATE, 40);  // number of days to add, can also use Calendar.DAY_OF_MONTH in place of Calendar.DATE
+//        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+//        String outputdate = sdf1.format(c.getTime());
+//        Toast.makeText(getContext(), "Date: "+outputdate, Toast.LENGTH_SHORT).show();
+//        //NEXT DONATION DATE DONE
 
         dataInitialize();
 

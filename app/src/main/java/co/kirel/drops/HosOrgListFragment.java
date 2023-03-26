@@ -57,7 +57,7 @@ public class HosOrgListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         hospital_home activity = (hospital_home) getActivity();
-        code = activity.getCode();
+        code = activity.getHoCode();
 
         firestore= FirebaseFirestore.getInstance();
 
