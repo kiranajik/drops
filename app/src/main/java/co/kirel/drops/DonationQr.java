@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -106,8 +107,9 @@ public class DonationQr extends AppCompatActivity {
             //MAKING DONATION ID
 
             //MAKING NEW DONATION
-            SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
-            dnremail = sharedPreferences.getString("donoremail","");
+            SharedPreferences sharedPref = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            dnremail = sharedPref.getString("donoremail", "");
 
             Map<String,Object> dntndata= new HashMap<>();
             dntndata.put("DonationId",DntnId);
@@ -138,6 +140,10 @@ public class DonationQr extends AppCompatActivity {
             ReqId = i.getStringExtra("reqId");
             DntnId = i.getStringExtra("donationId");
             qrshoname = i.getStringExtra("honame");
+
+            SharedPreferences sharedPref = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            dnremail = sharedPref.getString("donoremail", "");
         }
 
         //MAKING QRID
@@ -162,7 +168,8 @@ public class DonationQr extends AppCompatActivity {
         }
         //QR MAKER
 
-        Toast.makeText(this, DntnId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, DntnId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, dnremail, Toast.LENGTH_SHORT).show();
 
         done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +199,7 @@ public class DonationQr extends AppCompatActivity {
                             String nxtDntnDate = getNxtDntnDate();
                             Map<String,Object> data= new HashMap<>();
                             data.put("nxtDntnDate",nxtDntnDate);
-                            firestore.collection("Donor").document(dnrEml).update(data);
+                            firestore.collection("Donor").document("mid@gmail.com").update(data);
                             Intent intent = new Intent(DonationQr.this, DonationSuccess.class);
                             startActivity(intent);
                             finish();

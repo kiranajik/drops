@@ -55,12 +55,6 @@ public class donor_home extends AppCompatActivity {
                 }
             }
         });
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                Toast.makeText(donor_home.this, nxtDntnDate, Toast.LENGTH_SHORT).show();
-            }
-            }, 1000);
 
         SharedPreferences sharedPref = PreferenceManager
                 .getDefaultSharedPreferences(this);
