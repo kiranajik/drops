@@ -63,6 +63,7 @@ public class donor_reg extends AppCompatActivity {
                                 data.put("Aadhaar Number",adharno.getText().toString());
                                 data.put("Verified","no");
                                 data.put("Role","DONOR");
+                                data.put("LifeCoins",0);
 
                                 firestore.collection("Donor").document(semail).set(data)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {

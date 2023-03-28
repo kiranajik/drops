@@ -11,7 +11,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class myRewardData extends AppCompatActivity {
     TextView company,gift,rewcode;
     String Co,Gi,code;
-    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

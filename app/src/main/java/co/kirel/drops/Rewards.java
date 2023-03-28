@@ -1,6 +1,7 @@
 package co.kirel.drops;
 
-public class Rewards {
+public class
+Rewards {
     String company,gift,code;
     Integer cost;
 
