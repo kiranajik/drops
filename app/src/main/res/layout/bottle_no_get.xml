@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="20dp"
-        android:text="Enter the no of Bottles"
+        android:text="Pick the number of Bottles"
         android:textColor="@color/nd2_prim"
         android:textSize="24sp"
         android:textStyle="bold" />
