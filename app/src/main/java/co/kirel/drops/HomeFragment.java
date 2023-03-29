@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class HomeFragment extends Fragment {
 
     TextView uname;
     String Name;
+    ImageView reload;
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
     private RecyclerView recyclerView;
@@ -69,6 +71,7 @@ public class HomeFragment extends Fragment {
         String myEmail = activity.getMyData();
         firestore=FirebaseFirestore.getInstance();
         uname=view.findViewById(R.id.uname);
+        reload=view.findViewById(R.id.reloaddnrhome);
         db=FirebaseFirestore.getInstance();
 
         dataInitialize();
@@ -125,9 +128,17 @@ public class HomeFragment extends Fragment {
                             }
                             myAdapter.notifyDataSetChanged();
                         }
-
                     }
                 });
+
+        reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dataInitialize();
+                myAdapter = new MyAdapter(getContext(),reqsArraylist);
+                recyclerView.setAdapter(myAdapter);
+            }
+        });
 
     }
 }

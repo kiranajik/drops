@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class HosOrgHomeFragment extends Fragment {
 
     TextView honame;
     String hoName,code;
+    ImageView reload;
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
     private RecyclerView horecyclerView;
@@ -75,6 +77,7 @@ public class HosOrgHomeFragment extends Fragment {
 
         firestore= FirebaseFirestore.getInstance();
         honame=view.findViewById(R.id.honame);
+        reload=view.findViewById(R.id.reloadhohome);
 
         honame.setText(hoName);
 
@@ -106,15 +109,23 @@ public class HosOrgHomeFragment extends Fragment {
         horecyclerView.setAdapter(hreqAdapter);
         hreqAdapter.notifyDataSetChanged();
 
+        reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dataInitialize();
+                hreqAdapter = new homeReqAdapter(getContext(),reqsArraylist);
+                horecyclerView.setAdapter(hreqAdapter);
+            }
+        });
     }
 
     private void dataInitialize() {
         reqsArraylist = new ArrayList<>(); //DON'T DELETE
 
         //Try Code
-        Handler handler = new Handler();;
-        handler.postDelayed(new Runnable() {
-            public void run() {
+//        Handler handler = new Handler();;
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
                 firestore.collection("Requirements")
                         .whereEqualTo("Hospital Code",code)
                         .whereEqualTo("status","No")
@@ -140,7 +151,7 @@ public class HosOrgHomeFragment extends Fragment {
                             }
                         });
             }
-        }, 1000);
-    }
+//        }, 500);
+//    }
 
 }
