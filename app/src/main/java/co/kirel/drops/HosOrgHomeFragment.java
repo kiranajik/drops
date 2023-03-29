@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +29,18 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HosOrgHomeFragment extends Fragment {
 
     TextView honame;
     String hoName,code;
+    ImageView reload;
     FirebaseFirestore firestore;
     private ArrayList<Requirements> reqsArraylist;
     private RecyclerView horecyclerView;
@@ -70,8 +77,28 @@ public class HosOrgHomeFragment extends Fragment {
 
         firestore= FirebaseFirestore.getInstance();
         honame=view.findViewById(R.id.honame);
+        reload=view.findViewById(R.id.reloadhohome);
 
         honame.setText(hoName);
+
+//        //GETTING CURRENT DATE
+//        Date cd = Calendar.getInstance().getTime();
+//        System.out.println("Current time => " + cd);
+//        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+//        String formattedDate = df.format(cd);
+//        //ADDING 84 DAYS(12 Weeks)
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//        Calendar c = Calendar.getInstance();
+//        try {
+//            c.setTime(sdf.parse(formattedDate));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        c.add(Calendar.DATE, 40);  // number of days to add, can also use Calendar.DAY_OF_MONTH in place of Calendar.DATE
+//        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+//        String outputdate = sdf1.format(c.getTime());
+//        Toast.makeText(getContext(), "Date: "+outputdate, Toast.LENGTH_SHORT).show();
+//        //NEXT DONATION DATE DONE
 
         dataInitialize();
 
@@ -82,15 +109,23 @@ public class HosOrgHomeFragment extends Fragment {
         horecyclerView.setAdapter(hreqAdapter);
         hreqAdapter.notifyDataSetChanged();
 
+        reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dataInitialize();
+                hreqAdapter = new homeReqAdapter(getContext(),reqsArraylist);
+                horecyclerView.setAdapter(hreqAdapter);
+            }
+        });
     }
 
     private void dataInitialize() {
         reqsArraylist = new ArrayList<>(); //DON'T DELETE
 
         //Try Code
-        Handler handler = new Handler();;
-        handler.postDelayed(new Runnable() {
-            public void run() {
+//        Handler handler = new Handler();;
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
                 firestore.collection("Requirements")
                         .whereEqualTo("Hospital Code",code)
                         .whereEqualTo("status","No")
@@ -116,7 +151,7 @@ public class HosOrgHomeFragment extends Fragment {
                             }
                         });
             }
-        }, 1000);
-    }
+//        }, 500);
+//    }
 
 }

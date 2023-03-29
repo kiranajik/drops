@@ -74,6 +74,19 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView4"
         app:layout_constraintVertical_bias="0.051" />
 
+    <ImageView
+        android:id="@+id/reloadhohome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_refresh_24"
+        app:layout_constraintBottom_toTopOf="@+id/horecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toEndOf="@+id/redrewtext"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4"
+        app:layout_constraintVertical_bias="0.542"
+        app:tint="#575757" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/horecyclerView"
         android:layout_width="358dp"
@@ -85,7 +98,6 @@
         app:layout_constraintTop_toBottomOf="@+id/redrewtext"
         app:layout_constraintVertical_bias="0.186"
         tools:listitem="@layout/reqlistitemho" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
