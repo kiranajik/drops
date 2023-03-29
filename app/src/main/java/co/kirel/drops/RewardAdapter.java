@@ -46,6 +46,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context,rewardData.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("company",rewards.company);
                 i.putExtra("gift",rewards.gift);
                 i.putExtra("email",email);
