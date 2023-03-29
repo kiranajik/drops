@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Drops">
         <activity
+            android:name=".Referrals"
+            android:exported="false" />
+        <activity
             android:name=".allDonationsToReq"
             android:exported="false" />
         <activity
