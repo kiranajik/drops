@@ -50,6 +50,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
                 i.putExtra("gift",rewards.gift);
                 i.putExtra("email",email);
                 i.putExtra("cost",rewards.cost);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
 
             }
