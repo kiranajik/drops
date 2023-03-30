@@ -58,52 +58,6 @@ public class allDonAdapter extends RecyclerView.Adapter<allDonAdapter.MyViewHold
             holder.hotvsts.setText(donations.btlsdonated+" Bottles");
         }
         holder.img.setImageResource(R.drawable.vecy);
-        holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View alertCustomDialog = LayoutInflater.from(context).inflate(R.layout.profile_dialog, null);
-                androidx.appcompat.app.AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-                alertDialog.setView(alertCustomDialog);
-                ok_dlg_btn=alertCustomDialog.findViewById(R.id.dondetdone);
-                donname=alertCustomDialog.findViewById(R.id.donname);
-                donnumber=alertCustomDialog.findViewById(R.id.donnumber);
-                donbg=alertCustomDialog.findViewById(R.id.donbg);
-                firestore= FirebaseFirestore.getInstance();
-                DocumentReference docRef = firestore.collection("Donor").document(donations.DonorId);
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                name= document.getString("Name");
-                                number= document.getString("phonenumber");
-                                bloodgroup= document.getString("bloodgroup");
-                                donname.setText(name);
-                                donnumber.setText(number);
-                                donbg.setText(bloodgroup);
-                            } else {
-                                Log.d("error", "No such document");
-                            }
-                        } else {
-                            Log.d("error", "get failed with ", task.getException());
-                        }
-                    }
-                });
-                final AlertDialog dialog = alertDialog.create();
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-                ok_dlg_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
-                        Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-
-
     }
 
     @Override
