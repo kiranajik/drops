@@ -8,15 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
@@ -37,7 +33,7 @@ public class Referrals extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private referal_adapter adapter;
-    ArrayList<referal_item> dataList;
+    ArrayList<Donor> dataList;
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     String code = "";
@@ -60,14 +56,6 @@ public class Referrals extends AppCompatActivity {
         DocumentReference docRef = db.collection("Donor").document(email_ID);
         CollectionReference rcf = db.collection("Donor");
 
-        dataInitialize();
-        recyclerView =findViewById(R.id.rcv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        referal2_adapter = new referal_adapter(this,dataList,rfc);
-        recyclerView.setAdapter(referal_adapter2);
-        notifAdapter.notifyDataSetChanged();
-
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -82,19 +70,28 @@ public class Referrals extends AppCompatActivity {
             }
         });
 
+        if(rfc.equals("")) {
+            String gen_rcode = generateUniqueCode();
+            Map<String, Object> new_rcode = new HashMap<>();
+            new_rcode.put("referal_code", gen_rcode);
+            docRef.update(new_rcode).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {}
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {}
+            });
+            rfc=gen_rcode;
+        }
 
-        String gen_rcode = generateUniqueCode();
-        Map<String, Object> new_rcode = new HashMap<>();
-        new_rcode.put("referal_code", gen_rcode);
+        dataInitialize();
 
-        docRef.update(new_rcode).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {}
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {}
-        });
-
+        recyclerView =findViewById(R.id.rcv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        adapter = new referal_adapter(this,dataList);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -132,9 +129,9 @@ public class Referrals extends AppCompatActivity {
                                 {
                                     if (dc.getType() == DocumentChange.Type.ADDED)
                                     {
-                                        dataList.add(dc.getDocument().toObject(referal_item.class));
+                                        dataList.add(dc.getDocument().toObject(Donor.class));
                                     }
-                                    referal_adapter.notifyDataSetChanged();
+                                    adapter.notifyDataSetChanged();
                                 }
                             }
                         });

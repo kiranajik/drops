@@ -1,7 +1,6 @@
 package co.kirel.drops;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -18,13 +16,11 @@ public class referal_adapter extends RecyclerView.Adapter<referal_adapter.MyView
 
     Context context;
 
-    ArrayList<referal_item> referal_items;
-    String rfc;
+    ArrayList<Donor> referal_items;
 
-    public referal_adapter(Context context, ArrayList<referal_item> rewardsArrayList, String rfc) {
+    public referal_adapter(Context context, ArrayList<Donor> referal_items) {
         this.context=context;
         this.referal_items= referal_items;
-        this.rfc =rfc;
     }
 
     @NonNull
@@ -39,15 +35,15 @@ public class referal_adapter extends RecyclerView.Adapter<referal_adapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        referal_item referal_item = referal_items.get(position);
-        holder.remail.setText(String.valueOf(referal_item.ref_mail));
+        Donor donor = referal_items.get(position);
+        holder.remail.setText(donor.Email);
 
-        if(referal_item.status == "1"){
+        if(donor.Referral_status == "1"){
             holder.status.setText("Signed  Up");
             holder.coins.setText("50 Coins");
             holder.icon.setImageResource(R.drawable.green_tick);
         }
-        if(referal_item.status == "2"){
+        if(donor.Referral_status == "2"){
             holder.status.setText("Donated Blood");
             holder.coins.setText("200 Coins");
             holder.icon.setImageResource(R.drawable.red_heart);
