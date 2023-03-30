@@ -56,7 +56,7 @@ public class DonationQr extends AppCompatActivity {
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
     static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static SecureRandom rnd = new SecureRandom();
-    String DntnId,dnrEml;
+    String DntnId,dnrEml,hocode;
     String check="no";
 
 
@@ -99,6 +99,7 @@ public class DonationQr extends AppCompatActivity {
             ReqId = i.getStringExtra("ReqId");
             qrshoname = i.getStringExtra("honame");
             bldGrp=i.getStringExtra("BldGrp");
+            hocode = i.getStringExtra("hocode");
             //COMING FROM HOME
             //MAKING DONATION ID
 
@@ -119,7 +120,9 @@ public class DonationQr extends AppCompatActivity {
             dntndata.put("DonationStatus","No");
             dntndata.put("btlsdonated","0");
             dntndata.put("notified","No");
+            dntndata.put("Hnotified","No");
             dntndata.put("honame",qrshoname);
+            dntndata.put("Hospital Code",hocode);
 
             firestore.collection("Donations").document(DntnId).set(dntndata)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
