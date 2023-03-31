@@ -1,5 +1,6 @@
 package co.kirel.drops;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,6 +9,16 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import co.kirel.drops.databinding.ActivityDonorHomeBinding;
 import co.kirel.drops.databinding.ActivityMainBinding;
@@ -15,6 +26,8 @@ import co.kirel.drops.databinding.ActivityMainBinding;
 public class donor_home extends AppCompatActivity {
     ActivityDonorHomeBinding binding;
     String semail;
+    String nxtDntnDate;
+    FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +39,25 @@ public class donor_home extends AppCompatActivity {
         Intent intent = getIntent();
         semail = intent.getStringExtra("Email");
 
-        SharedPreferences sharedPref = getSharedPreferences("myKey", MODE_PRIVATE);
+        DocumentReference docRefnc = firestore.collection("Donor").document(semail);
+        docRefnc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        nxtDntnDate = document.getString("nxtDntnDate");
+                    } else {
+                        Log.d("error", "No such document");
+                    }
+                } else {
+                    Log.d("error", "Firestore Error", task.getException());
+                }
+            }
+        });
+
+        SharedPreferences sharedPref = PreferenceManager
+                .getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("donoremail", semail);
         editor.apply();
@@ -77,4 +108,6 @@ public class donor_home extends AppCompatActivity {
     public String getMyData() {
         return semail;
     }
+
+    public String getNxtDntnDate() { return nxtDntnDate; }
 }

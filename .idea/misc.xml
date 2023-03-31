@@ -18,6 +18,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2095" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.2555" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1865" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.208" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_view_list_24.xml" value="0.1255" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/drawable/ic_baseline_warning_24.xml" value="0.155" />
@@ -53,8 +54,8 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/dntn_dialog.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/donlistitem.xml" value="0.264" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_donations.xml" value="0.10029251984956122" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_home.xml" value="0.264" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_home.xml" value="0.376" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_home.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_list.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_notification.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/fragment_hos_org_profile.xml" value="0.1" />
@@ -66,6 +67,7 @@
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/listitem.xml" value="0.536" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/notifitem.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/number_picker_custom_layout.xml" value="0.6" />
+        <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/nxtdonationdate_dlg.xml" value="0.20436083796494228" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/reqlistitemho.xml" value="0.2" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/layout/reward_card.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Midhun/Desktop/drops/app/src/main/res/menu/bottom_nav_ho_menu.xml" value="0.1" />

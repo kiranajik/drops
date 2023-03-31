@@ -30,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,10 +46,11 @@ public class hospital_home extends AppCompatActivity {
 
     //FOR SCANNER
     Button dcancel,dconfirm;
-    EditText botno;
     String ReqId,QRid,DntnId,shoName;
     String sgethoname,sbotlno,sgotbtlno;
+    String sreqbltno;
     FirebaseFirestore firestore,db;
+    NumberPicker numberPicker;
 
 
     @Override
@@ -85,13 +87,6 @@ public class hospital_home extends AppCompatActivity {
             }
         });
 
-        scanQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scanCode();
-            }
-        });
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){
@@ -125,9 +120,7 @@ public class hospital_home extends AppCompatActivity {
 
     }
 
-    public String getMyData() {
-        return semail;
-    }
+    public String getMyData() { return semail; }
 
     public String getHoname() { return honame; }
 
@@ -162,6 +155,7 @@ public class hospital_home extends AppCompatActivity {
                     if (document.exists()) {
                         sgethoname = document.getString("honame");
                         sgotbtlno= document.getString("btlsgot");
+                        sreqbltno= document.getString("NoofBottles");
                     } else {
                         Log.d("error", "No such document");
                     }
@@ -177,14 +171,17 @@ public class hospital_home extends AppCompatActivity {
                 if (/*sgethoname.equals(shoName)*/true) {
 
                     View alertCustomDialog = LayoutInflater.from(hospital_home.this).inflate(R.layout.bottle_dialog, null);
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(hospital_home.this);//TRY
-
                     builder.setView(alertCustomDialog);
 
                     dconfirm=alertCustomDialog.findViewById(R.id.confirm_dntn_dialg_btn);
                     dcancel=alertCustomDialog.findViewById(R.id.cancel_dntn_dialg_btn);
-                    botno=alertCustomDialog.findViewById(R.id.newdesc);
+                    numberPicker = (NumberPicker) alertCustomDialog.findViewById(R.id.number_picker);
+
+                    int balancebtl=Integer.parseInt(sreqbltno) - Integer.parseInt(sgotbtlno);
+                    Toast.makeText(hospital_home.this,sreqbltno+" "+sgotbtlno,Toast.LENGTH_SHORT).show();
+                    numberPicker.setMax(balancebtl);
+
                     final AlertDialog dialog = builder.create();
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -199,11 +196,16 @@ public class hospital_home extends AppCompatActivity {
                     dconfirm.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            sbotlno=botno.getText().toString();
+                            int botlno=numberPicker.getValue();
+                            sbotlno=String.valueOf(botlno);
                             int balance=Integer.parseInt(sgotbtlno) + Integer.parseInt(sbotlno);
                             String balanceBtl = String.valueOf(balance);
                             Map<String,Object> data= new HashMap<>();
                             data.put("btlsgot",balanceBtl);
+                            if (balanceBtl.equals(sreqbltno))
+                            {
+                                data.put("status","Yes");
+                            }
                             firestore.collection("Requirements").document(ReqId).update(data);
 
                             Map<String,Object> dntndata= new HashMap<>();
@@ -220,6 +222,6 @@ public class hospital_home extends AppCompatActivity {
                     Toast.makeText(hospital_home.this, "Invalid QR", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 500);
+        }, 800);
     });
 }
