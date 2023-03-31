@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,6 +29,7 @@ public class donor_home extends AppCompatActivity {
     ActivityDonorHomeBinding binding;
     String semail;
     String nxtDntnDate;
+    FloatingActionButton dropbtn;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
 
     @Override
@@ -34,10 +37,23 @@ public class donor_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityDonorHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        dropbtn = findViewById(R.id.fabdonor);
+        dropbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(donor_home.this, bloodCatcher.class);
+                startActivity(i);
+            }
+        });
 
 
         Intent intent = getIntent();
         semail = intent.getStringExtra("Email");
+        if(semail == null){
+            SharedPreferences sharedPref = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            semail = sharedPref.getString("donoremail", "");
+        }
 
         DocumentReference docRefnc = firestore.collection("Donor").document(semail);
         docRefnc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
