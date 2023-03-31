@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Drops">
         <activity
-            android:name=".editRequirement"
+            android:name=".Referrals"
             android:exported="false" />
         <activity
             android:name=".allDonationsToReq"
@@ -32,7 +32,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDykt-k5M5YDOThxCDwrm9xI3ValdIwdnA" />
+            android:value="AIzaSyAlny7_ZYhVVP_uRRjEaOpVW3JG0KMTw7Y" />
 
         <activity
             android:name=".rewardData"

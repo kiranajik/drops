@@ -131,6 +131,22 @@
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
         <EditText
+            android:id="@+id/referred_by"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="Referred By (Optional)"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
+            app:layout_constraintEnd_toEndOf="@+id/edAdharno"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/edAdharno"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+        <EditText
             android:id="@+id/edAddress"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
