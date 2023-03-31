@@ -38,12 +38,12 @@ public class referal_adapter extends RecyclerView.Adapter<referal_adapter.MyView
         Donor donor = referal_items.get(position);
         holder.remail.setText(donor.Email);
 
-        if(donor.Referral_status == "1"){
+        if(donor.Referral_status.equals("1")){
             holder.status.setText("Signed  Up");
             holder.coins.setText("50 Coins");
             holder.icon.setImageResource(R.drawable.green_tick);
         }
-        if(donor.Referral_status == "2"){
+        else if(donor.Referral_status.equals("2")){
             holder.status.setText("Donated Blood");
             holder.coins.setText("200 Coins");
             holder.icon.setImageResource(R.drawable.red_heart);

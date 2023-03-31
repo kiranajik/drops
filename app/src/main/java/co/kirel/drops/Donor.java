@@ -2,15 +2,14 @@ package co.kirel.drops;
 
 public class Donor {
 
-    String Referred_by,Referral_status,LifeCoins,Email;
+    String Referred_by,Referral_status,Email;
 
     public Donor()
     {}
 
-    public Donor(String referred_by, String referral_status, String lifeCoins, String email) {
+    public Donor(String referred_by, String referral_status, String email) {
         Referred_by = referred_by;
         Referral_status = referral_status;
-        LifeCoins = lifeCoins;
         Email = email;
     }
 
@@ -38,11 +37,4 @@ public class Donor {
         Referral_status = referral_status;
     }
 
-    public String getLifeCoins() {
-        return LifeCoins;
-    }
-
-    public void setLifeCoins(String lifeCoins) {
-        LifeCoins = lifeCoins;
-    }
 }

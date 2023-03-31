@@ -64,25 +64,26 @@ public class Referrals extends AppCompatActivity {
                     ref_code_owner.setText(name);
                     Toast.makeText(Referrals.this, name, Toast.LENGTH_SHORT).show();
                     String rcode = documentSnapshot.getString("referal_code");
+                    if(rcode.equals("")) {
+                        String gen_rcode = generateUniqueCode();
+                        Map<String, Object> new_rcode = new HashMap<>();
+                        new_rcode.put("referal_code", gen_rcode);
+                        docRef.update(new_rcode).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {}
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {}
+                        });
+                        rfc=gen_rcode;
+                    }
+
                     ref_code_view.setText(rcode);
-                    rfc = rcode;
                 }
             }
         });
 
-        if(rfc.equals("")) {
-            String gen_rcode = generateUniqueCode();
-            Map<String, Object> new_rcode = new HashMap<>();
-            new_rcode.put("referal_code", gen_rcode);
-            docRef.update(new_rcode).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {}
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {}
-            });
-            rfc=gen_rcode;
-        }
+
 
         dataInitialize();
 
@@ -96,6 +97,8 @@ public class Referrals extends AppCompatActivity {
     }
 
     public String generateUniqueCode() {
+
+        Toast.makeText(this, "fun called", Toast.LENGTH_SHORT).show();
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -115,7 +118,7 @@ public class Referrals extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             public void run() {
                 firestore.collection("Donor")
-                        .whereEqualTo("Referred_by",rfc)
+                        .whereEqualTo("Referred_by",ref_code_view.getText().toString())
                         .addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override
                             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
