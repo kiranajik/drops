@@ -28,19 +28,20 @@ public class GameView extends View {
     Paint timePaint = new Paint();
     float TEXT_SIZE = 120;
     int points = 0;
-    int time=90;
+    int time;
 
     static int dWidth, dHeight;
     Random random;
     float catcherX, catcherY;
     float oldX;
     float oldCatcherX;
-    Spike spike1;
+    Spike spike1,spike2, spike3;
     CountdownTimer countdownTimer;
+    boolean timerFinished;
 
     public void startGame() {
-        // Start the game and create a new CountdownTimer with a 90 second countdown and the current points value
-        countdownTimer = new CountdownTimer( 10000, 1000);
+        // Start the game and create a new CountdownTimer with a 60 second countdown and the current points value
+        countdownTimer = new CountdownTimer( 30000, 1000);
         countdownTimer.start();// Start the timer
     }
     public GameView(Context context) {
@@ -73,6 +74,8 @@ public class GameView extends View {
         catcherX = dWidth/2 - catcher.getWidth() / 2;
         catcherY = dHeight - catcher.getHeight()*2;
         spike1 = new Spike(context);
+        spike2 = new Spike(context);
+        spike3 = new Spike(context);
     }
     @Override
     protected void onDraw(Canvas canvas){
@@ -94,14 +97,43 @@ public class GameView extends View {
             points += 10;
             spike1.resetPosition();
         }
+        if(spike2.spikeY + spike2.getSpikeHeight() <= dHeight - ground.getHeight()){
+            canvas.drawBitmap(spike2.getSpike(), spike2.spikeX, spike2.spikeY, null);
+            spike2.spikeY += spike2.spikeVelocity;
+        }
+        else{
+            spike2.resetPosition();
+        }
+        if(spike2.spikeX + spike2.getSpikeWidth() >= catcherX
+                && spike2.spikeX <= catcherX + catcher.getWidth()
+                && spike2.spikeY + spike2.getSpikeWidth()>= catcherY
+                && spike2.spikeY + spike2.getSpikeWidth() <= catcherY + catcher.getHeight()){
+            points += 10;
+            spike2.resetPosition();
+        }
+        if(spike3.spikeY + spike3.getSpikeHeight() <= dHeight - ground.getHeight()){
+            canvas.drawBitmap(spike3.getSpike(), spike3.spikeX, spike3.spikeY, null);
+            spike3.spikeY += spike3.spikeVelocity;
+        }
+        else{
+            spike3.resetPosition();
+        }
+        if(spike3.spikeX + spike3.getSpikeWidth() >= catcherX
+                && spike3.spikeX <= catcherX + catcher.getWidth()
+                && spike3.spikeY + spike3.getSpikeWidth()>= catcherY
+                && spike3.spikeY + spike3.getSpikeWidth() <= catcherY + catcher.getHeight()){
+            points += 10;
+            spike3.resetPosition();
+        }
         canvas.drawText(""+points,20, TEXT_SIZE, textPaint);
-        time = countdownTimer.getTime();
         canvas.drawText(""+time,dWidth-300, TEXT_SIZE, timePaint);
-        if(time < 1){
+        timerFinished = countdownTimer.hasFinished();
+        if(timerFinished){
             Intent i =new Intent(context, GameOver.class);
             i.putExtra("points",points);
             context.startActivity(i);
         }
+        time = countdownTimer.getTime();
         handler.postDelayed(runnable, UPDATE_MILLIS);
     }
     @Override
