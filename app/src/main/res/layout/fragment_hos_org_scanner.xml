@@ -6,33 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".HosOrgScanner">
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="201dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="48dp"
+        android:text="Notifications"
+        android:textAlignment="center"
+        android:textColor="@color/nd2_prim"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="232dp"
-        android:layout_height="240dp"
-        android:src="@drawable/ic_baseline_qr_code_scanner_24"
-        android:tint="@color/nd2_prim"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hosnotifrecview"
+        android:layout_width="369dp"
+        android:layout_height="613dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
-
-    <Button
-        android:id="@+id/bscan"
-        android:layout_width="229dp"
-        android:layout_height="63dp"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/red"
-        android:text="Scan QR"
-        app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16"
-        app:layout_constraintVertical_bias="0.083" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.269" />
 </androidx.constraintlayout.widget.ConstraintLayout>

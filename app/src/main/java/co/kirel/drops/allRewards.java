@@ -58,25 +58,6 @@ public class allRewards extends AppCompatActivity {
         recyclerView.setAdapter(RAdapter);
         RAdapter.notifyDataSetChanged();
 
-        DocumentReference docRef = firestore.collection("Donor").document(myEmail);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-
-                        Name = document.getString("Name");
-
-                    } else {
-                        Log.d("error", "No such document");
-                    }
-                } else {
-                    Log.d("error", "get failed with ", task.getException());
-                }
-            }
-        });
-
     }
 
     private void dataInitialize() {

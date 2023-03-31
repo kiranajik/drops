@@ -40,7 +40,7 @@ public class DonationDetails extends AppCompatActivity implements OnMapReadyCall
 
     TextView horgname;
     Button bDate,bTime,bconfirm;
-    String ReqId,sdate,stime,honame,BldGrp;
+    String ReqId,sdate,stime,honame,BldGrp,hocode;
     FirebaseFirestore firestore;
     private MapView mapView;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -75,6 +75,7 @@ public class DonationDetails extends AppCompatActivity implements OnMapReadyCall
                         sdate= document.getString("End Date");
                         stime= document.getString("End Time");
                         honame= document.getString("honame");
+                        hocode= document.getString("Hospital Code");
                         bDate.setText(sdate);
                         bTime.setText(stime);
                         horgname.setText(honame);
@@ -112,6 +113,7 @@ public class DonationDetails extends AppCompatActivity implements OnMapReadyCall
                 i.putExtra("ReqId",ReqId);
                 i.putExtra("honame",honame);
                 i.putExtra("BldGrp",BldGrp);
+                i.putExtra("hocode",hocode);
                 startActivity(i);
                 finish();
             }

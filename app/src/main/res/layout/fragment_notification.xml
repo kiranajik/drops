@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".org_login">
+    tools:context=".NotificationFragment">
 
     <TextView
         android:id="@+id/textView6"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notifrecview"
+        android:id="@+id/hosnotifrecview"
         android:layout_width="369dp"
         android:layout_height="613dp"
         android:layout_marginTop="8dp"
