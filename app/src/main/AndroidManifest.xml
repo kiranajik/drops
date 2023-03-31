@@ -38,6 +38,9 @@
             android:name=".rewardData"
             android:exported="false" />
         <activity
+            android:name=".editRequirement"
+            android:exported="false" />
+        <activity
             android:name=".allRewards"
             android:exported="false" />
         <activity
