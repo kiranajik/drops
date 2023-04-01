@@ -2,7 +2,6 @@ package co.kirel.drops;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -83,9 +81,10 @@ public class donor_reg extends AppCompatActivity {
                                     data.put("Referral_status","1");
                                     data.put("LifeCoins",50);
 
-                                    Toast.makeText(donor_reg.this, "bla", Toast.LENGTH_SHORT).show();
 
-//                                    referrer2 = findReferrer(referred_by.getText().toString());
+                                    referrer2 = findReferrer(referred_by.getText().toString());
+                                    Toast.makeText(donor_reg.this, referred_by.getText().toString(), Toast.LENGTH_SHORT).show();
+
 //                                    add_coins(referrer2);
                                 }
                                 else
@@ -131,7 +130,7 @@ public class donor_reg extends AppCompatActivity {
     public String findReferrer(String ref_code)
     {
 
-        CollectionReference collectionRef = firestore.collection("myCollection");
+        CollectionReference collectionRef = firestore.collection("Donor");
         String fieldName = "referal_code";
         String searchValue = ref_code;
         Query query = collectionRef.whereEqualTo(fieldName, searchValue);
@@ -142,6 +141,7 @@ public class donor_reg extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
+
                         referrer= document.getId().toString();
                     }
                 } else {

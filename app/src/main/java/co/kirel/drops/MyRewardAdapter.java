@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,10 @@ public class MyRewardAdapter extends RecyclerView.Adapter<MyRewardAdapter.MyView
         Rewards rewards = rewardsArrayList.get(position);
         holder.tvhn.setText(String.valueOf(rewards.cost));
         holder.tvbg.setText(rewards.gift);
-        holder.tvco.setText(rewards.company);
+        Context c = context.getApplicationContext();
+        int id = c.getResources().getIdentifier("drawable/"+rewards.company, null, c.getPackageName());
+        holder.logo.setImageResource(id);
+//        holder.tvco.setText(rewards.company);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,11 +69,13 @@ public class MyRewardAdapter extends RecyclerView.Adapter<MyRewardAdapter.MyView
         TextView tvhn,tvbg,tvco;
         CardView cardView;
 
+        ImageView logo;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvhn=itemView.findViewById(R.id.coins);
             tvbg=itemView.findViewById(R.id.textView14);
-            tvco=itemView.findViewById(R.id.company_name);
+            logo=itemView.findViewById(R.id.imageView7);
             cardView = itemView.findViewById(R.id.cardView);
         }
     }
