@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/horeqcardview"
-    android:layout_width="330dp"
-    android:layout_height="140dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="18dp"
-    android:layout_margin="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/compltdrdonlistitem"
+    android:layout_width="330dp"
+    android:layout_height="100dp"
     android:layout_gravity="center_horizontal"
-    app:cardBackgroundColor="@color/donationcardbg">
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="@color/donationcardbg"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,23 +20,24 @@
             android:layout_width="142dp"
             android:layout_height="27dp"
             android:hint="REQID"
-            android:textAlignment="textEnd"
+            android:textAlignment="textStart"
             android:textColor="@color/ho_bg"
             android:textColorHint="@color/ho_bg"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.683"
+            app:layout_constraintHorizontal_bias="0.222"
             app:layout_constraintStart_toEndOf="@+id/cardView3"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
+            app:layout_constraintVertical_bias="0.26" />
 
         <TextView
             android:id="@+id/horeqsts"
             android:layout_width="142dp"
             android:layout_height="27dp"
-            android:hint="6/12"
+            android:hint="Bottles"
             android:textAlignment="textStart"
             android:textColor="@color/ho_bg"
             android:textColorHint="@color/ho_bg"
@@ -44,27 +45,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.222"
             app:layout_constraintStart_toEndOf="@+id/cardView3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.734" />
-
-        <ProgressBar
-            android:id="@+id/reqprogressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="165dp"
-            android:layout_height="18dp"
-            android:progressDrawable="@drawable/progress_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.553"
-            app:layout_constraintStart_toEndOf="@+id/cardView3"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/hotvReqId"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
-            android:layout_width="83dp"
-            android:layout_height="81dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:background="@color/grey"
             android:backgroundTint="@color/nd2_prim"
             android:elevation="20dp"
@@ -76,24 +65,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.491">
 
-            <TextView
-                android:id="@+id/hotvbloodgrp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:hint="BG"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FBFBFB"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
+            <ImageView
+                android:id="@+id/notifimg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_baseline_bloodtype_24" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

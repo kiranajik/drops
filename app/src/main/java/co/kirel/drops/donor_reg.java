@@ -73,6 +73,7 @@ public class donor_reg extends AppCompatActivity {
                                 data.put("Verified","no");
                                 data.put("nxtDntnDate",ystrdayDate);
                                 data.put("Role","DONOR");
+                                data.put("LifeCoins",0);
 
                                 firestore.collection("Donor").document(semail).set(data)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {

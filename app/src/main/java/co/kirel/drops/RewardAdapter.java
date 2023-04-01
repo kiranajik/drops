@@ -53,6 +53,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
                 i.putExtra("cost",rewards.cost);
                 context.startActivity(i);
 
+
             }
         });
 

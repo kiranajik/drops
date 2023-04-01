@@ -51,7 +51,7 @@
                 app:layout_constraintVertical_bias="0.812" />
 
             <ImageView
-                android:id="@+id/imageView15"
+                android:id="@+id/company_img"
                 android:layout_width="156dp"
                 android:layout_height="123dp"
                 android:layout_marginTop="120dp"

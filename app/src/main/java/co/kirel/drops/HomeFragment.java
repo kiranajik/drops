@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
 
         db.collection("Requirements")
                 .whereEqualTo("status","No")
-                .orderBy("End Time", Query.Direction.ASCENDING)
+                .orderBy("EndDate", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

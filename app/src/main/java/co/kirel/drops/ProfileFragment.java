@@ -1,5 +1,6 @@
 package co.kirel.drops;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -30,6 +31,7 @@ public class ProfileFragment extends Fragment {
     static String email="" ;
     FirebaseFirestore firestore;
     TextView unamep;
+    TextView refbtn;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -61,6 +63,8 @@ public class ProfileFragment extends Fragment {
         donation = view.findViewById(R.id.donationbtn);
         request = view.findViewById(R.id.requestbtn);
         unamep = view.findViewById(R.id.profileuname);
+        refbtn = view.findViewById(R.id.refbtn);
+
 
         DocumentReference docRef = firestore.collection("Donor").document(myEmail);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -80,6 +84,8 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+
         donation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +94,14 @@ public class ProfileFragment extends Fragment {
                 donation.setTextColor(Color.WHITE);
                 request.setBackgroundColor(Color.parseColor("#4B69D7"));
                 request.setTextColor(Color.WHITE);
+            }
+        });
+
+        refbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(),Referrals.class);
+                startActivity(i);
             }
         });
 

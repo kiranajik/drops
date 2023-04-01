@@ -30,25 +30,25 @@
             android:id="@+id/imageView9"
             android:layout_width="37dp"
             android:layout_height="35dp"
+            android:src="@drawable/ic_baseline_settings_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.957"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.022"
-            android:src="@drawable/ic_baseline_settings_24"/>
+            app:layout_constraintVertical_bias="0.022" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView5"
             android:layout_width="364dp"
             android:layout_height="229dp"
             app:cardBackgroundColor="#172255"
+            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.146"
-            app:cardCornerRadius="10dp">
+            app:layout_constraintVertical_bias="0.146">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -91,28 +91,45 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="115dp"
                     android:layout_height="115dp"
+                    android:elevation="20dp"
                     app:cardCornerRadius="100dp"
                     app:layout_constraintBottom_toTopOf="@+id/profileuname"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.813"
-                    android:elevation="20dp">
+                    app:layout_constraintVertical_bias="0.813">
 
                     <ImageView
                         android:id="@+id/imageView10"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:src="@drawable/ic_baseline_person_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.503"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0"
-                        android:src="@drawable/ic_baseline_person_24"
                         app:tint="@color/grey" />
 
                 </androidx.cardview.widget.CardView>
+
+                <TextView
+
+                    android:id="@+id/refbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="23dp"
+                    android:layout_marginEnd="16dp"
+                    android:drawableRight="@android:drawable/ic_menu_share"
+                    android:drawableTint="#FFFFFF"
+                    android:text="Referrals"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.073" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -125,7 +142,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView5"
-            app:layout_constraintVertical_bias="1.0"></FrameLayout>
+            app:layout_constraintVertical_bias="0.803"></FrameLayout>
 
         <Button
             android:id="@+id/requestbtn"
@@ -139,7 +156,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/donationbtn"
             app:layout_constraintTop_toBottomOf="@+id/cardView5"
-            app:layout_constraintVertical_bias="0.527" />
+            app:layout_constraintVertical_bias="0.719" />
 
         <Button
             android:id="@+id/donationbtn"
@@ -153,7 +170,7 @@
             app:layout_constraintEnd_toStartOf="@+id/requestbtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView5"
-            app:layout_constraintVertical_bias="0.527" />
+            app:layout_constraintVertical_bias="0.719" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

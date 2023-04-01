@@ -1,7 +1,11 @@
 package co.kirel.drops;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +47,15 @@ public class ReqAdapter extends RecyclerView.Adapter<ReqAdapter.MyViewHolder> {
         holder.progressBar.setMax(Integer.parseInt(requirements.getNoofBottles()));
 
 
+        if(requirements.btlsgot.equals(requirements.NoofBottles))
+        {
+            Drawable progressDrawable = holder.progressBar.getProgressDrawable().mutate();
+            progressDrawable.setColorFilter(Color.parseColor("#64E278"), android.graphics.PorterDuff.Mode.SRC_IN);
+            holder.progressBar.setProgressDrawable(progressDrawable);
+            holder.horeqcardView.setCardBackgroundColor(Color.parseColor("#DEF4E0"));
+        }
+
+
         holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +77,7 @@ public class ReqAdapter extends RecyclerView.Adapter<ReqAdapter.MyViewHolder> {
         TextView hotvrqid,hotvsts,hotvbg;
         CardView horeqcardView;
         ProgressBar progressBar;
+        ClipData.Item prgrs;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +86,6 @@ public class ReqAdapter extends RecyclerView.Adapter<ReqAdapter.MyViewHolder> {
             hotvbg=itemView.findViewById(R.id.hotvbloodgrp);
             progressBar = itemView.findViewById(R.id.reqprogressBar);
             horeqcardView=itemView.findViewById(R.id.horeqcardview);
-
         }
     }
 }

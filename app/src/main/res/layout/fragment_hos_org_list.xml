@@ -14,10 +14,11 @@
             android:id="@+id/textView12"
             android:layout_width="338dp"
             android:layout_height="46dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="52dp"
             android:text="All Requirements"
             android:textAlignment="center"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
+            android:textColor="@color/nd2_prim"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,13 +28,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/alldonrecview"
-            android:layout_width="384dp"
-            android:layout_height="608dp"
+            android:layout_width="374dp"
+            android:layout_height="606dp"
+
+            android:foregroundGravity="center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.101"
+            tools:listitem="@layout/reqlistitemho" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

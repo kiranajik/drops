@@ -7,7 +7,7 @@
     android:layout_height="100dp"
     android:layout_gravity="center_horizontal"
     android:layout_margin="16dp"
-    app:cardBackgroundColor="@color/donationcardbg"
+    app:cardBackgroundColor="#F4D2D2"
     app:cardCornerRadius="18dp"
     app:cardElevation="8dp">
 
@@ -21,8 +21,8 @@
             android:layout_height="27dp"
             android:hint="REQID"
             android:textAlignment="textStart"
-            android:textColor="@color/ho_bg"
-            android:textColorHint="@color/ho_bg"
+            android:textColor="@color/prim"
+            android:textColorHint="@color/prim"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -38,8 +38,8 @@
             android:layout_height="27dp"
             android:hint="Bottles"
             android:textAlignment="textStart"
-            android:textColor="@color/ho_bg"
-            android:textColorHint="@color/ho_bg"
+            android:textColor="@color/prim"
+            android:textColorHint="@color/prim"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +54,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@color/grey"
-            android:backgroundTint="@color/nd2_prim"
+            android:backgroundTint="@color/prim"
             android:elevation="20dp"
             app:cardCornerRadius="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,9 +66,12 @@
 
             <ImageView
                 android:id="@+id/notifimg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/vecy" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:tint="@color/white"
+                app:srcCompat="@drawable/ic_baseline_bloodtype_24" />
+
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

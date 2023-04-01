@@ -1,21 +1,38 @@
 package co.kirel.drops;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class allDonAdapter extends RecyclerView.Adapter<allDonAdapter.MyViewHolder> {
     Context context;
     ArrayList<Donations> donationsArrayList;
+    FirebaseFirestore firestore;
+    Button ok_dlg_btn;
+    String name,number,bloodgroup;
+    TextView donname,donnumber,donbg;
+
 
     public allDonAdapter(Context context, ArrayList<Donations> donationsArrayList) {
         this.context=context;
@@ -40,9 +57,8 @@ public class allDonAdapter extends RecyclerView.Adapter<allDonAdapter.MyViewHold
         }else{
             holder.hotvsts.setText(donations.btlsdonated+" Bottles");
         }
-        holder.img.setImageResource(R.drawable.vecy);
-
-
+        holder.img.setImageResource(R.drawable.ic_baseline_bloodtype_24);
+        holder.img.setColorFilter(Color.parseColor("#FFFFFF"));
     }
 
     @Override

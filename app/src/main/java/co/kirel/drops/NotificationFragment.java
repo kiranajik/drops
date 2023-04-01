@@ -58,7 +58,7 @@ public class NotificationFragment extends Fragment {
 
         dataInitialize();
 
-        notifrecview=view.findViewById(R.id.notifrecview);
+        notifrecview=view.findViewById(R.id.hosnotifrecview);
         notifrecview.setLayoutManager(new LinearLayoutManager(getContext()));
         notifrecview.setHasFixedSize(true);
         notifAdapter = new notifAdapter(getContext(),donsArraylist,myEmail);
