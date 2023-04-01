@@ -27,6 +27,7 @@ import co.kirel.drops.databinding.ActivityMainBinding;
 
 public class donor_home extends AppCompatActivity {
     ActivityDonorHomeBinding binding;
+    private Integer backPressed = 0;
     String semail;
     String nxtDntnDate;
     FloatingActionButton dropbtn;
@@ -93,17 +94,21 @@ public class donor_home extends AppCompatActivity {
             switch (item.getItemId()){
 
                 case R.id.home:
+                    backPressed=0;
                     replaceFragment(new HomeFragment());
                     break;
                 case R.id.notification:
+                    backPressed=0;
                     replaceFragment(new NotificationFragment());
                     break;
                 case R.id.placeholder:
                     break;
                 case R.id.profile:
+                    backPressed=0;
                     replaceFragment(new ProfileFragment());
                     break;
                 case R.id.reward:
+                    backPressed=0;
                     replaceFragment(new RewardFragment());
                     break;
             }
@@ -126,4 +131,15 @@ public class donor_home extends AppCompatActivity {
     }
 
     public String getNxtDntnDate() { return nxtDntnDate; }
+    @Override
+    public void onBackPressed() {        // to prevent irritating accidental logouts
+
+        if (backPressed<1) {    // 2 secs
+            backPressed+=1;
+            Toast.makeText(this, "Press back again to logout",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            super.onBackPressed();       // bye
+        }
+    }
 }

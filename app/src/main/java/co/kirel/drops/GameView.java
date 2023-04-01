@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -162,4 +163,5 @@ public class GameView extends View {
         }
         return true;
     }
+
 }
