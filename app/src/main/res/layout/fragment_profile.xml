@@ -45,26 +45,29 @@
                     app:layout_constraintVertical_bias="0.858" />
 
                 <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="88dp"
-                    android:layout_height="23dp"
+                    android:id="@+id/dnrImgEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
                     android:drawableLeft="@drawable/ic_baseline_edit_24"
-                    android:text="Edit"
-                    android:textColor="@color/white"
+                    android:hint="Edit"
+                    android:textAlignment="center"
+                    android:textColor="#FCFCFC"
+                    android:textColorHint="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.057"
+                    app:layout_constraintHorizontal_bias="0.044"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.077" />
+                    app:layout_constraintVertical_bias="0.076" />
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:elevation="20dp"
                     app:cardCornerRadius="100dp"
+                    android:id="@+id/prfilecard"
                     app:layout_constraintBottom_toTopOf="@+id/profileuname"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +75,7 @@
                     app:layout_constraintVertical_bias="0.906">
 
                     <ImageView
-                        android:id="@+id/imageView10"
+                        android:id="@+id/DnrImg"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_baseline_person_24"
@@ -81,10 +84,21 @@
                         app:layout_constraintHorizontal_bias="0.503"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0"
-                        app:tint="@color/grey" />
+                        app:layout_constraintVertical_bias="1.0" />
 
                 </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/editimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    app:backgroundTint="@color/prim"
+                    app:fabSize="mini"
+                    app:layout_constraintBottom_toBottomOf="@+id/prfilecard"
+                    app:layout_constraintEnd_toEndOf="@+id/prfilecard"
+                    app:tint="#FFFFFF" />
 
                 <TextView
 
