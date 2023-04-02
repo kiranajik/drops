@@ -49,122 +49,37 @@ public class Referrals extends AppCompatActivity {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
+                if (documentSnapshot.exists())
+                {
                     String name = documentSnapshot.getString("Name");
                     ref_code_owner.setText(name);
                     Toast.makeText(Referrals.this, name, Toast.LENGTH_SHORT).show();
-                    String rcode = documentSnapshot.getString("referal_code");
-                    ref_code_view.setText(rcode);
+
+                    if(documentSnapshot.contains("referal_code")) {
+                        String rcode = documentSnapshot.getString("referal_code");
+                        ref_code_view.setText(rcode);
+                        Toast.makeText(Referrals.this, "Share Your Referral Code!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        String gen_rcode = generateUniqueCode();
+                        Map<String, Object> new_rcode = new HashMap<>();
+                        new_rcode.put("referal_code", gen_rcode);
+
+                        docRef.update(new_rcode).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                ref_code_view.setText(gen_rcode);
+                                Toast.makeText(Referrals.this, "Your Referal Code Is Generated Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {}
+                        });
+                    }
                 }
             }
         });
-
-
-        String gen_rcode = generateUniqueCode();
-        Map<String, Object> new_rcode = new HashMap<>();
-        new_rcode.put("referal_code", gen_rcode);
-
-        docRef.update(new_rcode).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {}
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {}
-        });
-
-
-
-
-
-
-
-
-        //db finding (Fetching from firestore)
-//        db.collection("Donor").document(email_ID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if(documentSnapshot.exists())
-//                {
-//                    String name = documentSnapshot.getString("Name");
-//                    ref_code_owner.setText(name);
-//                }
-//            }
-//        });
-//
-//        DocumentReference docRefnc = db.collection("Donor").document(email_ID);
-//        docRefnc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        String name= document.getString("Name");
-//                        Toast.makeText(Referrals.this, name, Toast.LENGTH_SHORT).show();
-//                        ref_code_owner.setText(name);
-//                    } else {
-//                        Log.d("error", "No such document");
-//                    }
-//                } else {
-//                    Log.d("error", "Firestore Error", task.getException());
-//                }
-//            }});
-//
-////correct
-//
-//
-//
-//        db.collection("Donor").document(email_ID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//
-//                if(documentSnapshot.exists())
-//                {
-//                    String ref_c = documentSnapshot.getString("referal_code");
-//
-//                    if(ref_c.equals(""))
-//                    {
-//
-//                        String new_ref_code = generateUniqueCode();
-//
-//
-//                        db.collection("Donor").document(email_ID).update("referal_code",new_ref_code).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(Referrals.this,"Success", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(Referrals.this,"Failure", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                       }
-//                    else
-//                    {
-//                        Toast.makeText(Referrals.this,"Referral Code already exists", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//        });
-//
-//        db.collection("Donor").document(email_ID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if(documentSnapshot.exists())
-//                {
-//                    String code = documentSnapshot.getString("referal_code");
-//                    ref_code_view.setText(code);
-//                }
-//            }
-//        });
-
-
-
-
-
-
-
-
 
 
 
