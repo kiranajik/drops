@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvhosname"
+            android:id="@+id/ref_name"
             android:layout_width="190dp"
             android:layout_height="49dp"
             android:gravity="center_vertical"
@@ -46,7 +46,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/tvhosname4"
+            android:id="@+id/ref_status"
             android:layout_width="130dp"
             android:layout_height="45dp"
             android:gravity="center_vertical"
@@ -68,7 +68,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.68"
-            app:layout_constraintStart_toEndOf="@+id/tvhosname"
+            app:layout_constraintStart_toEndOf="@+id/ref_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.166"
             app:srcCompat="@drawable/green_tick" />
@@ -78,13 +78,14 @@
             android:layout_width="23dp"
             android:layout_height="17dp"
             android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView22"
+
+            app:layout_constraintEnd_toStartOf="@+id/coins"
             app:layout_constraintStart_toStartOf="@+id/imageView23"
             app:layout_constraintTop_toBottomOf="@+id/imageView23"
             app:srcCompat="@drawable/life_coin" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/coins"
             android:layout_width="35dp"
             android:layout_height="10dp"
             android:layout_marginEnd="5dp"

@@ -2,6 +2,7 @@ package co.kirel.drops;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,7 +31,7 @@ import java.util.Map;
 public class donor_reg extends AppCompatActivity {
     EditText name,addr,age,dob,bloodgrp,phno,adharno,referred_by;
     Button signup;
-
+    String documentId;
     String referrer, referrer2;
 
 
@@ -82,10 +84,21 @@ public class donor_reg extends AppCompatActivity {
                                     data.put("LifeCoins",50);
 
 
-                                    referrer2 = findReferrer(referred_by.getText().toString());
-                                    Toast.makeText(donor_reg.this, referred_by.getText().toString(), Toast.LENGTH_SHORT).show();
+                                    findDocumentNameByFieldValue("Donor", "referal_code", referred_by.getText().toString(), new OnDocumentNameCallback() {
+                                        @Override
+                                        public void onDocumentNameCallback(String documentName) {
+                                            if (documentName != null) {
+                                                // documentName is the ID of the matching document
+                                                referrer2 = documentName;
+                                                add_coins(referrer2);
+                                                Toast.makeText(donor_reg.this, referrer2, Toast.LENGTH_SHORT).show();
+                                            } else {
 
-//                                    add_coins(referrer2);
+                                            }
+                                        }
+                                    });
+
+
                                 }
                                 else
                                 {
@@ -127,30 +140,27 @@ public class donor_reg extends AppCompatActivity {
 
     }
 
-    public String findReferrer(String ref_code)
-    {
-
-        CollectionReference collectionRef = firestore.collection("Donor");
-        String fieldName = "referal_code";
-        String searchValue = ref_code;
-        Query query = collectionRef.whereEqualTo(fieldName, searchValue);
-
-// execute the query and retrieve the matching documents
-        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-
-                        referrer= document.getId().toString();
+    public void findDocumentNameByFieldValue(String collectionName, String fieldName, String fieldValue, final OnDocumentNameCallback callback) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection(collectionName)
+                .whereEqualTo(fieldName, fieldValue)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        String documentName = documentSnapshot.getId();
+                        callback.onDocumentNameCallback(documentName);
+                        return;
                     }
-                } else {
-                    Log.d("E", "Error getting documents: ", task.getException());
-                }
-            }
-        });
+                    // if no matching documents found, call callback with null
+                    callback.onDocumentNameCallback(null);
+                })
+                .addOnFailureListener(e -> {
+                    callback.onDocumentNameCallback(null);
+                });
+    }
 
-    return referrer;
+    public interface OnDocumentNameCallback {
+        void onDocumentNameCallback(String documentName);
     }
 
     public void add_coins(String user)
@@ -174,6 +184,7 @@ public class donor_reg extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Log.d("T", "Score successfully updated!");
+                                        Toast.makeText(donor_reg.this, "Score successfully updated!", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
