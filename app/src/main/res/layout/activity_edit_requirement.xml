@@ -6,36 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".editRequirement">
 
+    <TextView
+        android:id="@+id/ReqID"
+        android:layout_width="300dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/field_bg"
+        android:backgroundTint="@color/donationcardbg"
+        android:gravity="center_vertical"
+        android:hint="Requirement ID"
+        android:paddingLeft="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/AddReqText"
+        app:layout_constraintStart_toStartOf="@+id/AddReqText"
+        app:layout_constraintTop_toBottomOf="@+id/AddReqText" />
+
     <Button
         android:id="@+id/new_req_submit_btn"
-        android:layout_width="360dp"
+        android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginBottom="64dp"
-        android:background="@drawable/dialog_bg"
+        android:background="@drawable/field_bg"
         android:backgroundTint="#2F88FF"
         android:text="Submit"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endTime"
-        app:layout_constraintVertical_bias="0.474" />
+        app:layout_constraintVertical_bias="0.131" />
 
-    <Button
-        android:id="@+id/new_req_delete_btn"
-        android:layout_width="360dp"
-        android:layout_height="60dp"
-        android:background="@drawable/dialog_bg"
-        android:text="Delete Requirement"
-        android:textColor="@color/red"
-        app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/new_req_submit_btn"
+    <EditText
+        android:id="@+id/NoBottles"
+        android:layout_width="300dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/field_bg"
+        android:backgroundTint="@color/donationcardbg"
+        android:ems="10"
+        android:hint="Required Bottles"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/ReqID"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/new_req_submit_btn"
-        app:layout_constraintTop_toBottomOf="@+id/new_req_submit_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/ReqID"
+        app:layout_constraintTop_toBottomOf="@+id/ReqID" />
 
     <TextView
         android:id="@+id/AddReqText"
@@ -52,65 +73,29 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.18" />
 
-    <TextView
-        android:id="@+id/ReqID"
+    <Button
+        android:id="@+id/new_req_delete_btn"
         android:layout_width="300dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="60dp"
         android:background="@drawable/field_bg"
-        android:backgroundTint="@color/donationcardbg"
-        android:gravity="center_vertical"
-        android:hint="Requirement ID"
-        android:paddingLeft="20dp"
-        android:textAlignment="center"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="@+id/AddReqText"
-        app:layout_constraintStart_toStartOf="@+id/AddReqText"
-        app:layout_constraintTop_toBottomOf="@+id/AddReqText" />
-
-    <TextView
-        android:id="@+id/endTime"
-        android:layout_width="300dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/field_bg"
-        android:backgroundTint="@color/donationcardbg"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:hint="End Time"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:paddingLeft="20dp"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="@+id/endDate"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/endDate"
-        app:layout_constraintTop_toBottomOf="@+id/endDate" />
-
-    <EditText
-        android:id="@+id/NoBottles"
-        android:layout_width="300dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="128dp"
-        android:background="@drawable/field_bg"
-        android:backgroundTint="@color/donationcardbg"
-        android:ems="10"
-        android:hint="Required Bottles"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:paddingLeft="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/ReqID"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/ReqID"
-        app:layout_constraintTop_toBottomOf="@+id/ReqID" />
+        android:text="Delete Requirement"
+        android:textColor="@color/white"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/new_req_submit_btn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/new_req_submit_btn"
+        app:layout_constraintTop_toBottomOf="@+id/new_req_submit_btn"
+        app:layout_constraintVertical_bias="0.05"
+        app:backgroundTint="@color/prim"/>
 
     <TextView
         android:id="@+id/endDate"
         android:layout_width="300dp"
         android:layout_height="58dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/field_bg"
         android:backgroundTint="@color/donationcardbg"
         android:ems="10"
@@ -119,11 +104,32 @@
         android:inputType="text"
         android:minHeight="48dp"
         android:paddingLeft="20dp"
+        android:textColor="@color/black"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="@+id/NoBottles"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/NoBottles"
         app:layout_constraintTop_toBottomOf="@+id/NoBottles" />
+
+    <TextView
+        android:id="@+id/endTime"
+        android:layout_width="300dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/field_bg"
+        android:backgroundTint="@color/donationcardbg"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="End Time"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:paddingLeft="20dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="@+id/endDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/endDate"
+        app:layout_constraintTop_toBottomOf="@+id/endDate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

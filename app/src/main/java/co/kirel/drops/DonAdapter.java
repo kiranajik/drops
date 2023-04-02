@@ -1,9 +1,11 @@
 package co.kirel.drops;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,7 +27,7 @@ public class DonAdapter extends RecyclerView.Adapter<DonAdapter.MyViewHolder> {
     @Override
     public DonAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v =LayoutInflater.from(context).inflate(R.layout.donlistitem,parent,false);
+        View v =LayoutInflater.from(context).inflate(R.layout.cmpltddonlistitem,parent,false);
         return new DonAdapter.MyViewHolder(v);
     }
 
@@ -39,8 +41,8 @@ public class DonAdapter extends RecyclerView.Adapter<DonAdapter.MyViewHolder> {
         }else{
             holder.hotvsts.setText(donations.btlsdonated+" Bottles");
         }
-
-
+        holder.notifimg.setImageResource(R.drawable.ic_baseline_bloodtype_24);
+        holder.notifimg.setColorFilter(Color.parseColor("#E26864"));
     }
 
     @Override
@@ -52,6 +54,7 @@ public class DonAdapter extends RecyclerView.Adapter<DonAdapter.MyViewHolder> {
 
         TextView hotvrqid,hotvsts;
         CardView horeqcardView;
+        ImageView notifimg;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -59,7 +62,7 @@ public class DonAdapter extends RecyclerView.Adapter<DonAdapter.MyViewHolder> {
             hotvrqid=itemView.findViewById(R.id.hotvReqId);
             hotvsts=itemView.findViewById(R.id.horeqsts);
             horeqcardView=itemView.findViewById(R.id.horeqcardview);
-
+            notifimg=itemView.findViewById(R.id.notifimg);
         }
     }
 }

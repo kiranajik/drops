@@ -14,4 +14,6 @@
     <color name="red">#F4364C</color>
     <color name="green">#0F993E</color>
     <color name="donationcardbg">#DEE6F4</color>
+    <color name="dgreen">#64E278</color>
+    <color name="dlgreen">#DEF4E0</color>
 </resources>

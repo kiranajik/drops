@@ -57,7 +57,8 @@ public class allDonAdapter extends RecyclerView.Adapter<allDonAdapter.MyViewHold
         }else{
             holder.hotvsts.setText(donations.btlsdonated+" Bottles");
         }
-        holder.img.setImageResource(R.drawable.vecy);
+        holder.img.setImageResource(R.drawable.ic_baseline_bloodtype_24);
+        holder.img.setColorFilter(Color.parseColor("#FFFFFF"));
     }
 
     @Override

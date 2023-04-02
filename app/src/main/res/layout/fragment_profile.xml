@@ -11,49 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="105dp"
-            android:layout_height="33dp"
-            android:text="Profile"
-            android:textAlignment="center"
-            android:textColor="@color/nd2_prim"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.021" />
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="37dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_baseline_settings_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.022" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView5"
-            android:layout_width="364dp"
-            android:layout_height="229dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             app:cardBackgroundColor="#172255"
-            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.146">
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
 
                 <TextView
                     android:id="@+id/profileuname"
@@ -62,45 +35,47 @@
                     android:hint="Username"
                     android:textAlignment="center"
                     android:textColor="#FCFCFC"
-                    android:textColorHint="#D0E7ED"
+                    android:textColorHint="#FFFFFF"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.503"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.915" />
+                    app:layout_constraintVertical_bias="0.858" />
 
                 <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="88dp"
-                    android:layout_height="23dp"
+                    android:id="@+id/dnrImgEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
                     android:drawableLeft="@drawable/ic_baseline_edit_24"
-                    android:text="Edit"
-                    android:textColor="@color/white"
+                    android:hint="Edit"
+                    android:textAlignment="center"
+                    android:textColor="#FCFCFC"
+                    android:textColorHint="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.057"
+                    app:layout_constraintHorizontal_bias="0.044"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.077" />
+                    app:layout_constraintVertical_bias="0.076" />
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:elevation="20dp"
                     app:cardCornerRadius="100dp"
+                    android:id="@+id/prfilecard"
                     app:layout_constraintBottom_toTopOf="@+id/profileuname"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.813">
+                    app:layout_constraintVertical_bias="0.906">
 
                     <ImageView
-                        android:id="@+id/imageView10"
+                        android:id="@+id/DnrImg"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_baseline_person_24"
@@ -109,10 +84,21 @@
                         app:layout_constraintHorizontal_bias="0.503"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0"
-                        app:tint="@color/grey" />
+                        app:layout_constraintVertical_bias="1.0" />
 
                 </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/editimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    app:backgroundTint="@color/prim"
+                    app:fabSize="mini"
+                    app:layout_constraintBottom_toBottomOf="@+id/prfilecard"
+                    app:layout_constraintEnd_toEndOf="@+id/prfilecard"
+                    app:tint="#FFFFFF" />
 
                 <TextView
 
@@ -120,16 +106,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="23dp"
                     android:layout_marginEnd="16dp"
-                    android:drawableRight="@android:drawable/ic_menu_share"
+                    android:drawableRight="@drawable/ic_baseline_share_24"
                     android:drawableTint="#FFFFFF"
-                    android:text="Referrals"
+                    android:text="Refer"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.073" />
+                    app:layout_constraintVertical_bias="0.077" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -142,7 +128,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView5"
-            app:layout_constraintVertical_bias="1.0"></FrameLayout>
+            app:layout_constraintVertical_bias="0.803"></FrameLayout>
 
         <Button
             android:id="@+id/requestbtn"
@@ -156,7 +142,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/donationbtn"
             app:layout_constraintTop_toBottomOf="@+id/cardView5"
-            app:layout_constraintVertical_bias="0.527" />
+            app:layout_constraintVertical_bias="0.719" />
 
         <Button
             android:id="@+id/donationbtn"
@@ -170,7 +156,7 @@
             app:layout_constraintEnd_toStartOf="@+id/requestbtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView5"
-            app:layout_constraintVertical_bias="0.527" />
+            app:layout_constraintVertical_bias="0.719" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

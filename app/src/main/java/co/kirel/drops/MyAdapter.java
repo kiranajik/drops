@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -118,15 +119,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                            Date strDate = null;
-                            try {
-                                strDate = sdf.parse(nxtDntnDate);
-                            } catch (ParseException e) {
-                                Log.e("date",e.toString());
-                            }
-                            if (new Date().after(strDate)) {
-                                your_date_is_outdated = true;
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                        Date strDate = null;
+                        try {
+                            strDate = sdf.parse(nxtDntnDate);
+                        } catch (ParseException e) {
+                            Log.e("date",e.toString());
+                        }
+                        if (new Date().after(strDate)) {
+                            your_date_is_outdated = true;
 
                                 Intent i = new Intent(view.getContext(), DonationDetails.class);
                                 String uid = requirements.getRequirementId();
@@ -137,6 +138,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                             }
                             else{
                                 your_date_is_outdated = false;
+                                TextView tvdate=alertCustomDialog1.findViewById(R.id.tvnxtdate);
                                 tvdate.setText("Donors are required to wait a minimum of 12 weeks between donations. You can donate again after " + nxtDntnDate);
                                 dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                                 dialog1.show();
