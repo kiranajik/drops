@@ -7,6 +7,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -26,7 +28,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +47,7 @@ public class rewardData extends AppCompatActivity {
     ImageView logo,copy;
     Button redbtn;
     FirebaseFirestore firestore=FirebaseFirestore.getInstance();
+    StorageReference storageReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +67,30 @@ public class rewardData extends AppCompatActivity {
         gift.setText(Gi);
 
 
-        Context c = getApplicationContext();
-        int id = c.getResources().getIdentifier("drawable/"+Co, null, c.getPackageName());
-        logo.setImageResource(id);
+        storageReference = FirebaseStorage.getInstance().getReference("coImages/"+Co+".png");
+
+        try {
+            File localfile = File.createTempFile("tempfile",".jpg");
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                            Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                            logo.setImageBitmap(bitmap);
+
+                            Toast.makeText(rewardData.this,"Image Loaded",Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("error",e.toString());
+                            Toast.makeText(rewardData.this,"Image not Loaded",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Get a reference to the document
         DocumentReference docRef = firestore.collection("Donor").document(email);
@@ -150,7 +179,7 @@ public class rewardData extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(c, "There is No Enough Coins to Buy this reward", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(rewardData.this, "There is No Enough Coins to Buy this reward", Toast.LENGTH_SHORT).show();
                 }
             }
         });

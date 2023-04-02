@@ -1,14 +1,11 @@
 package co.kirel.drops;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +24,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -47,6 +42,7 @@ public class RewardFragment extends Fragment {
 
     private RecyclerView recyclerView;
     FirebaseFirestore db;
+    String myEmail;
     FirebaseFirestore firestore;
     MyRewardAdapter RAdapter;
 
@@ -76,7 +72,7 @@ public class RewardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         redrewbtn = view.findViewById(R.id.redrewbtn);
         donor_home activity = (donor_home) getActivity();
-        String myEmail = activity.getMyData();
+        myEmail = activity.getMyData();
         redrewbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,7 +93,6 @@ public class RewardFragment extends Fragment {
         int numColumns = 2; // Set the number of columns in the grid
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), numColumns);
         recyclerView.setLayoutManager(layoutManager);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         RAdapter = new MyRewardAdapter(getContext(), rewsArraylist);
         recyclerView.setAdapter(RAdapter);

@@ -11,8 +11,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="394dp"
-        android:layout_height="434dp"
+        android:layout_width="356dp"
+        android:layout_height="408dp"
         android:backgroundTint="@color/nd2_prim"
         app:cardCornerRadius="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,14 +57,14 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:foregroundTint="#FFFFFF"
-                app:tint="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="@+id/RewCode"
                 app:layout_constraintEnd_toEndOf="@+id/GiGi"
                 app:layout_constraintHorizontal_bias="0.282"
                 app:layout_constraintStart_toEndOf="@+id/RewCode"
                 app:layout_constraintTop_toTopOf="@+id/RewCode"
                 app:layout_constraintVertical_bias="0.631"
-                app:srcCompat="?attr/actionModeCopyDrawable" />
+                app:srcCompat="?attr/actionModeCopyDrawable"
+                app:tint="#FFFFFF" />
 
             <TextView
                 android:id="@+id/GiGi"

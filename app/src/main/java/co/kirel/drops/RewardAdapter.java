@@ -2,16 +2,28 @@ package co.kirel.drops;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHolder> {
@@ -20,6 +32,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
 
     ArrayList<Rewards> rewardsArrayList;
     String email;
+    StorageReference storageReference;
 
     public RewardAdapter(Context context, ArrayList<Rewards> rewardsArrayList,String email) {
         this.context=context;
@@ -43,9 +56,30 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
         holder.tvhn.setText(String.valueOf(rewards.cost));
         holder.tvbg.setText(rewards.gift);
 
-        Context c = context.getApplicationContext();
-        int id = c.getResources().getIdentifier("drawable/"+rewards.company, null, c.getPackageName());
-        holder.logo.setImageResource(id);
+        storageReference = FirebaseStorage.getInstance().getReference("coImages/"+rewards.company+".png");
+
+        try {
+            File localfile = File.createTempFile("tempfile",".jpg");
+            storageReference.getFile(localfile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                            Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
+                            holder.logo.setImageBitmap(bitmap);
+
+                            Toast.makeText(context,"Image Loaded",Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("error",e.toString());
+                            Toast.makeText(context,"Image not Loaded",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //          holder.logo.setImageResource(R.drawable.amazon);
 //        holder.tvco.setText(rewards.company);
         holder.cardView.setOnClickListener(new View.OnClickListener() {

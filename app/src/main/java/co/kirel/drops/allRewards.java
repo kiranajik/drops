@@ -30,7 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class allRewards extends AppCompatActivity {
-    String Name,myEmail;
+    String myEmail;
 
     private ArrayList<Rewards> rewsArraylist;
     private RecyclerView recyclerView;
