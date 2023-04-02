@@ -221,11 +221,12 @@
                     android:id="@+id/dscrptn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
+                    android:paddingTop="2dp"
                     android:hint="Hospital Description"
-                    android:text=""
+                    android:paddingLeft="1dp"
+                    android:text="Lisie Hospital"
                     android:textColor="@color/black"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
