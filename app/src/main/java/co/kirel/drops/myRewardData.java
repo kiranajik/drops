@@ -1,32 +1,24 @@
 package co.kirel.drops;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
-import java.io.IOException;
 
 
 public class myRewardData extends AppCompatActivity {
     TextView company,gift,rewcode;
-    ImageView companyimg;
+    ImageView logo,copy;
     String Co,Gi,code;
-    StorageReference storageReference;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,38 +26,29 @@ public class myRewardData extends AppCompatActivity {
         company = findViewById(R.id.CoCo);
         gift = findViewById(R.id.GiGi);
         rewcode = findViewById(R.id.RewCode);
-        companyimg=findViewById(R.id.company_img);
-
+        logo = findViewById(R.id.imageView15);
+        copy = findViewById(R.id.imageView11);
         Co = getIntent().getStringExtra("company");
         Gi = getIntent().getStringExtra("gift");
         code = getIntent().getStringExtra("code");
-        company.setText(Co);
+        Context c = getApplicationContext();
+        int id = c.getResources().getIdentifier("drawable/"+Co, null, c.getPackageName());
+
+
+        logo.setImageResource(id);
+        company.setText(Co.toUpperCase());
         gift.setText(Gi);
         rewcode.setText(code);
-        storageReference = FirebaseStorage.getInstance().getReference("coImages/"+Co+".png");
 
-        try {
-            File localfile = File.createTempFile("tempfile",".jpg");
-            storageReference.getFile(localfile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-
-                            Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
-                            companyimg.setImageBitmap(bitmap);
-
-                            Toast.makeText(myRewardData.this,"Image Loaded",Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.e("error",e.toString());
-                            Toast.makeText(myRewardData.this,"Image not Loaded",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("Reward Value",code);
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(getApplicationContext(), "The Reward Code Copied To Clipboard", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }

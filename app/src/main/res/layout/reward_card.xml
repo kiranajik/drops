@@ -9,68 +9,54 @@
     android:layout_margin="20dp"
     android:background="@drawable/round_bg"
     android:backgroundTint="#FFFFFF"
-    app:cardCornerRadius="45dp">
+    app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/rcard">
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:gravity="center_vertical"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.573" />
-
-        <TextView
-            android:id="@+id/coins"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.571"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.132" />
+        android:background="@drawable/irs">
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="25dp"
-            android:layout_height="28dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="54dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.807"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:srcCompat="@drawable/facebook" />
+            tools:srcCompat="@drawable/amazon" />
 
         <TextView
-            android:id="@+id/company_name"
-            android:layout_width="59dp"
-            android:layout_height="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="#FFFFFF"
-            android:backgroundTint="#FFFFFF"
-            android:gravity="center|center_vertical"
-            android:padding="2dp"
-            android:text="Company"
-            android:textSize="10sp"
+            android:id="@+id/textView14"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
+            android:text="30% OFF On Apparells"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.742"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16" />
+
+        <TextView
+            android:id="@+id/coins"
+            android:layout_width="50dp"
+            android:layout_height="18dp"
+            android:layout_marginBottom="-3dp"
+            android:text="50"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.29"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.887" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

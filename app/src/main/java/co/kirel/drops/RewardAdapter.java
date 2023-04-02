@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,7 +42,12 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
         Rewards rewards = rewardsArrayList.get(position);
         holder.tvhn.setText(String.valueOf(rewards.cost));
         holder.tvbg.setText(rewards.gift);
-        holder.tvco.setText(rewards.company);
+
+        Context c = context.getApplicationContext();
+        int id = c.getResources().getIdentifier("drawable/"+rewards.company, null, c.getPackageName());
+        holder.logo.setImageResource(id);
+//          holder.logo.setImageResource(R.drawable.amazon);
+//        holder.tvco.setText(rewards.company);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +57,7 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
                 i.putExtra("gift",rewards.gift);
                 i.putExtra("email",email);
                 i.putExtra("cost",rewards.cost);
+                i.putExtra("code",rewards.code);
                 context.startActivity(i);
 
 
@@ -68,12 +75,15 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
 
         TextView tvhn,tvbg,tvco;
         CardView cardView;
+        ImageView logo;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvhn=itemView.findViewById(R.id.coins);
-            tvco=itemView.findViewById(R.id.company_name);
+//            tvco=itemView.findViewById(R.id.company_name);
             tvbg=itemView.findViewById(R.id.textView14);
+            logo=itemView.findViewById(R.id.imageView7);
+
             cardView = itemView.findViewById(R.id.cardView);
         }
     }
