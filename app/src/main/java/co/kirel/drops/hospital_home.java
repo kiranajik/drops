@@ -210,6 +210,7 @@ public class hospital_home extends AppCompatActivity {
 
                             Map<String,Object> dntndata= new HashMap<>();
                             dntndata.put("DonationStatus","Yes");
+                            dntndata.put("btlsdonated",sbotlno);
                             db.collection("Donations").document(DntnId).update(dntndata);
 
                             Intent i =new Intent(hospital_home.this,DonationSuccess.class);

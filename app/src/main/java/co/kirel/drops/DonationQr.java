@@ -202,7 +202,7 @@ public class DonationQr extends AppCompatActivity {
                             String nxtDntnDate = getNxtDntnDate();
                             Map<String,Object> data= new HashMap<>();
                             data.put("nxtDntnDate",nxtDntnDate);
-                            firestore.collection("Donor").document("mid@gmail.com").update(data);
+                            firestore.collection("Donor").document(dnremail).update(data);
                             Intent intent = new Intent(DonationQr.this, DonationSuccess.class);
                             startActivity(intent);
                             finish();
