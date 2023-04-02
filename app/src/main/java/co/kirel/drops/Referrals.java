@@ -6,8 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +35,7 @@ import java.util.Map;
 public class Referrals extends AppCompatActivity {
 
     TextView ref_code_owner, ref_code_view;
+    ImageView copy, share;
 
     private RecyclerView recyclerView;
     private referal_adapter adapter;
@@ -46,7 +52,8 @@ public class Referrals extends AppCompatActivity {
 
         ref_code_owner = findViewById(R.id.ref_code_owner);
         ref_code_view = findViewById(R.id.ref_code_view);
-
+        copy = findViewById(R.id.imageView20);
+        share = findViewById(R.id.imageView21);
         //logged in user
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String email_ID = auth.getCurrentUser().getEmail();
@@ -63,27 +70,54 @@ public class Referrals extends AppCompatActivity {
                     String name = documentSnapshot.getString("Name");
                     ref_code_owner.setText(name);
                     Toast.makeText(Referrals.this, name, Toast.LENGTH_SHORT).show();
-                    String rcode = documentSnapshot.getString("referal_code");
-                    if(rcode.equals("")) {
+
+                    if(documentSnapshot.contains("referal_code"))
+                    {
+                        String rcode = documentSnapshot.getString("referal_code");
+                        ref_code_view.setText(rcode);
+                        Toast.makeText(Referrals.this, "Share Your Referral Code with friends!", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
                         String gen_rcode = generateUniqueCode();
                         Map<String, Object> new_rcode = new HashMap<>();
                         new_rcode.put("referal_code", gen_rcode);
                         docRef.update(new_rcode).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(Void aVoid) {}
+                            public void onSuccess(Void aVoid) {
+                                ref_code_view.setText(gen_rcode);
+                                Toast.makeText(Referrals.this, "Your Referral Code Is Generated Successfully", Toast.LENGTH_SHORT).show();
+                            }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {}
                         });
-                        rfc=gen_rcode;
                     }
-
-                    ref_code_view.setText(rcode);
                 }
             }
         });
 
+        copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("Reward Value",ref_code_view.getText().toString());
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(getApplicationContext(), "Referral Code Copied To Clipboard", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Sharing Referral Code"); // Optional subject
+                intent.putExtra(Intent.EXTRA_TEXT, "Earn Life Coins While Your Friend Signs & Make their first donation!\n"+"Referral Code: "+ref_code_view.getText().toString());
+                startActivity(Intent.createChooser(intent, "Refer a Friend"));
+
+            }
+        });
 
         dataInitialize();
 
