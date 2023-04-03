@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -119,9 +121,9 @@ public class rewardData extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(cost <= myCoins){
-                    Map<String,Object> data= new HashMap<>();
+                    //Map<String,Object> data= new HashMap<>();
                     Map<String,Object> dataD= new HashMap<>();
-                    data.put("Redeemer",email);
+                    //data.put("Redeemers",email);
                     dataD.put("LifeCoins",myCoins-cost);
 
 
@@ -135,7 +137,10 @@ public class rewardData extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     String documentId = document.getId();
                                     firestore.collection("Donor").document(email).update(dataD);
-                                    firestore.collection("Rewards").document(documentId).update(data)
+                                    DocumentReference docRef = firestore.collection("Rewards").document(documentId);
+                                    docRef.update("Redeemed", FieldValue.increment(1));
+                                    docRef.update("Redeemers", FieldValue.arrayUnion(email))
+                                    //firestore.collection("Rewards").document(documentId).update(data)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {

@@ -25,9 +25,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class allRewards extends AppCompatActivity {
     String myEmail;
@@ -65,7 +68,8 @@ public class allRewards extends AppCompatActivity {
 
         //Try Code
 
-        db.collection("Rewards").whereEqualTo("Redeemer","")
+
+        db.collection("Rewards").whereLessThan("Redeemed", 3)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -77,7 +81,11 @@ public class allRewards extends AppCompatActivity {
 
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             if (dc.getType() == DocumentChange.Type.ADDED) {
-                                rewsArraylist.add(dc.getDocument().toObject(Rewards.class));
+                                DocumentSnapshot document = dc.getDocument();
+                                List<String> redeemers = (List<String>) document.get("Redeemers");
+                                if(!redeemers.contains(myEmail)){
+                                    rewsArraylist.add(dc.getDocument().toObject(Rewards.class));
+                                }
                             }
                             RAdapter.notifyDataSetChanged();
                         }

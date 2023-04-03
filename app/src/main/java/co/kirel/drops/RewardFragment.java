@@ -125,7 +125,7 @@ public class RewardFragment extends Fragment {
 
         //Try Code
 
-        db.collection("Rewards").whereEqualTo("Redeemer",myEmail)
+        db.collection("Rewards").whereArrayContains("Redeemers",myEmail)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
