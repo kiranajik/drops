@@ -22,10 +22,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -48,7 +51,7 @@ public class hospital_home extends AppCompatActivity {
     Button dcancel,dconfirm;
     String ReqId,QRid,DntnId,shoName;
     String sgethoname,sbotlno,sgotbtlno;
-    String sreqbltno;
+    String sreqbltno,donemail;
     FirebaseFirestore firestore,db;
     NumberPicker numberPicker;
 
@@ -206,6 +209,21 @@ public class hospital_home extends AppCompatActivity {
                             {
                                 data.put("status","Yes");
                             }
+                            firestore.collection("Donations").document(DntnId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    if (documentSnapshot.exists()) {
+                                        donemail = documentSnapshot.getString("DonorId");
+
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(hospital_home.this, "Error getting Email", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            firestore.collection("Donors").document(donemail).update("LifeCoins", FieldValue.increment(botlno*50));
                             firestore.collection("Requirements").document(ReqId).update(data);
 
                             Map<String,Object> dntndata= new HashMap<>();
