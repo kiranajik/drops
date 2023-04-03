@@ -1,7 +1,7 @@
 package co.kirel.drops;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +27,7 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
     @Override
     public PendingAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v =LayoutInflater.from(context).inflate(R.layout.donlistitem,parent,false);
+        View v =LayoutInflater.from(context).inflate(R.layout.cmpltddonlistitem,parent,false);
         return new PendingAdapter.MyViewHolder(v);
     }
 
@@ -35,20 +35,9 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
     public void onBindViewHolder(@NonNull PendingAdapter.MyViewHolder holder, int position) {
 
         Donations donations= donationsArrayList.get(position);
-        holder.notifimg.setImageResource(R.drawable.drop_btnn);
+        holder.notifimg.setImageResource(R.drawable.ic_baseline_warning_24);
         holder.hotvrqid.setText(donations.RequirementId);
         holder.hotvsts.setText(donations.DonationId);
-        holder.horeqcardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, DonationQr.class);
-                i.putExtra("check","notification");
-                i.putExtra("donationId",donations.DonationId);
-                i.putExtra("reqId",donations.RequirementId);
-                i.putExtra("honame",donations.honame);
-                context.startActivity(i);
-            }
-        });
     }
 
     @Override
@@ -69,7 +58,6 @@ public class PendingAdapter extends RecyclerView.Adapter<PendingAdapter.MyViewHo
             hotvsts=itemView.findViewById(R.id.horeqsts);
             notifimg=itemView.findViewById(R.id.notifimg);
             horeqcardView=itemView.findViewById(R.id.horeqcardview);
-
         }
     }
 }

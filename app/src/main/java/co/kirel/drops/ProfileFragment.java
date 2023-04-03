@@ -124,7 +124,6 @@ public class ProfileFragment extends Fragment {
                             Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
                             DnrImg.setImageBitmap(bitmap);
 
-                            Toast.makeText(getContext(),"Image Loaded",Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

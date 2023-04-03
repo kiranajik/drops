@@ -67,7 +67,7 @@ public class hosNotifAdapter extends RecyclerView.Adapter<hosNotifAdapter.MyView
         if(donations.DonationStatus.equals("Yes")){
             holder.hotvrqid.setText("Donation Completed!");
             holder.hotvrqid.setTextColor(Color.parseColor("#06A755"));
-            holder.notidesc.setText("Donation completed Succesfully. Once a blood donor, always a lifesaver.");
+            holder.notidesc.setText("Donation completed successfully. Congrats Donor!");
             holder.rdid.setText(donations.DonationId);
             holder.rdid.setTextColor(Color.parseColor("#06A755"));
             holder.notidesc.setTextColor(Color.parseColor("#06A755"));
@@ -98,7 +98,7 @@ public class hosNotifAdapter extends RecyclerView.Adapter<hosNotifAdapter.MyView
         }else if(donations.DonationStatus.equals("No")) {
             holder.hotvrqid.setText("Pending Donation!");
             holder.hotvrqid.setTextColor(Color.parseColor("#FBA010"));
-            holder.notidesc.setText("The donation is pending. View donor details.");
+            holder.notidesc.setText("Donation pending. Complete to receive your reward!");
             holder.rdid.setText(donations.DonationId);
             holder.rdid.setTextColor(Color.parseColor("#FBA010"));
             holder.notidesc.setTextColor(Color.parseColor("#FBA010"));
@@ -153,7 +153,7 @@ public class hosNotifAdapter extends RecyclerView.Adapter<hosNotifAdapter.MyView
         }else if(donations.DonationStatus.equals("Cancelled")) {
             holder.hotvrqid.setText("Donation Cancelled!");
             holder.hotvrqid.setTextColor(Color.parseColor("#EB3F24"));
-            holder.notidesc.setText("Donation process Cancelled. Donate blood to save others.");
+            holder.notidesc.setText("Donation cancelled. Donate blood to save lives.");
             holder.rdid.setText(donations.DonationId);
             holder.rdid.setTextColor(Color.parseColor("#EB3F24"));
             holder.notidesc.setTextColor(Color.parseColor("#EB3F24"));

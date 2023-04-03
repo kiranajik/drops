@@ -67,8 +67,6 @@ public class RewardAdapter extends RecyclerView.Adapter<RewardAdapter.MyViewHold
 
                             Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
                             holder.logo.setImageBitmap(bitmap);
-
-                            Toast.makeText(context,"Image Loaded",Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

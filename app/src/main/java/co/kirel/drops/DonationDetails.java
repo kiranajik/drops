@@ -72,8 +72,8 @@ public class DonationDetails extends AppCompatActivity implements OnMapReadyCall
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        sdate= document.getString("End Date");
-                        stime= document.getString("End Time");
+                        sdate= document.getString("EndDate");
+                        stime= document.getString("EndTime");
                         honame= document.getString("honame");
                         hocode= document.getString("Hospital Code");
                         bDate.setText(sdate);

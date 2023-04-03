@@ -118,6 +118,7 @@ public class HosOrgProfileFragment extends Fragment implements OnMapReadyCallbac
         honamee=view.findViewById(R.id.honamee);
         tvcompldreq=view.findViewById(R.id.cmpltdreq);
         tvpndgreq=view.findViewById(R.id.pndgreq);
+        tvpplsdntd=view.findViewById(R.id.ppldntd);
         mapView = view.findViewById(R.id.mapViewProfile);
         editdesc=view.findViewById(R.id.editDesc);
         hodesc=view.findViewById(R.id.dscrptn);
@@ -139,7 +140,6 @@ public class HosOrgProfileFragment extends Fragment implements OnMapReadyCallbac
                             Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
                             hologo.setImageBitmap(bitmap);
 
-                            Toast.makeText(getContext(),"Image Loaded",Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -266,14 +266,14 @@ public class HosOrgProfileFragment extends Fragment implements OnMapReadyCallbac
             }
         });
 
-        Query query1 = firestore.collection("Donations").whereEqualTo("DonationStatus","Yes");
+        Query query1 = firestore.collection("Requirements").whereEqualTo("status","Yes");
         AggregateQuery countQuery1 = query1.count();
 
-        Query query2 = firestore.collection("Donations").whereEqualTo("DonationStatus","No");
-        AggregateQuery countQuery2 = query1.count();
+        Query query2 = firestore.collection("Requirements").whereEqualTo("status","No");
+        AggregateQuery countQuery2 = query2.count();
 
         Query query3 = firestore.collection("Donations").whereEqualTo("DonationStatus","Yes");
-        AggregateQuery countQuery3 = query1.count();
+        AggregateQuery countQuery3 = query3.count();
 
         countQuery1.get(AggregateSource.SERVER).addOnCompleteListener(new OnCompleteListener<AggregateQuerySnapshot>() {
             @Override
@@ -314,7 +314,7 @@ public class HosOrgProfileFragment extends Fragment implements OnMapReadyCallbac
                     AggregateQuerySnapshot snapshot = task.getResult();
                     Log.d(TAG, "Count: " + snapshot.getCount());
                     docCount= String.valueOf(snapshot.getCount());
-                    tvcompldreq.setText(docCount);
+                    tvpplsdntd.setText(docCount);
                 } else {
                     Log.d(TAG, "Count failed: ", task.getException());
                 }
