@@ -71,7 +71,7 @@ public class Referrals extends AppCompatActivity {
                     ref_code_owner.setText(name);
                     Toast.makeText(Referrals.this, name, Toast.LENGTH_SHORT).show();
 
-                    if(documentSnapshot.contains("referal_code"))
+                    if(documentSnapshot.contains("referal_code") && !documentSnapshot.get("referal_code").equals(""))
                     {
                         String rcode = documentSnapshot.getString("referal_code");
                         ref_code_view.setText(rcode);
