@@ -25,6 +25,9 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +35,7 @@ public class donor_reg extends AppCompatActivity {
     EditText name,addr,age,dob,bloodgrp,phno,adharno,referred_by;
     Button signup;
     String documentId;
+    String ystrdayDate;
     String referrer, referrer2;
 
 
@@ -57,6 +61,11 @@ public class donor_reg extends AppCompatActivity {
         String semail = intent.getStringExtra("DnrEmail");
         String spaswd = intent.getStringExtra("DnrPassword");
 
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        ystrdayDate= dateFormat.format(cal.getTime());
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +84,9 @@ public class donor_reg extends AppCompatActivity {
                                 data.put("phonenumber",phno.getText().toString());
                                 data.put("Aadhaar Number",adharno.getText().toString());
                                 data.put("Verified","no");
+                                data.put("nxtDntnDate",ystrdayDate);
                                 data.put("Role","DONOR");
+                                data.put("LifeCoins",0);
 
                                 if(referred_by.getText().toString().length()==6)
                                 {

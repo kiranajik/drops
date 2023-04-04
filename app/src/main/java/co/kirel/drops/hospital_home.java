@@ -168,6 +168,20 @@ public class hospital_home extends AppCompatActivity {
             }
         });
 
+        firestore.collection("Donations").document(DntnId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    donemail = documentSnapshot.getString("DonorId");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(hospital_home.this, "Error getting Email", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -209,21 +223,11 @@ public class hospital_home extends AppCompatActivity {
                             {
                                 data.put("status","Yes");
                             }
-                            firestore.collection("Donations").document(DntnId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    if (documentSnapshot.exists()) {
-                                        donemail = documentSnapshot.getString("DonorId");
 
-                                    }
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(hospital_home.this, "Error getting Email", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            firestore.collection("Donors").document(donemail).update("LifeCoins", FieldValue.increment(botlno*50));
+
+                            Toast.makeText(hospital_home.this, donemail, Toast.LENGTH_SHORT).show();
+
+                            firestore.collection("Donor").document(donemail).update("LifeCoins", FieldValue.increment(botlno*50));
                             firestore.collection("Requirements").document(ReqId).update(data);
 
                             Map<String,Object> dntndata= new HashMap<>();
@@ -241,6 +245,6 @@ public class hospital_home extends AppCompatActivity {
                     Toast.makeText(hospital_home.this, "Invalid QR", Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 800);
+        }, 1000);
     });
 }

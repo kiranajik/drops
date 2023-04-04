@@ -136,7 +136,7 @@ public class org_reg extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     Toast.makeText(org_reg.this, "Yes", Toast.LENGTH_SHORT).show();
-                                                    Intent i= new Intent(org_reg.this,donor_login.class);
+                                                    Intent i= new Intent(org_reg.this,org_login.class);
                                                     startActivity(i);
                                                     finish();
                                                 }

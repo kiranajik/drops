@@ -129,22 +129,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         if (new Date().after(strDate)) {
                             your_date_is_outdated = true;
 
-                                Intent i = new Intent(view.getContext(), DonationDetails.class);
-                                String uid = requirements.getRequirementId();
-                                String bldgrp = requirements.getBloodGroup();
-                                i.putExtra("ReqId", uid);
-                                i.putExtra("BldGrp", bldgrp);
-                                view.getContext().startActivity(i);
-                            }
-                            else{
-                                your_date_is_outdated = false;
-                                TextView tvdate=alertCustomDialog1.findViewById(R.id.tvnxtdate);
-                                tvdate.setText("Donors are required to wait a minimum of 12 weeks between donations. You can donate again after " + nxtDntnDate);
-                                dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                dialog1.show();
-                            }
+                            Intent i = new Intent(view.getContext(), DonationDetails.class);
+                            String uid = requirements.getRequirementId();
+                            String bldgrp = requirements.getBloodGroup();
+                            i.putExtra("ReqId", uid);
+                            i.putExtra("BldGrp", bldgrp);
+                            view.getContext().startActivity(i);
+                        }
+                        else{
+                            your_date_is_outdated = false;
+                            TextView tvdate=alertCustomDialog1.findViewById(R.id.tvnxtdate);
+                            tvdate.setText("Donors are required to wait a minimum of 12 weeks between donations. You can donate again after " + nxtDntnDate);
+                            dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            dialog1.show();
+                        }
                     }
-                },500);
+                },700);
             }
         });
 
