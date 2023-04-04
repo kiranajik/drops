@@ -159,7 +159,9 @@ public class Referrals extends AppCompatActivity {
 
                                 if (error!= null)
                                 {
+                                    Toast.makeText(Referrals.this, "Error!", Toast.LENGTH_SHORT).show();
                                     return;
+
                                 }
 
                                 for (DocumentChange dc : value.getDocumentChanges())
